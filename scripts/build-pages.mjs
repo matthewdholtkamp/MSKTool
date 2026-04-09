@@ -1,5 +1,5 @@
 import { build } from "esbuild";
-import { copyFile, mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -12,20 +12,14 @@ await mkdir(staticDir, { recursive: true });
 
 await build({
   absWorkingDir: root,
-  entryPoints: ["web/main.tsx"],
+  entryPoints: ["web/adtmc-msk.ts"],
   bundle: true,
   format: "iife",
   platform: "browser",
   target: ["es2020"],
   outfile: "static/app.js",
-  jsx: "automatic",
   sourcemap: false,
   minify: true
 });
-
-await copyFile(
-  path.join(root, "apps/msk-referral/app/globals.css"),
-  path.join(staticDir, "styles.css")
-);
 
 await writeFile(path.join(root, ".nojekyll"), "");

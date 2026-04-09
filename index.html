@@ -1,23 +1,148 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSKTool</title>
-    <meta
-      name="description"
-      content="Deterministic musculoskeletal screening and referral workflow built from Army Medicine PDF algorithms."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./static/styles.css" />
-  </head>
-  <body>
-    <div id="root"></div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .protocol-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .protocol-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        #toast-notification {
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .detail-block p + p {
+            margin-top: 0.65rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div id="app" class="max-w-4xl mx-auto p-4 md:p-6">
+        <header class="bg-white shadow-md rounded-lg p-4 mb-6 flex items-center justify-between">
+            <div class="flex items-center">
+                <svg class="h-10 w-10 text-blue-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">MSK Screening Assistant</h1>
+                    <p class="text-sm text-gray-500">Deterministic musculoskeletal triage and referral workflow</p>
+                </div>
+            </div>
+            <button id="home-button" class="hidden bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors">Home</button>
+        </header>
+
+        <main id="content-area">
+            <div id="home-screen">
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <div class="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6 text-sm text-blue-900">
+                        This tool is strictly algorithmic and de-identified. It uses the encoded MSK referral pathways from the source PDF and does not use AI or LLM reasoning.
+                    </div>
+                    <input type="text" id="search-bar" class="w-full p-3 border border-gray-300 rounded-lg mb-6 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Search by complaint or body region (e.g., 'Ankle')">
+                    <div class="grid grid-cols-1 gap-4 mb-6">
+                        <button id="view-all-red-flags-btn" class="w-full bg-yellow-500 text-white font-semibold py-3 px-4 rounded-lg hover:bg-yellow-600 transition-colors flex items-center justify-center">
+                            <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                            </svg>
+                            View Master Red Flags List
+                        </button>
+                    </div>
+                    <div id="protocol-list" class="space-y-4"></div>
+                </div>
+            </div>
+
+            <div id="protocol-screen" class="hidden">
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h2 id="protocol-title" class="text-xl font-bold mb-2 border-b pb-2"></h2>
+                    <p id="protocol-subtitle" class="text-sm text-gray-600 mb-4"></p>
+
+                    <div id="red-flags-container" class="mb-6">
+                        <div class="bg-red-50 border-l-4 border-red-500 text-red-800 p-4 rounded-r-lg" role="alert">
+                            <div class="flex">
+                                <div class="py-1">
+                                    <svg class="fill-current h-6 w-6 text-red-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 9a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM10 3a1 1 0 011 1v4a1 1 0 11-2 0V4a1 1 0 011-1z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold">RED FLAGS CHECK</p>
+                                    <p class="text-sm">If the patient has any of the following, stop routine screening and escalate immediately.</p>
+                                    <ul id="red-flags-list" class="list-disc list-inside mt-2 text-sm"></ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex flex-col sm:flex-row gap-2">
+                            <button id="red-flag-present-btn" class="w-full bg-red-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-red-700 transition-colors">Red Flag Present</button>
+                            <button id="no-red-flags-btn" class="w-full bg-gray-200 text-gray-700 font-semibold py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">No Red Flags - Continue</button>
+                        </div>
+                    </div>
+
+                    <div id="decision-point-container" class="hidden">
+                        <div class="mb-3 flex items-center justify-between text-sm text-gray-500">
+                            <span id="question-progress"></span>
+                            <span id="question-page"></span>
+                        </div>
+                        <div id="question-text" class="bg-blue-50 border-l-4 border-blue-500 text-blue-900 p-4 rounded-r-lg mb-4"></div>
+                        <div id="help-text" class="hidden bg-gray-50 border-l-4 border-gray-300 text-gray-700 p-4 rounded-r-lg mb-4 text-sm"></div>
+                        <div id="action-container" class="hidden bg-yellow-50 border-l-4 border-yellow-500 text-yellow-900 p-4 rounded-r-lg mb-6"></div>
+                        <div id="decision-buttons" class="flex flex-col sm:flex-row gap-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="disposition-screen" class="hidden">
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-600">Final Disposition</h3>
+                    <p id="disposition-result" class="text-3xl font-bold mb-2"></p>
+                    <p id="disposition-summary" class="text-sm text-gray-600 mb-4"></p>
+
+                    <div id="plan-container" class="hidden bg-gray-50 p-4 rounded-lg mb-6">
+                        <h4 id="plan-header" class="font-bold mb-2">Treatment Protocol / Plan</h4>
+                        <div id="plan-details" class="text-sm detail-block"></div>
+                    </div>
+
+                    <div id="references-container" class="hidden bg-gray-50 p-4 rounded-lg mb-6">
+                        <h4 class="font-bold mb-2">References</h4>
+                        <div id="references-details" class="text-sm detail-block"></div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">Encounter Summary for EHR</h4>
+                        <p class="text-xs text-gray-500 mb-2">Copy this summary and paste into the patient's electronic health record.</p>
+                        <pre id="summary-text" class="bg-white p-3 rounded border border-gray-200 text-xs whitespace-pre-wrap w-full overflow-auto"></pre>
+                        <button id="copy-summary-btn" class="mt-4 w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
+                            <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            Copy Summary to Clipboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="red-flags-list-screen" class="hidden">
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h2 class="text-2xl font-bold mb-4 border-b pb-2 text-red-700">Master Red Flags List</h2>
+                    <p class="text-sm text-gray-600 mb-6">Consolidated urgent findings from every MSK pathway in this tool.</p>
+                    <div id="all-red-flags-content" class="space-y-6"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="toast-notification" class="fixed bottom-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg opacity-0 transform translate-y-2">
+        Summary copied!
+    </div>
+
     <script src="./static/app.js"></script>
-  </body>
+</body>
 </html>
