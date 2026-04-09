@@ -7,8 +7,7 @@ export default defineConfig({
     trace: "retain-on-failure"
   },
   webServer: {
-    command:
-      "npm run build --workspace @msk/msk-referral && npm run start --workspace @msk/msk-referral",
+    command: "npm run preview:pages",
     cwd: __dirname,
     port: 3000,
     reuseExistingServer: !process.env.CI,

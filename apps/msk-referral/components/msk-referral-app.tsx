@@ -9,6 +9,17 @@ import type {
   QuestionSet,
   RefineResponse
 } from "@msk/msk-content";
+import {
+  buildPlanResponse,
+  buildQuestionSet,
+  explainPlan,
+  intakePayloadSchema,
+  planRequestSchema,
+  planResponseSchema,
+  questionSetSchema,
+  refineRequestSchema,
+  refineResponseSchema
+} from "@msk/msk-content";
 import { startTransition, useState } from "react";
 
 const bodyRegionLabels: Record<BodyRegion, string> = {
@@ -141,24 +152,6 @@ const stepTitles = [
   "4. Final SOAP"
 ];
 
-async function postJson<T>(url: string, payload: unknown): Promise<T> {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  });
-
-  const json = await response.json();
-
-  if (!response.ok) {
-    throw new Error(json.error ?? "Request failed.");
-  }
-
-  return json as T;
-}
-
 function buildSelectedNote(
   intake: IntakePayload,
   plan: PlanResponse,
@@ -211,6 +204,14 @@ function buildSelectedNote(
   ];
 
   return lines.join("\n");
+}
+
+function getValidationMessage(issue: unknown, fallback: string) {
+  if (issue instanceof Error && issue.message) {
+    return issue.message;
+  }
+
+  return fallback;
 }
 
 function ToggleField({
@@ -375,7 +376,15 @@ export function MskReferralApp() {
     setLoadingLabel("Building focused algorithm questions...");
 
     try {
-      const data = await postJson<QuestionSet>("/api/msk/questions", intake);
+      const parsed = intakePayloadSchema.safeParse(intake);
+
+      if (!parsed.success) {
+        throw new Error("Please complete the required intake fields before continuing.");
+      }
+
+      const data: QuestionSet = questionSetSchema.parse(
+        buildQuestionSet(parsed.data)
+      );
 
       startTransition(() => {
         setQuestionSet(data);
@@ -384,9 +393,7 @@ export function MskReferralApp() {
         setStep(2);
       });
     } catch (issue) {
-      setError(
-        issue instanceof Error ? issue.message : "Could not build algorithm questions."
-      );
+      setError(getValidationMessage(issue, "Could not build algorithm questions."));
     } finally {
       setLoadingLabel("");
     }
@@ -410,10 +417,18 @@ export function MskReferralApp() {
     setLoadingLabel("Running deterministic pathway rules...");
 
     try {
-      const data = await postJson<PlanResponse>("/api/msk/plan", {
+      const parsed = planRequestSchema.safeParse({
         intake,
         answers
       });
+
+      if (!parsed.success) {
+        throw new Error("The case data is incomplete or invalid for plan generation.");
+      }
+
+      const data: PlanResponse = planResponseSchema.parse(
+        buildPlanResponse(parsed.data)
+      );
 
       startTransition(() => {
         setPlan(data);
@@ -424,7 +439,7 @@ export function MskReferralApp() {
         setStep(3);
       });
     } catch (issue) {
-      setError(issue instanceof Error ? issue.message : "Could not build the plan.");
+      setError(getValidationMessage(issue, "Could not build the plan."));
     } finally {
       setLoadingLabel("");
     }
@@ -439,15 +454,27 @@ export function MskReferralApp() {
     setExplainAnswer("Explaining the active rule path...");
 
     try {
-      const data = await postJson<RefineResponse>("/api/msk/refine", {
+      const parsed = refineRequestSchema.safeParse({
         caseContext: intake,
         currentPlan: plan,
         userQuestion: explainQuestion
       });
+
+      if (!parsed.success) {
+        throw new Error("Please enter a longer question to explain the rule path.");
+      }
+
+      const data: RefineResponse = refineResponseSchema.parse(
+        explainPlan(
+          parsed.data.caseContext,
+          parsed.data.currentPlan,
+          parsed.data.userQuestion
+        )
+      );
       setExplainAnswer(data.answer);
     } catch (issue) {
       setExplainAnswer(
-        issue instanceof Error ? issue.message : "Could not explain this recommendation."
+        getValidationMessage(issue, "Could not explain this recommendation.")
       );
     }
   };
