@@ -1511,9 +1511,9 @@
                     visit_type: {
                         question: "Patient Reports with Traumatic or Acute Hip Pain: Select the reason for today's encounter.",
                         options: [
-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "hip_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute hip pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging / Labs)", onSelect: () => { isFollowUp = false; }, next: "hip_review_pending_results", soap: "Visit Type: Follow-Up to review pending imaging or labs." },
-                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "hip_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous hip injury." }
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "hip_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute hip pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging / Labs)", onSelect: () => { visitTypeState = 'imaging'; }, next: "hip_red_flags", soap: "Visit Type: Follow-Up to review pending imaging or labs (Full Reassessment)." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "hip_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous hip injury." }
                         ]
                     },
                     hip_red_flags: {
@@ -1521,7 +1521,7 @@
                         tools: ["hipRedFlags"],
                         options: [
                             { text: "Yes", next: "hip_red_flags_action", soap: "Evaluation performed. Positive for Red Flags." },
-                            { text: "No", next: "hip_special_tests", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: () => visitTypeState === 'imaging' ? "hip_review_pending_results" : "hip_special_tests", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     hip_red_flags_action: {
@@ -1550,8 +1550,8 @@
                         question: "SPECIAL TESTS EXAM",
                         tools: ["hipSpecialTests"],
                         options: [
-                            { text: "(+) Special tests OR (+) Antalgic gait", next: "hip_positive_tests_path", soap: "Physical Exam: Positive special tests or positive antalgic gait." },
-                            { text: "No (Negative tests and normal gait)", next: () => isFollowUp ? "hip_follow_up_status" : "hip_negative_tests_path", soap: "Physical Exam: No positive special tests or antalgic gait." }
+                            { text: "(+) Special tests OR (+) Antalgic gait", next: () => visitTypeState === '7day' ? "hip_follow_up_status" : "hip_positive_tests_path", soap: "Physical Exam: Positive special tests or positive antalgic gait." },
+                            { text: "No (Negative tests and normal gait)", next: () => visitTypeState === '7day' ? "hip_follow_up_status" : "hip_negative_tests_path", soap: "Physical Exam: No positive special tests or antalgic gait." }
                         ]
                     },
                     hip_positive_tests_path: {
@@ -1573,7 +1573,7 @@
                     hip_initial_treatment_positive_endpoint: {
                         question: "Initial Consult Complete.",
                         type: "endpoint",
-                        tools: ["analgesics"],
+                        tools: ["analgesics", "hipImagingGuidelines"],
                         assessment: "Acute Hip Pain, imaging not ordered.",
                         consults: "Primary Care Manager",
                         plan: "• Consider imaging per guidelines.\n• Profile 7-10 days.\n• Crutches if antalgic gait.\n• Analgesic Medications as needed.\n• Re-evaluate in 7-10 days by Primary Care Manager.\n• Further evaluation and/or referral may be warranted."
