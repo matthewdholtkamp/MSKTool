@@ -92,6 +92,21 @@
                     </div>
                 `
             },
+            neckNeuroSigns: {
+                title: "Neurological Signs & Symptoms (Cervical Spine)",
+                collapsible: true,
+                content: `
+                    <div class="bg-yellow-50 p-4 rounded-lg border-2 border-yellow-300 shadow-sm text-sm text-gray-800">
+                        <p class="mb-2 font-bold text-yellow-900">Assess for the following signs indicating radiculopathy, myelopathy, or spinal cord compression:</p>
+                        <ul class="list-disc pl-5 space-y-1 text-yellow-900">
+                            <li><strong>Paresthesia:</strong> Numbness, tingling, or "pins and needles" in the upper extremities.</li>
+                            <li><strong>Weakness:</strong> Diminished grip strength, difficulty lifting arms, or objective myotomal weakness.</li>
+                            <li><strong>Radiculopathy:</strong> Pain shooting or radiating down the arm (often following a specific dermatome).</li>
+                            <li><strong>Spinal Cord Compression (Myelopathy):</strong> Gait unsteadiness, clumsiness in hands, loss of bowel/bladder control, hyperreflexia, or positive Babinski/Hoffmann's signs.</li>
+                        </ul>
+                    </div>
+                `
+            },
             neckRedFlags: {
                 title: "Neck Pain Red Flags",
                 collapsible: false,
@@ -1407,17 +1422,17 @@
                     visit_type: {
                         question: "Patient Reports with Traumatic or Acute Neck Pain: Select the reason for today's encounter.",
                         options: [
-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "ccsr", soap: "Visit Type: Initial Consult for traumatic or acute neck pain." },
-                            { text: "Follow-Up (Reviewing Pending X-Rays / Imaging)", onSelect: () => { isFollowUp = false; }, next: "xray_results", soap: "Visit Type: Follow-Up to review pending Cervical Spine X-Rays." },
-                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "ccsr", soap: "Visit Type: 7-10 Day Follow-Up for previous neck injury." }
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "ccsr", soap: "Visit Type: Initial Consult for traumatic or acute neck pain." },
+                            { text: "Follow-Up (Reviewing Pending X-Rays / Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "ccsr", soap: "Visit Type: Follow-Up to review pending Cervical Spine X-Rays (Full Reassessment)." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "evaluate", soap: "Visit Type: 7-10 Day Follow-Up for previous neck injury." }
                         ]
                     },
                     ccsr: {
                         question: "Do Canadian Cervical Spine Rules apply?",
                         tools: ["ccsr"],
                         options: [
-                            { text: "Yes", next: "hard_collar_action", soap: "Evaluated using Canadian Cervical Spine Rules: Yes, criteria mandates Radiographs." },
-                            { text: "No", next: "evaluate", soap: "Evaluated using Canadian Cervical Spine Rules: No." }
+                            { text: "Yes", next: () => visitTypeState === 'imaging' ? "xray_results" : "hard_collar_action", soap: "Evaluated using Canadian Cervical Spine Rules: Yes, criteria mandates Radiographs." },
+                            { text: "No", next: () => visitTypeState === 'imaging' ? "xray_results" : "evaluate", soap: "Evaluated using Canadian Cervical Spine Rules: No." }
                         ]
                     },
                     hard_collar_action: {
@@ -1431,14 +1446,15 @@
                         question: "X-Ray positive for fracture or dislocation?",
                         options: [
                             { text: "Yes", next: "call_specialist_redflags", soap: "X-Rays reviewed: Yes, positive for fracture or dislocation." },
-                            { text: "No", next: "neuro_signs", soap: "X-Rays reviewed: No." }
+                            { text: "No", next: "neuro_signs", soap: "X-Rays reviewed: No fracture or dislocation." }
                         ]
                     },
                     neuro_signs: {
                         question: "Positive Neurological signs / symptoms?",
+                        tools: ["neckNeuroSigns"],
                         options: [
                             { text: "Yes", next: "call_specialist_redflags", soap: "Positive neurological signs/symptoms present." },
-                            { text: "No", next: "evaluate", soap: "No positive neurological signs/symptoms. Remove Hard Collar." }
+                            { text: "No", next: "evaluate", soap: "No positive neurological signs/symptoms. Hard Collar can be removed." }
                         ]
                     },
                     evaluate: {
@@ -1446,7 +1462,7 @@
                         tools: ["neckRedFlags"],
                         options: [
                             { text: "Red Flags Present? (Yes)", next: "call_specialist_redflags", soap: "Evaluation performed. Red Flags Present." },
-                            { text: "Red Flags Present? (No)", next: () => isFollowUp ? "follow_up_status" : "initial_treatment_endpoint", soap: "Evaluation performed. No Red Flags present." }
+                            { text: "Red Flags Present? (No)", next: () => visitTypeState === '7day' ? "follow_up_status" : "initial_treatment_endpoint", soap: "Evaluation performed. No Red Flags present." }
                         ]
                     },
                     initial_treatment_endpoint: {
@@ -2145,7 +2161,8 @@
         let currentProtocol = null;
         let currentNodeId = null;
         let clinicalHistory = []; // Stores SOAP lines
-        let isFollowUp = false; 
+        let isFollowUp = false; // Kept for legacy protocols until they are updated
+        let visitTypeState = 'initial'; // 'initial', 'imaging', '7day'
 
         // --- BIBLIOGRAPHY / REFERENCES ---
         const bibliographicReferences = {
@@ -2300,6 +2317,7 @@
             currentProtocol = algorithms[protocolId];
             clinicalHistory = [];
             isFollowUp = false;
+            visitTypeState = 'initial';
             
             clinicalHistory.push(`Chief Complaint: Patient presents with ${currentProtocol.title.toLowerCase()}.`);
             
