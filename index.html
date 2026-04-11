@@ -676,6 +676,683 @@
                 `
             },
 
+            // SHOULDER TOOLS
+            shoulderRedFlags: {
+                title: "Shoulder Pain Red Flags",
+                collapsible: false,
+                content: `
+                    <div class="bg-white p-4 rounded-lg border-2 border-red-300 shadow-sm text-sm text-gray-800">
+                        <ul class="list-none space-y-5">
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Fracture or Dislocation</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Trauma or fall onto outstretched arm</li>
+                                    <li>Visible deformity, "squared off" shoulder, or abnormal prominence</li>
+                                    <li>Severe pain and inability to move the arm</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Acute Massive Rotator Cuff Tear</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Trauma or sudden pulling/lifting mechanism</li>
+                                    <li>Significant weakness, inability to actively raise/abduct the arm against gravity</li>
+                                    <li>Positive Drop Arm sign</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Tumor / Malignancy</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>History of cancer</li>
+                                    <li>Unexplained weight loss</li>
+                                    <li>Night pain unrelieved by rest or change in position</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Infection or Septic Joint <span class="text-sm font-normal text-red-600">(Call MED/ER or ORTHO)</span></h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Redness, warmth, swelling, fever</li>
+                                    <li>Unexplained joint effusion and pain with any micromotion</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-viruses mr-2 text-blue-600"></i> 
+                                            <span>Reference: Septic Arthritis & Crystal-Induced Arthropathies <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Septic Arthritis</h5>
+                                            <p class="mb-2"><strong class="text-gray-900">Presentation:</strong> Acute joint swelling, pain, erythema, warmth, joint immobility. Joint inflammation due to underlying bacterial or fungal infection. Fever.</p>
+                                            <p><strong class="text-gray-900">Risk Factors:</strong> Contiguous spread, Open wound, Hematogenous spread, Diabetes mellitus, HIV, Immune suppression medications, Age > 65.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-orange-800 mb-2">Crystal-Induced Arthropathies</h5>
+                                            <p class="mb-2"><strong class="text-gray-900">Presentation:</strong> Acute pain/swelling manifesting within hours. Difficulty walking or weight bearing. May become febrile.</p>
+                                            <p><strong class="text-gray-900">Risk Factors:</strong> Male gender, Postmenopausal women, Dietary factors, Thiazide/Loop diuretics, Hypertension, Renal insufficiency, Diabetes, Obesity.</p>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Neurovascular Compromise</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Loss of sensation or motor function (e.g., axillary nerve distribution)</li>
+                                    <li>Diminished or absent distal pulses</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-heart-pulse mr-2 text-blue-600"></i> 
+                                            <span>Reference: Signs of Vascular Injury <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Hard Signs (Requires immediate operative care)</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>External or pulsatile bleeding</li>
+                                                <li>Rapidly expanding hematoma</li>
+                                                <li>Classical signs of arterial occlusion: Pulselessness, Pallor, Paresthesias, Pain, Paralysis</li>
+                                                <li>A palpable thrill/audible bruit</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-yellow-800 mb-2">Soft Signs</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>A history of arterial bleeding at the scene or in transit</li>
+                                                <li>Proximity of a penetrating wound or blunt injury to an artery</li>
+                                                <li>A small nonpulsatile hematoma over an artery</li>
+                                                <li>A neurologic deficit originating in a nerve adjacent to a named artery</li>
+                                                <li>Peripheral nerve deficit</li>
+                                                <li>Reduced but palpable pulse</li>
+                                                <li>Injury near a major artery</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            shoulderSpecialTests: {
+                title: "Shoulder Special Tests",
+                collapsible: false,
+                content: `
+                    <div class="space-y-3 text-sm text-gray-800">
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-arrows-down-to-people mr-2 text-blue-600"></i> 
+                                    <span>Rotator Cuff & Impingement Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-3">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Neer's Impingement Test</h5>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Pain when the examiner passively forward-flexes the patient's internally rotated arm to the end range.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Hawkins-Kennedy Test</h5>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Pain when the examiner passively internally rotates the patient's shoulder while flexed to 90 degrees.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Empty Can (Jobe's) Test</h5>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Pain or weakness (supraspinatus) when the patient resists downward pressure with arms abducted to 90 degrees in the scapular plane with thumbs pointing down.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Drop Arm Test</h5>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Inability to smoothly lower the arm from 90 degrees of abduction (arm drops suddenly), indicating a massive rotator cuff tear.</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-person-falling mr-2 text-blue-600"></i> 
+                                    <span>Instability Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-3">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Apprehension Test</h5>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Patient exhibits fear or guarding that the shoulder will dislocate when passively brought into maximum abduction and external rotation.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Relocation Test</h5>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Relief of apprehension or pain when posterior force is applied to the humeral head during the apprehension test.</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-link mr-2 text-blue-600"></i> 
+                                    <span>Labral (SLAP) & Biceps Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-3">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">O'Brien's Active Compression Test</h5>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Pain/clicking deep in the shoulder when resisting downward force with thumb pointing down, which is relieved when repeating with palm facing up.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Speed's Test</h5>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Pain in the bicipital groove when the patient resists downward pressure with the shoulder forward-flexed and palm up.</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-compress mr-2 text-blue-600"></i> 
+                                    <span>AC Joint Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg">
+                                <h5 class="font-bold text-blue-800">Cross-Body Adduction Test</h5>
+                                <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Localized pain at the Acromioclavicular (AC) joint when the examiner passively pulls the patient's arm horizontally across their chest.</p>
+                            </div>
+                        </details>
+                    </div>
+                `
+            },
+            shoulderImagingGuidelines: {
+                title: "Shoulder Imaging Guidelines",
+                collapsible: true,
+                content: `
+                    <div class="bg-gray-100 p-4 rounded border border-gray-300 text-sm text-gray-800">
+                        <h4 class="font-bold text-gray-900 mb-2">Standard Shoulder Series</h4>
+                        <ul class="list-disc pl-5 space-y-2 mb-4 text-gray-700">
+                            <li><strong>Trauma/Red Flags:</strong> Always order True Anterior/Posterior (AP), Scapular Y, and Axillary lateral views to rule out fracture or dislocation.</li>
+                            <li><strong>Suspected Rotator Cuff Tear (Acute):</strong> Plain films to rule out avulsion fractures; MRI may be required if severe weakness persists.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            shoulderProfiles: {
+                title: "Shoulder Profiles (eProfile)",
+                collapsible: true,
+                content: `
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-red-50 p-3 rounded border border-red-200">
+                            <h4 class="font-bold text-red-800 mb-1">Severe shoulder injury:</h4>
+                            <ul class="list-disc pl-5 text-red-900 space-y-1">
+                                <li>Suspected acute massive rotator cuff tear or dislocation</li>
+                                <li>Requires sling for comfort/immobilization</li>
+                                <li>No lifting, pushing, or pulling with affected arm</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
+                            <h4 class="font-bold text-yellow-800 mb-1">Moderate shoulder injury:</h4>
+                            <ul class="list-disc pl-5 text-yellow-900 space-y-1">
+                                <li>Impingement, tendinitis, or mild sprain</li>
+                                <li>No overhead lifting</li>
+                                <li>No pushups or heavy lifting > 10 lbs with affected arm</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded border border-green-200">
+                            <h4 class="font-bold text-green-800 mb-1">Minimal shoulder injury:</h4>
+                            <ul class="list-disc pl-5 text-green-900 space-y-1">
+                                <li>Mild pain at end ranges</li>
+                                <li>Walk to tolerance</li>
+                                <li>Modify upper body PRT to tolerance</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+
+            // ARM & ELBOW TOOLS
+            elbowRedFlags: {
+                title: "Arm & Elbow Pain Red Flags",
+                collapsible: false,
+                content: `
+                    <div class="bg-white p-4 rounded-lg border-2 border-red-300 shadow-sm text-sm text-gray-800">
+                        <ul class="list-none space-y-5">
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Fracture or Dislocation</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Trauma or fall onto an outstretched hand (FOOSH)</li>
+                                    <li>Visible deformity, abnormal prominence, or swelling</li>
+                                    <li>Severe pain and inability to flex, extend, pronate, or supinate</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Distal Biceps or Triceps Tendon Rupture</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Trauma or sudden heavy lifting/eccentric load mechanism</li>
+                                    <li>Felt or heard a "pop"</li>
+                                    <li>Visible deformity (e.g., "Popeye" muscle for biceps)</li>
+                                    <li>Palpable defect at the antecubital fossa or olecranon</li>
+                                    <li>Significant weakness in elbow flexion/supination (Biceps) or extension (Triceps)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Infection, Septic Joint, Crystal Induced Arthropathies <span class="text-sm font-normal text-red-600">(Call MED/ER or ORTHO)</span></h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Redness, warmth, swelling, fever</li>
+                                    <li>Acute olecranon bursitis with surrounding cellulitis</li>
+                                    <li>Pain with loading or severe pain with any micromotion of the joint</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-viruses mr-2 text-blue-600"></i> 
+                                            <span>Reference: Septic Arthritis & Crystal-Induced Arthropathies <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Septic Arthritis</h5>
+                                            <p class="mb-2"><strong class="text-gray-900">Presentation:</strong> Acute joint swelling, pain, erythema, warmth, joint immobility. Joint inflammation due to underlying bacterial or fungal infection. Fever.</p>
+                                            <p><strong class="text-gray-900">Risk Factors:</strong> Contiguous spread, Open wound, Hematogenous spread, Diabetes mellitus, HIV, Immune suppression medications, Age > 65.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-orange-800 mb-2">Crystal-Induced Arthropathies</h5>
+                                            <p class="mb-2"><strong class="text-gray-900">Presentation:</strong> Acute pain/swelling manifesting within hours. Difficulty walking or weight bearing. May become febrile.</p>
+                                            <p><strong class="text-gray-900">Risk Factors:</strong> Male gender, Postmenopausal women, Dietary factors, Thiazide/Loop diuretics, Hypertension, Renal insufficiency, Diabetes, Obesity.</p>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Neurovascular Compromise</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Loss of sensation or motor function in the hand/fingers (Median, Ulnar, or Radial nerve distribution)</li>
+                                    <li>Diminished or absent distal pulses (Radial/Ulnar)</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-heart-pulse mr-2 text-blue-600"></i> 
+                                            <span>Reference: Signs of Vascular Injury <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Hard Signs (Requires immediate operative care)</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>External or pulsatile bleeding</li>
+                                                <li>Rapidly expanding hematoma</li>
+                                                <li>Classical signs of arterial occlusion: Pulselessness, Pallor, Paresthesias, Pain, Paralysis</li>
+                                                <li>A palpable thrill/audible bruit</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-yellow-800 mb-2">Soft Signs</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>A history of arterial bleeding at the scene or in transit</li>
+                                                <li>Proximity of a penetrating wound or blunt injury to an artery</li>
+                                                <li>A small nonpulsatile hematoma over an artery</li>
+                                                <li>A neurologic deficit originating in a nerve adjacent to a named artery</li>
+                                                <li>Peripheral nerve deficit</li>
+                                                <li>Reduced but palpable pulse</li>
+                                                <li>Injury near a major artery</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            elbowSpecialTests: {
+                title: "Arm & Elbow Special Tests",
+                collapsible: false,
+                content: `
+                    <div class="space-y-3 text-sm text-gray-800">
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-hand-fist mr-2 text-blue-600"></i> 
+                                    <span>Epicondylalgia (Tendinopathy) Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-3">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Lateral Epicondylalgia (Tennis Elbow)</h5>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1 text-gray-700">
+                                        <li><strong>Cozen's Test:</strong> Resisted wrist extension with radial deviation. <span class="text-red-700 font-bold">(+) Pain at lateral epicondyle.</span></li>
+                                        <li><strong>Mill's Test:</strong> Passive pronation of the forearm and flexion of the wrist with elbow extended. <span class="text-red-700 font-bold">(+) Pain at lateral epicondyle.</span></li>
+                                        <li><strong>Maudsley's Test:</strong> Resisted extension of the 3rd (middle) digit. <span class="text-red-700 font-bold">(+) Pain at lateral epicondyle.</span></li>
+                                    </ul>
+                                </div>
+                                <div class="border-t border-gray-200 pt-2">
+                                    <h5 class="font-bold text-blue-800">Medial Epicondylalgia (Golfer's Elbow)</h5>
+                                    <ul class="list-disc pl-5 space-y-1 mt-1 text-gray-700">
+                                        <li><strong>Golfer's Elbow Test:</strong> Resisted wrist flexion OR passive supination and extension of the wrist with elbow extended. <span class="text-red-700 font-bold">(+) Pain at medial epicondyle.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-arrows-left-right mr-2 text-blue-600"></i> 
+                                    <span>Ligamentous Instability Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-3">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Valgus Stress Test (UCL / MCL)</h5>
+                                    <p class="text-gray-700 mt-1">Apply a valgus (outward) force to the distal forearm while stabilizing the humerus, tested at 20-30 degrees of elbow flexion.</p>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Increased laxity, absent end-feel, or pain over the medial joint line compared to the uninjured side.</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-2">
+                                    <h5 class="font-bold text-blue-800">Varus Stress Test (RCL / LCL)</h5>
+                                    <p class="text-gray-700 mt-1">Apply a varus (inward) force to the distal forearm while stabilizing the humerus, tested at 20-30 degrees of elbow flexion.</p>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Increased laxity, absent end-feel, or pain over the lateral joint line compared to the uninjured side.</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-bolt mr-2 text-blue-600"></i> 
+                                    <span>Neurological / Nerve Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg">
+                                <h5 class="font-bold text-blue-800">Tinel's Sign (at the Cubital Tunnel)</h5>
+                                <p class="text-gray-700 mt-1">Gently tap over the ulnar nerve in the cubital tunnel (groove between the olecranon and medial epicondyle).</p>
+                                <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Tingling, electric shocks, or paresthesia radiating down the forearm into the 4th and 5th digits.</p>
+                            </div>
+                        </details>
+                    </div>
+                `
+            },
+            elbowImagingGuidelines: {
+                title: "Arm & Elbow Imaging Guidelines",
+                collapsible: true,
+                content: `
+                    <div class="bg-gray-100 p-4 rounded border border-gray-300 text-sm text-gray-800">
+                        <h4 class="font-bold text-gray-900 mb-2">Standard Elbow Series</h4>
+                        <ul class="list-disc pl-5 space-y-2 mb-4 text-gray-700">
+                            <li><strong>Trauma/Red Flags:</strong> Always order Plain Radiographs (Anterior/Posterior, Lateral, and Oblique views) to evaluate for fractures or joint effusion (e.g., elevated fat pad sign / "sail sign").</li>
+                            <li><strong>Suspected Tendon Rupture:</strong> Plain films to rule out avulsion fractures. MRI or Musculoskeletal Ultrasound is the modality of choice to confirm complete vs. partial tears.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            elbowProfiles: {
+                title: "Arm & Elbow Profiles (eProfile)",
+                collapsible: true,
+                content: `
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-red-50 p-3 rounded border border-red-200">
+                            <h4 class="font-bold text-red-800 mb-1">Severe injury:</h4>
+                            <ul class="list-disc pl-5 text-red-900 space-y-1">
+                                <li>Suspected acute tendon rupture, severe instability, or fracture</li>
+                                <li>Requires sling or splint for immobilization</li>
+                                <li>No lifting, pushing, pulling, or weight-bearing with affected arm</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
+                            <h4 class="font-bold text-yellow-800 mb-1">Moderate injury:</h4>
+                            <ul class="list-disc pl-5 text-yellow-900 space-y-1">
+                                <li>Epicondylitis, bursitis, or moderate sprain</li>
+                                <li>No lifting > 10 lbs with affected arm</li>
+                                <li>No pushups, pullups, or repetitive gripping</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded border border-green-200">
+                            <h4 class="font-bold text-green-800 mb-1">Minimal injury:</h4>
+                            <ul class="list-disc pl-5 text-green-900 space-y-1">
+                                <li>Mild generalized soreness</li>
+                                <li>Modify upper body PRT to tolerance</li>
+                                <li>Bracing (e.g., counterforce strap) as needed for activity</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+
+            // WRIST & HAND TOOLS
+            wristRedFlags: {
+                title: "Hand & Wrist Pain Red Flags",
+                collapsible: false,
+                content: `
+                    <div class="bg-white p-4 rounded-lg border-2 border-red-300 shadow-sm text-sm text-gray-800">
+                        <ul class="list-none space-y-5">
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Fracture or Dislocation</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Trauma, crush injury, or fall onto an outstretched hand (FOOSH)</li>
+                                    <li>Visible deformity or abnormal prominence</li>
+                                    <li>Anatomical Snuffbox tenderness (High risk for Scaphoid fracture / AVN)</li>
+                                    <li>Severe pain and inability to move the wrist or digits</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Tendon Rupture or Laceration</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Inability to actively flex the distal phalanx (Jersey Finger - Flexor Digitorum Profundus rupture)</li>
+                                    <li>Inability to actively extend the distal phalanx (Mallet Finger - Extensor tendon rupture)</li>
+                                    <li>Inability to extend the proximal interphalangeal joint (Boutonniere Deformity)</li>
+                                    <li>Open laceration over the course of a tendon with associated weakness</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Infection or Septic Joint <span class="text-sm font-normal text-red-600">(Call MED/ER or ORTHO)</span></h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Animal or Human Bite (e.g., "Fight Bite" over the MCP joints)</li>
+                                    <li>Redness, warmth, swelling, and fever</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-viruses mr-2 text-blue-600"></i> 
+                                            <span>Reference: Kanavel's Signs (Flexor Tenosynovitis) <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg">
+                                        <h5 class="font-bold text-red-800 mb-2">Four Cardinal Signs of Flexor Tenosynovitis (Surgical Emergency):</h5>
+                                        <ol class="list-decimal pl-5 space-y-1 text-gray-700">
+                                            <li>Finger held in slight flexion for comfort.</li>
+                                            <li>Fusiform (sausage-like) swelling of the entire digit.</li>
+                                            <li>Tenderness to palpation along the entire course of the flexor tendon sheath.</li>
+                                            <li>Severe pain elicited by passive extension of the digit.</li>
+                                        </ol>
+                                    </div>
+                                </details>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Neurovascular Compromise</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Loss of sensation in the hand/fingers (Median, Ulnar, or Radial nerve distribution)</li>
+                                    <li>Capillary refill > 2 seconds or absent distal pulses</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-heart-pulse mr-2 text-blue-600"></i> 
+                                            <span>Reference: Signs of Vascular Injury <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Hard Signs (Requires immediate operative care)</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>External or pulsatile bleeding</li>
+                                                <li>Rapidly expanding hematoma</li>
+                                                <li>Classical signs of arterial occlusion: Pulselessness, Pallor, Paresthesias, Pain, Paralysis</li>
+                                                <li>A palpable thrill/audible bruit</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-yellow-800 mb-2">Soft Signs</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>A history of arterial bleeding at the scene or in transit</li>
+                                                <li>Proximity of a penetrating wound or blunt injury to an artery</li>
+                                                <li>A small nonpulsatile hematoma over an artery</li>
+                                                <li>A neurologic deficit originating in a nerve adjacent to a named artery</li>
+                                                <li>Peripheral nerve deficit</li>
+                                                <li>Reduced but palpable pulse</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            wristSpecialTests: {
+                title: "Hand & Wrist Special Tests",
+                collapsible: false,
+                content: `
+                    <div class="space-y-3 text-sm text-gray-800">
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-bone mr-2 text-blue-600"></i> 
+                                    <span>Scaphoid Fracture Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-3">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Anatomical Snuffbox Palpation</h5>
+                                    <p class="text-gray-700 mt-1">Palpate the depression between the Extensor Pollicis Longus and Extensor Pollicis Brevis at the base of the thumb.</p>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Point tenderness (highly sensitive for Scaphoid fracture).</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Axial Loading of the Thumb</h5>
+                                    <p class="text-gray-700 mt-1">Apply axial compression along the first metacarpal bone toward the scaphoid.</p>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Pain at the base of the thumb/scaphoid.</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-hand-holding-hand mr-2 text-blue-600"></i> 
+                                    <span>Tenosynovitis & Ligament Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-3">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Finkelstein's Test (DeQuervain's Tenosynovitis)</h5>
+                                    <p class="text-gray-700 mt-1">Patient makes a fist with the thumb tucked inside the fingers. Examiner stabilizes the forearm and passively ulnar deviates the wrist.</p>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Sharp pain along the radial aspect of the wrist (Abductor Pollicis Longus / Extensor Pollicis Brevis tendons).</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Thumb UCL Instability (Skier's / Gamekeeper's Thumb)</h5>
+                                    <p class="text-gray-700 mt-1">Apply valgus stress to the ulnar collateral ligament of the thumb MCP joint.</p>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Increased laxity or lack of an end-point compared to the uninjured side.</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-bolt mr-2 text-blue-600"></i> 
+                                    <span>Nerve Pathology Tests (Carpal Tunnel) <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-3">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Phalen's Test</h5>
+                                    <p class="text-gray-700 mt-1">Patient presses the backs of their hands together with wrists maximally flexed for 60 seconds.</p>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Numbness or tingling in the median nerve distribution (thumb, index, middle, and radial half of ring finger).</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Tinel's Sign (at the Wrist)</h5>
+                                    <p class="text-gray-700 mt-1">Examiner gently taps over the median nerve at the volar carpal tunnel.</p>
+                                    <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Electric shock sensation or tingling radiating into the median nerve distribution.</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-heart-pulse mr-2 text-blue-600"></i> 
+                                    <span>Vascular Integrity Test <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg">
+                                <h5 class="font-bold text-blue-800">Allen's Test</h5>
+                                <p class="text-gray-700 mt-1">Patient clenches fist while examiner occludes both radial and ulnar arteries. Patient opens hand (should be pale). Examiner releases one artery.</p>
+                                <p class="text-red-700 text-sm"><strong>(+) SIGN:</strong> Delay of normal color return (> 5 seconds) indicates inadequate collateral circulation via that specific artery.</p>
+                            </div>
+                        </details>
+                    </div>
+                `
+            },
+            wristImagingGuidelines: {
+                title: "Hand & Wrist Imaging Guidelines",
+                collapsible: true,
+                content: `
+                    <div class="bg-gray-100 p-4 rounded border border-gray-300 text-sm text-gray-800">
+                        <h4 class="font-bold text-gray-900 mb-2">Standard Series</h4>
+                        <ul class="list-disc pl-5 space-y-2 mb-4 text-gray-700">
+                            <li><strong>Wrist Series:</strong> Anterior/Posterior (AP), Lateral, and Oblique views for generalized trauma or suspected fracture.</li>
+                            <li><strong>Scaphoid Series:</strong> If Anatomical Snuffbox tenderness is present, specifically request a Scaphoid/Navicular series (includes ulnar deviation view). <em>Note: Scaphoid fractures are frequently occult (hidden) on initial X-rays. If snuffbox tenderness exists, treat as a fracture (Thumb Spica Splint) and repeat films in 10-14 days or obtain MRI.</em></li>
+                            <li><strong>Hand/Digit Series:</strong> AP, Lateral, and Oblique views of the specific affected digits.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            wristProfiles: {
+                title: "Hand & Wrist Profiles (eProfile)",
+                collapsible: true,
+                content: `
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-red-50 p-3 rounded border border-red-200">
+                            <h4 class="font-bold text-red-800 mb-1">Severe injury:</h4>
+                            <ul class="list-disc pl-5 text-red-900 space-y-1">
+                                <li>Suspected Scaphoid fracture, tendon rupture, or joint dislocation</li>
+                                <li>Requires rigid splinting (e.g., Volar, Thumb Spica)</li>
+                                <li>No use of affected hand for lifting, carrying, or weapons handling</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
+                            <h4 class="font-bold text-yellow-800 mb-1">Moderate injury:</h4>
+                            <ul class="list-disc pl-5 text-yellow-900 space-y-1">
+                                <li>DeQuervain's Tenosynovitis or Carpal Tunnel Syndrome</li>
+                                <li>No repetitive gripping, pushing, or pulling</li>
+                                <li>Modify PRT (e.g., no pushups on flat hands, use fists or substitute)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded border border-green-200">
+                            <h4 class="font-bold text-green-800 mb-1">Minimal injury:</h4>
+                            <ul class="list-disc pl-5 text-green-900 space-y-1">
+                                <li>Mild generalized sprain</li>
+                                <li>Activity as tolerated</li>
+                                <li>Soft bracing or buddy taping (for minor digit sprains) as needed</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+
             // UNIVERSAL TOOLS
             peaceProtocol: {
                 title: "PEACE Protocol for Injury Care",
@@ -1098,6 +1775,369 @@
                         plan: "• Duty Specific Profile as needed (Gradual return to running program recommended).\n• Analgesic Medications as needed.\n• Return to duty at end of profile anticipated."
                     }
                 }
+            },
+            knee: {
+                title: "Traumatic or Acute Knee Pain",
+                nodes: {
+                    visit_type: {
+                        question: "Patient Reports With Traumatic or Acute Knee Pain: Select the reason for today's encounter.",
+                        options: [
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "knee_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute knee pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "knee_review_results", soap: "Visit Type: Follow-Up to review pending knee imaging." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "knee_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous knee injury." }
+                        ]
+                    },
+                    knee_red_flags: {
+                        question: "RED FLAGS: Does the patient have any Red Flags?",
+                        tools: ["kneeRedFlags"],
+                        options: [
+                            { text: "Yes", next: "knee_red_flags_action", soap: "Evaluation performed. Positive for Knee Red Flags." },
+                            { text: "No", next: "knee_exam", soap: "Evaluation performed. No Red Flags." }
+                        ]
+                    },
+                    knee_red_flags_action: {
+                        question: "Action Required: Immediate Medical Management.",
+                        type: "endpoint",
+                        assessment: "Acute Knee Pain with Red Flags.",
+                        consults: "Orthopedics or Emergency Department (TODAY)",
+                        plan: "• Call Orthopedics / Emergency Department TODAY.\n• Order Imaging: Anterior/Posterior, Lateral, Sunrise views as indicated by Ottawa Knee Rules.\n• Strict Non Weight Bearing on crutches if fracture or extensor rupture suspected.\n• Transfer care as directed by specialty consultation."
+                    },
+                    knee_review_results: {
+                        question: "Review the Pending X-Rays or MRI. Are there positive findings?",
+                        options: [
+                            { text: "Yes, positive for fracture, loose body, or significant pathology", next: "call_ortho_knee", soap: "Imaging reviewed: Yes, positive findings confirmed." },
+                            { text: "No, imaging is negative", next: "knee_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
+                        ]
+                    },
+                    call_ortho_knee: {
+                        question: "Consult Specialty Care TODAY.",
+                        type: "endpoint",
+                        assessment: "Acute Knee Pain with Positive Imaging Findings.",
+                        consults: "Orthopedics",
+                        plan: "• Call Orthopedics TODAY to discuss management and transfer of care."
+                    },
+                    knee_exam: {
+                        question: "EXAM Findings:",
+                        instruction: "Assess for: Ligament instability, Meniscal pathology, Patellar apprehension, Effusion, Edema, Decreased Range of Motion. Use the special tests drop-downs below.",
+                        tools: ["kneeSpecialTests", "kneeProfiles"],
+                        options: [
+                            { text: "Yes (Positive Instability, Apprehension, Effusion, Mod/Severe Edema, or Decreased ROM)", next: "knee_severe_path", soap: "Physical Exam: Positive for ligament instability, meniscal pathology, patellar apprehension, effusion, and/or decreased Range of Motion." },
+                            { text: "No (Negative special tests, minimal/no edema, normal ROM)", next: "knee_moderate_path", soap: "Physical Exam: Negative instability, negative meniscal signs, no effusion, normal Range of Motion." }
+                        ]
+                    },
+                    knee_severe_path: {
+                        question: "Initial Consult Complete: Severe/Moderate Knee Injury Protocol.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "kneeProfiles", "analgesics", "weightBearing"],
+                        assessment: "Acute Knee Pain, Severe to Moderate Injury (Suspected ligament/meniscal involvement).",
+                        consults: "Physical Therapy or Orthopedics (within 7-10 days)",
+                        plan: "• Profile: Severe (No running, jumping, squatting).\n• Crutches: Issued (Weight Bearing As Tolerated or Partial Weight Bearing based on pain).\n• Splint/Brace: Issued knee immobilizer or hinged brace if instability noted.\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Follow-up: Physical Therapy or Orthopedics in 7-10 days."
+                    },
+                    knee_moderate_path: {
+                        question: "Initial Consult Complete: Mild Knee Injury / Sprain Protocol.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "kneeProfiles", "analgesics"],
+                        assessment: "Acute Knee Pain, Mild Sprain/Strain.",
+                        consults: "Primary Care Manager in 7-10 days",
+                        plan: "• Profile: Moderate or Mild (Walk to tolerance, modify PRT).\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Re-evaluate in 7-10 days by Primary Care Manager if symptoms persist."
+                    },
+                    knee_follow_up_status: {
+                        question: "Symptoms Persist?",
+                        options: [
+                            { text: "Yes", next: "knee_symptoms_persist", soap: "Follow-up evaluation: Symptoms Persist." },
+                            { text: "Mostly Resolved", next: "knee_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
+                        ]
+                    },
+                    knee_symptoms_persist: {
+                        question: "Persistent Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["kneeProfiles", "analgesics", "weightBearing"],
+                        assessment: "Acute Knee Pain, persistent symptoms.",
+                        consults: "Physical Therapy, Sports Medicine, or Orthopedics",
+                        plan: "• Imaging: Consider Anterior/Posterior, Lateral, and Sunrise X-Rays if not previously done; consider MRI referral via specialty.\n• Profile: Maintain appropriate Profile.\n• Consider crutches or bracing if giving way/instability occurs.\n• Analgesic medications as needed.\n• Referral: Physical Therapy, Sports Medicine, or Orthopedics as indicated."
+                    },
+                    knee_mostly_resolved: {
+                        question: "Resolved Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics"],
+                        assessment: "Acute Knee Pain, mostly resolved.",
+                        consults: "None immediately required",
+                        plan: "• Duty Specific Profile as needed (Gradual return to impact activities recommended).\n• Analgesic Medications as needed.\n• Return to duty at end of profile anticipated."
+                    }
+                }
+            },
+            shoulder: {
+                title: "Traumatic or Acute Shoulder Pain",
+                nodes: {
+                    visit_type: {
+                        question: "Patient Reports With Traumatic or Acute Shoulder Pain: Select the reason for today's encounter.",
+                        options: [
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "shoulder_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute shoulder pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "shoulder_review_results", soap: "Visit Type: Follow-Up to review pending shoulder imaging." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "shoulder_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous shoulder injury." }
+                        ]
+                    },
+                    shoulder_red_flags: {
+                        question: "RED FLAGS: Does the patient have any Red Flags?",
+                        tools: ["shoulderRedFlags"],
+                        options: [
+                            { text: "Yes", next: "shoulder_red_flags_action", soap: "Evaluation performed. Positive for Shoulder Red Flags." },
+                            { text: "No", next: "shoulder_exam", soap: "Evaluation performed. No Red Flags." }
+                        ]
+                    },
+                    shoulder_red_flags_action: {
+                        question: "Action Required: Immediate Medical Management & Imaging.",
+                        type: "endpoint",
+                        tools: ["shoulderImagingGuidelines", "shoulderProfiles"],
+                        assessment: "Acute Shoulder Pain with Red Flags (Suspected Fracture, Dislocation, Acute Tear, or Infection).",
+                        consults: "Orthopedics or Emergency Department (TODAY)",
+                        plan: "• Order X-Rays: True AP, Scapular Y, and Axillary Lateral.\n• Call Orthopedics or send to Emergency Department TODAY depending on severity/findings.\n• Issue Sling for comfort/immobilization.\n• Profile: Severe (No lifting/pushing/pulling)."
+                    },
+                    shoulder_review_results: {
+                        question: "Review the Pending X-Rays. Are there positive findings?",
+                        options: [
+                            { text: "Yes, positive for fracture or dislocation", next: "call_ortho_shoulder", soap: "Imaging reviewed: Yes, positive findings confirmed." },
+                            { text: "No, imaging is negative", next: "shoulder_exam", soap: "Imaging reviewed: No acute fracture or dislocation." }
+                        ]
+                    },
+                    call_ortho_shoulder: {
+                        question: "Consult Specialty Care TODAY.",
+                        type: "endpoint",
+                        assessment: "Acute Shoulder Pain with Positive Imaging Findings.",
+                        consults: "Orthopedics",
+                        plan: "• Call Orthopedics TODAY to discuss management and transfer of care. Maintain immobilization in sling."
+                    },
+                    shoulder_exam: {
+                        question: "SHOULDER EXAM: Evaluate for Impingement, Rotator Cuff Tears, Instability, SLAP, and AC Joint pathology.",
+                        instruction: "Use the special tests drop-downs below to guide your exam.",
+                        tools: ["shoulderSpecialTests", "shoulderProfiles"],
+                        options: [
+                            { text: "Yes (Positive Instability, significant Rotator Cuff weakness, or severe impingement signs)", next: "shoulder_severe_path", soap: "Physical Exam: Positive for significant impingement, rotator cuff pathology, or instability." },
+                            { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: "shoulder_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
+                        ]
+                    },
+                    shoulder_severe_path: {
+                        question: "Initial Consult Complete: Severe/Moderate Shoulder Injury Protocol.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "shoulderProfiles", "analgesics"],
+                        assessment: "Acute Shoulder Pain, Severe to Moderate Injury.",
+                        consults: "Physical Therapy or Orthopedics (within 7-10 days)",
+                        plan: "• Profile: Severe (No overhead activity, no lifting > 5 lbs).\n• Sling: Consider for comfort (1-3 days maximum unless directed by Ortho).\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Follow-up: Refer to Physical Therapy or Orthopedics in 7-10 days."
+                    },
+                    shoulder_moderate_path: {
+                        question: "Initial Consult Complete: Mild Shoulder Injury / Strain Protocol.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "shoulderProfiles", "analgesics"],
+                        assessment: "Acute Shoulder Pain, Mild Sprain/Strain/Tendinitis.",
+                        consults: "Primary Care Manager in 7-10 days",
+                        plan: "• Profile: Moderate or Mild (Modify upper body PRT, no pushups/pullups).\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Re-evaluate in 7-10 days by Primary Care Manager if symptoms persist."
+                    },
+                    shoulder_follow_up_status: {
+                        question: "Symptoms Persist?",
+                        options: [
+                            { text: "Yes", next: "shoulder_symptoms_persist", soap: "Follow-up evaluation: Symptoms Persist." },
+                            { text: "Mostly Resolved", next: "shoulder_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
+                        ]
+                    },
+                    shoulder_symptoms_persist: {
+                        question: "Persistent Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["shoulderProfiles", "analgesics"],
+                        assessment: "Acute Shoulder Pain, persistent symptoms.",
+                        consults: "Physical Therapy, Sports Medicine, or Orthopedics",
+                        plan: "• Imaging: Consider AP/Y/Axillary X-Rays if not previously done.\n• Consider MRI if rotator cuff tear strongly suspected and patient is over 40.\n• Profile: Maintain appropriate Profile.\n• Analgesic medications as needed.\n• Referral: Physical Therapy, Sports Medicine, or Orthopedics as indicated."
+                    },
+                    shoulder_mostly_resolved: {
+                        question: "Resolved Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics"],
+                        assessment: "Acute Shoulder Pain, mostly resolved.",
+                        consults: "None immediately required",
+                        plan: "• Duty Specific Profile as needed (Gradual return to overhead activities/pushups recommended).\n• Analgesic Medications as needed.\n• Return to duty at end of profile anticipated."
+                    }
+                }
+            },
+            elbow: {
+                title: "Traumatic or Acute Arm and Elbow Pain",
+                nodes: {
+                    visit_type: {
+                        question: "Patient Reports With Traumatic or Acute Arm and Elbow Pain: Select the reason for today's encounter.",
+                        options: [
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "elbow_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute arm/elbow pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "elbow_review_results", soap: "Visit Type: Follow-Up to review pending arm/elbow imaging." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "elbow_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous arm/elbow injury." }
+                        ]
+                    },
+                    elbow_red_flags: {
+                        question: "RED FLAGS: Does the patient have any Red Flags?",
+                        tools: ["elbowRedFlags"],
+                        options: [
+                            { text: "Yes", next: "elbow_red_flags_action", soap: "Evaluation performed. Positive for Arm & Elbow Red Flags." },
+                            { text: "No", next: "elbow_exam", soap: "Evaluation performed. No Red Flags." }
+                        ]
+                    },
+                    elbow_red_flags_action: {
+                        question: "Action Required: Immediate Medical Management & Imaging.",
+                        type: "endpoint",
+                        tools: ["elbowImagingGuidelines", "elbowProfiles"],
+                        assessment: "Acute Arm/Elbow Pain with Red Flags (Suspected Fracture, Rupture, Infection, or Neurovascular issue).",
+                        consults: "Orthopedics or Emergency Department (TODAY)",
+                        plan: "• Order X-Rays: AP, Lateral, and Oblique.\n• Call Orthopedics or send to Emergency Department TODAY depending on severity.\n• Splint/Sling: Immobilize as appropriate.\n• Profile: Severe (No lifting/pushing/pulling/weight bearing on arm)."
+                    },
+                    elbow_review_results: {
+                        question: "Review the Pending X-Rays or Ultrasound. Are there positive findings?",
+                        options: [
+                            { text: "Yes, positive for fracture, tendon rupture, or dislocation", next: "call_ortho_elbow", soap: "Imaging reviewed: Yes, positive findings confirmed." },
+                            { text: "No, imaging is negative", next: "elbow_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
+                        ]
+                    },
+                    call_ortho_elbow: {
+                        question: "Consult Specialty Care TODAY.",
+                        type: "endpoint",
+                        assessment: "Acute Arm/Elbow Pain with Positive Imaging Findings.",
+                        consults: "Orthopedics",
+                        plan: "• Call Orthopedics TODAY to discuss management and transfer of care. Maintain immobilization."
+                    },
+                    elbow_exam: {
+                        question: "ELBOW EXAM: Evaluate for Epicondylalgia, Ligamentous Instability, and Neurological signs.",
+                        instruction: "Use the special tests drop-downs below to guide your exam.",
+                        tools: ["elbowSpecialTests", "elbowProfiles"],
+                        options: [
+                            { text: "Yes (Positive Instability, severe Epicondylitis, or positive Tinel's)", next: "elbow_severe_path", soap: "Physical Exam: Positive for significant ligamentous instability, severe tendinopathy, or ulnar nerve pathology." },
+                            { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: "elbow_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
+                        ]
+                    },
+                    elbow_severe_path: {
+                        question: "Initial Consult Complete: Severe/Moderate Elbow Injury Protocol.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "elbowProfiles", "analgesics"],
+                        assessment: "Acute Arm/Elbow Pain, Severe to Moderate Injury (Suspected ligamentous/nerve involvement).",
+                        consults: "Physical Therapy or Orthopedics (within 7-10 days)",
+                        plan: "• Profile: Severe (No lifting > 5 lbs, no repetitive gripping/pushing/pulling).\n• Immobilization: Consider Sling or brace for comfort.\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Follow-up: Refer to Physical Therapy or Orthopedics in 7-10 days."
+                    },
+                    elbow_moderate_path: {
+                        question: "Initial Consult Complete: Mild Elbow Injury / Epicondylitis Protocol.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "elbowProfiles", "analgesics"],
+                        assessment: "Acute Arm/Elbow Pain, Mild Sprain/Strain or Tendinopathy.",
+                        consults: "Primary Care Manager in 7-10 days",
+                        plan: "• Profile: Moderate or Mild (Modify upper body PRT, consider counterforce brace for Epicondylitis).\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Re-evaluate in 7-10 days by Primary Care Manager if symptoms persist."
+                    },
+                    elbow_follow_up_status: {
+                        question: "Symptoms Persist?",
+                        options: [
+                            { text: "Yes", next: "elbow_symptoms_persist", soap: "Follow-up evaluation: Symptoms Persist." },
+                            { text: "Mostly Resolved", next: "elbow_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
+                        ]
+                    },
+                    elbow_symptoms_persist: {
+                        question: "Persistent Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["elbowProfiles", "analgesics"],
+                        assessment: "Acute Arm/Elbow Pain, persistent symptoms.",
+                        consults: "Physical Therapy, Sports Medicine, or Orthopedics",
+                        plan: "• Imaging: Consider AP/Lateral/Oblique X-Rays if not previously done. Consider Ultrasound/MRI for refractory tendinopathy or suspected tears.\n• Profile: Maintain appropriate Profile.\n• Analgesic medications as needed.\n• Referral: Physical Therapy, Sports Medicine, or Orthopedics as indicated."
+                    },
+                    elbow_mostly_resolved: {
+                        question: "Resolved Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics"],
+                        assessment: "Acute Arm/Elbow Pain, mostly resolved.",
+                        consults: "None immediately required",
+                        plan: "• Duty Specific Profile as needed (Gradual return to lifting/gripping recommended).\n• Analgesic Medications as needed.\n• Return to duty at end of profile anticipated."
+                    }
+                }
+            },
+            wrist: {
+                title: "Traumatic or Acute Hand and Wrist Pain",
+                nodes: {
+                    visit_type: {
+                        question: "Patient Reports With Traumatic or Acute Hand and Wrist Pain: Select the reason for today's encounter.",
+                        options: [
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "wrist_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute hand/wrist pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "wrist_review_results", soap: "Visit Type: Follow-Up to review pending hand/wrist imaging." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "wrist_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous hand/wrist injury." }
+                        ]
+                    },
+                    wrist_red_flags: {
+                        question: "RED FLAGS: Does the patient have any Red Flags?",
+                        tools: ["wristRedFlags"],
+                        options: [
+                            { text: "Yes", next: "wrist_red_flags_action", soap: "Evaluation performed. Positive for Hand/Wrist Red Flags." },
+                            { text: "No", next: "wrist_exam", soap: "Evaluation performed. No Red Flags." }
+                        ]
+                    },
+                    wrist_red_flags_action: {
+                        question: "Action Required: Immediate Medical Management & Imaging.",
+                        type: "endpoint",
+                        tools: ["wristImagingGuidelines", "wristProfiles"],
+                        assessment: "Acute Hand/Wrist Pain with Red Flags (Suspected Fracture, Tendon Rupture, Infection, or Neurovascular issue).",
+                        consults: "Orthopedics or Emergency Department (TODAY)",
+                        plan: "• Order appropriate X-Rays: Hand/Wrist/Scaphoid series.\n• Call Orthopedics or send to Emergency Department TODAY depending on severity (e.g., Kanavel's signs, Fight Bite, Dislocation).\n• Splint: Immobilize as appropriate (Thumb Spica for Snuffbox tenderness).\n• Profile: Severe (No use of affected hand/wrist)."
+                    },
+                    wrist_review_results: {
+                        question: "Review the Pending X-Rays. Are there positive findings?",
+                        options: [
+                            { text: "Yes, positive for fracture, dislocation, or foreign body", next: "call_ortho_wrist", soap: "Imaging reviewed: Yes, positive findings confirmed." },
+                            { text: "No, imaging is negative", next: "wrist_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
+                        ]
+                    },
+                    call_ortho_wrist: {
+                        question: "Consult Specialty Care TODAY.",
+                        type: "endpoint",
+                        assessment: "Acute Hand/Wrist Pain with Positive Imaging Findings.",
+                        consults: "Orthopedics",
+                        plan: "• Call Orthopedics TODAY to discuss management and transfer of care. Maintain appropriate immobilization/splinting."
+                    },
+                    wrist_exam: {
+                        question: "HAND/WRIST EXAM: Evaluate for Tenosynovitis, Carpal Tunnel, and Ligamentous Instability.",
+                        instruction: "Use the special tests drop-downs below to guide your exam.",
+                        tools: ["wristSpecialTests", "wristProfiles"],
+                        options: [
+                            { text: "Yes (Positive Scaphoid signs, positive Finkelstein's, Phalen's, or Instability)", next: "wrist_severe_path", soap: "Physical Exam: Positive for significant tenosynovitis, nerve compression, scaphoid signs, or ligamentous instability." },
+                            { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: "wrist_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
+                        ]
+                    },
+                    wrist_severe_path: {
+                        question: "Initial Consult Complete: Severe/Moderate Hand & Wrist Injury Protocol.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "wristProfiles", "analgesics"],
+                        assessment: "Acute Hand/Wrist Pain, Severe to Moderate Injury.",
+                        consults: "Physical Therapy, Occupational Therapy, or Orthopedics (within 7-10 days)",
+                        plan: "• Profile: Severe (No lifting, gripping, or weapons handling with affected hand).\n• Splinting: Apply Thumb Spica for Scaphoid/DeQuervain's; Volar splint for Carpal Tunnel/severe sprain.\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Follow-up: Refer to OT/PT or Orthopedics in 7-10 days."
+                    },
+                    wrist_moderate_path: {
+                        question: "Initial Consult Complete: Mild Hand & Wrist Injury Protocol.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "wristProfiles", "analgesics"],
+                        assessment: "Acute Hand/Wrist Pain, Mild Sprain/Strain.",
+                        consults: "Primary Care Manager in 7-10 days",
+                        plan: "• Profile: Moderate or Mild (Modify upper body PRT, buddy tape digits if needed).\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Re-evaluate in 7-10 days by Primary Care Manager if symptoms persist."
+                    },
+                    wrist_follow_up_status: {
+                        question: "Symptoms Persist?",
+                        options: [
+                            { text: "Yes", next: "wrist_symptoms_persist", soap: "Follow-up evaluation: Symptoms Persist." },
+                            { text: "Mostly Resolved", next: "wrist_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
+                        ]
+                    },
+                    wrist_symptoms_persist: {
+                        question: "Persistent Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["wristImagingGuidelines", "wristProfiles", "analgesics"],
+                        assessment: "Acute Hand/Wrist Pain, persistent symptoms.",
+                        consults: "Physical Therapy, Occupational Therapy, or Orthopedics",
+                        plan: "• Imaging: Repeat X-Rays if Scaphoid fracture was initially suspected but negative. Consider MRI referral.\n• Profile: Maintain appropriate Profile/Splinting.\n• Analgesic medications as needed.\n• Referral: Occupational Therapy, Physical Therapy, or Orthopedics as indicated."
+                    },
+                    wrist_mostly_resolved: {
+                        question: "Resolved Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics"],
+                        assessment: "Acute Hand/Wrist Pain, mostly resolved.",
+                        consults: "None immediately required",
+                        plan: "• Duty Specific Profile as needed (Gradual return to weapons handling/gripping).\n• Analgesic Medications as needed.\n• Return to duty at end of profile anticipated."
+                    }
+                }
             }
         };
 
@@ -1106,6 +2146,44 @@
         let currentNodeId = null;
         let clinicalHistory = []; // Stores SOAP lines
         let isFollowUp = false; 
+
+        // --- BIBLIOGRAPHY / REFERENCES ---
+        const bibliographicReferences = {
+            neck: [
+                "Stiell IG, Clement CM, McKnight RD, et al. The Canadian C-spine rule versus the NEXUS low-risk criteria in patients with trauma. N Engl J Med. 2003;349(26):2510-2518.",
+                "Cleland JA, Koppenhaver S. The Reliability and Diagnostic Utility of the Orthopaedic Clinical Examination. 2nd ed. Netter's Orthopaedic Clinical Examination; 2011."
+            ],
+            shoulder: [
+                "Cleland JA, Koppenhaver S. The Reliability and Diagnostic Utility of the Orthopaedic Clinical Examination. 2nd ed. Netter's Orthopaedic Clinical Examination; 2011.",
+                "Hegedus EJ, Goode AP, Cook CE, et al. Which physical examination tests provide clinicians with the most value when examining the shoulder? Update of a systematic review with meta-analysis of individual tests. Br J Sports Med. 2012;46(14):964-978."
+            ],
+            elbow: [
+                "Cleland JA, Koppenhaver S. The Reliability and Diagnostic Utility of the Orthopaedic Clinical Examination. 2nd ed. Netter's Orthopaedic Clinical Examination; 2011."
+            ],
+            wrist: [
+                "Jarvis MA, Jarvis CL, Jones PRM, Spyt TJ. Reliability of Allen's test in selection of patients for radial artery harvest. The Annals of Thoracic Surgery. 2000;70(4):1362-1365.",
+                "Cleland JA, Koppenhaver S. The Reliability and Diagnostic Utility of the Orthopaedic Clinical Examination. 2nd ed. Netter's Orthopaedic Clinical Examination; 2011.",
+                "Wainner RS, Fritz JM, Irrgang JJ, Delitto A, Allison S, Boninger ML. Development of a clinical prediction rule for the diagnosis of carpal tunnel syndrome. Archives of Physical Medicine and Rehabilitation. 2005;86(4):609-618.",
+                "Hansen PA, Micklesen P, Robinson LR. Clinical utility of the flick maneuver in diagnosing carpal tunnel syndrome. American Journal of Physical Medicine & Rehabilitation. 2004;83(5):363-367.",
+                "Kuhlman KA, Hennessey WJ. Sensitivity and specificity of carpal tunnel syndrome signs. American journal of physical medicine & rehabilitation. 1997;76(6):451-457.",
+                "Katz JN, Larson MG, Sabra A, et al: The carpal tunnel syndrome: diagnostic utility of the history and physical examination findings. Ann Intern Med 1990;112:321-327.",
+                "Kuschner SH, Ebramzadeh E, Johnson D, et al: Tinel's sign and Phalen's test in carpal tunnel syndrome. Orthopedics 1992;15:1297-1302."
+            ],
+            hip: [
+                "Cleland JA, Koppenhaver S. The Reliability and Diagnostic Utility of the Orthopaedic Clinical Examination. 2nd ed. Netter's Orthopaedic Clinical Examination; 2011."
+            ],
+            knee: [
+                "Stiell IG, Greenberg GH, Wells GA, et al. Prospective validation of a clinical decision rule for the use of radiography in acute knee injuries. JAMA. 1996;275(8):611-615.",
+                "Cleland JA, Koppenhaver S. The Reliability and Diagnostic Utility of the Orthopaedic Clinical Examination. 2nd ed. Netter's Orthopaedic Clinical Examination; 2011."
+            ],
+            leg: [
+                "Wells PS, Anderson DR, Bormanis J, et al. Value of assessment of pretest probability of deep-vein thrombosis in clinical management. Lancet. 1997;350(9094):1795-1798."
+            ],
+            ankle: [
+                "Stiell IG, Greenberg GH, McKnight RD, et al. Decision rules for the use of radiography in acute ankle injuries. Refinement and prospective validation. JAMA. 1993;269(9):1127-1132.",
+                "Cleland JA, Koppenhaver S. The Reliability and Diagnostic Utility of the Orthopaedic Clinical Examination. 2nd ed. Netter's Orthopaedic Clinical Examination; 2011."
+            ]
+        };
 
         // --- UI RENDERING ---
         function renderHome() {
@@ -1130,10 +2208,89 @@
                             <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-person-walking mr-2"></i> Leg Pain</h3>
                             <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
                         </button>
+                        <button onclick="startProtocol('knee')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
+                            <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-staff-snake mr-2"></i> Knee Pain</h3>
+                            <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
+                        </button>
+                        <button onclick="startProtocol('shoulder')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
+                            <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-user-injured mr-2"></i> Shoulder Pain</h3>
+                            <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
+                        </button>
+                        <button onclick="startProtocol('elbow')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
+                            <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-hand-sparkles mr-2"></i> Arm & Elbow Pain</h3>
+                            <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
+                        </button>
+                        <button onclick="startProtocol('wrist')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
+                            <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-hand mr-2"></i> Wrist & Hand Pain</h3>
+                            <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
+                        </button>
                         <button disabled class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 opacity-60 cursor-not-allowed text-left">
-                            <h3 class="text-lg font-bold text-gray-600"><i class="fa-solid fa-staff-snake mr-2"></i> Knee Pain</h3>
+                            <h3 class="text-lg font-bold text-gray-600"><i class="fa-solid fa-person-walking-with-cane mr-2"></i> Back Pain</h3>
                             <p class="text-sm text-gray-400 mt-2">Coming Soon</p>
                         </button>
+                    </div>
+
+                    <div class="mt-8 border-t border-gray-200 pt-6">
+                        <button onclick="renderReferences()" class="w-full bg-white p-4 rounded-lg shadow-sm border border-gray-300 hover:border-army hover:shadow-md transition text-center group flex items-center justify-center">
+                            <i class="fa-solid fa-book-journal-whills text-army-gold text-xl mr-3 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-lg font-bold text-gray-800 group-hover:text-army">View All Clinical References</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderReferences() {
+            const root = document.getElementById('app-root');
+            let contentHtml = '<div class="space-y-4">';
+
+            const bodyParts = [
+                { id: 'neck', title: 'Neck' },
+                { id: 'shoulder', title: 'Shoulder' },
+                { id: 'elbow', title: 'Arm & Elbow' },
+                { id: 'wrist', title: 'Wrist & Hand' },
+                { id: 'hip', title: 'Hip' },
+                { id: 'leg', title: 'Leg' },
+                { id: 'knee', title: 'Knee' },
+                { id: 'ankle', title: 'Ankle' }
+            ];
+
+            bodyParts.forEach(part => {
+                const refs = bibliographicReferences[part.id];
+                if (refs && refs.length > 0) {
+                    let listHtml = '<ul class="list-decimal pl-5 space-y-3 text-sm text-gray-700">';
+                    refs.forEach(ref => {
+                        listHtml += `<li>${ref}</li>`;
+                    });
+                    listHtml += '</ul>';
+
+                    contentHtml += `
+                        <details class="group bg-white border border-gray-300 rounded-lg shadow-sm">
+                            <summary class="font-bold text-md p-4 bg-gray-50 text-army flex justify-between items-center rounded-lg hover:bg-gray-100 transition-colors cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-book-bookmark mr-2 text-army-gold"></i> 
+                                    <span>${part.title} References</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-gray-500"></i>
+                            </summary>
+                            <div class="p-5 border-t border-gray-200">
+                                ${listHtml}
+                            </div>
+                        </details>
+                    `;
+                }
+            });
+
+            contentHtml += '</div>';
+
+            root.innerHTML = `
+                <div class="slide-in">
+                    <button onclick="renderHome()" class="text-gray-500 hover:text-army mb-6 text-sm font-medium"><i class="fa-solid fa-arrow-left mr-1"></i> Back to Protocols</button>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-army mb-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-2"><i class="fa-solid fa-book-journal-whills text-army-gold mr-2"></i> Clinical References & Bibliography</h2>
+                        <p class="text-gray-600 mb-6 text-sm border-b border-gray-200 pb-4">The following evidence-based references support the clinical pathways, decision rules, and special tests utilized within the MSK Screening and Referral Tools.</p>
+                        ${contentHtml}
                     </div>
                 </div>
             `;
