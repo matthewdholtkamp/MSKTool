@@ -117,6 +117,35 @@
                     </div>
                 `
             },
+            ankleRedFlags: {
+                title: "Ankle Pain Red Flags",
+                content: `
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-red-50 p-3 rounded border border-red-200">
+                            <h4 class="font-bold text-red-800">Infectious or Septic Joint</h4>
+                            <ul class="list-disc pl-5 text-red-900">
+                                <li>Acute pain with fever</li>
+                                <li>History of recent infection including elsewhere in the body</li>
+                                <li>Pain with loading or inability to bear weight</li>
+                                <li>Signs or symptoms of septic arthritis: acute joint swelling, pain, erythema, warmth, joint immobility</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded border border-red-200">
+                            <h4 class="font-bold text-red-800">Deformity</h4>
+                            <ul class="list-disc pl-5 text-red-900">
+                                <li>Gross deformity</li>
+                                <li>Bone extruding through skin</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded border border-red-200">
+                            <h4 class="font-bold text-red-800">Vascular Compromise</h4>
+                            <ul class="list-disc pl-5 text-red-900">
+                                <li>Hard/Soft Signs for Vascular Injury</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
             hipRedFlags: {
                 title: "Hip Pain Red Flags",
                 content: `
@@ -161,6 +190,18 @@
                     </div>
                 `
             },
+            ankleSpecialTests: {
+                title: "Ankle Special Tests",
+                content: `
+                    <div class="space-y-4 text-sm text-gray-800">
+                        <div class="border-l-4 border-blue-500 pl-3">
+                            <h4 class="font-bold text-blue-800">Thompson Test</h4>
+                            <p class="mb-1">Helpful to assess the Achilles tendon. The patient is prone with their feet hanging over the edge of the table. The examiner squeezes the calf muscle.</p>
+                            <p class="text-red-700 font-bold">(+) SIGN: Absence of plantar flexion.</p>
+                        </div>
+                    </div>
+                `
+            },
             hipSpecialTests: {
                 title: "Hip Special Tests",
                 content: `
@@ -188,6 +229,65 @@
                         <div class="border-l-4 border-purple-500 pl-3 mt-4">
                             <h4 class="font-bold text-purple-800">Antalgic Gait</h4>
                             <p class="text-red-700 font-bold">(+) SIGN: (+) Antalgic gait</p>
+                        </div>
+                    </div>
+                `
+            },
+            weberClassification: {
+                title: "Danis-Weber Classification (Ankle Fractures)",
+                content: `
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-gray-50 p-3 rounded border border-gray-300">
+                            <h4 class="font-bold text-gray-800">Type A</h4>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li>Fracture of the fibula <strong>below</strong> the syndesmosis (tibiofibular joint).</li>
+                                <li>Syndesmosis is intact.</li>
+                                <li>Usually stable, managed conservatively unless medial malleolus is also fractured.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded border border-yellow-300">
+                            <h4 class="font-bold text-yellow-800">Type B</h4>
+                            <ul class="list-disc pl-5 text-yellow-900">
+                                <li>Fracture of the fibula <strong>at the level</strong> of the syndesmosis.</li>
+                                <li>Syndesmosis may be intact or partially torn.</li>
+                                <li>Stability is variable. May require surgery depending on medial/deltoid ligament involvement.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded border border-red-200">
+                            <h4 class="font-bold text-red-800">Type C</h4>
+                            <ul class="list-disc pl-5 text-red-900">
+                                <li>Fracture of the fibula <strong>above</strong> the syndesmosis.</li>
+                                <li>Syndesmosis is disrupted (unstable).</li>
+                                <li>Requires surgical intervention (ORIF).</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            ottawaAnkleRules: {
+                title: "Ottawa Ankle Rules",
+                content: `
+                    <div class="space-y-4 text-sm">
+                        <p class="font-bold text-gray-800">Radiographs are required if there is pain in the malleolar zone OR midfoot zone AND any of the following:</p>
+
+                        <div class="bg-blue-50 p-3 rounded border border-blue-200">
+                            <h4 class="font-bold text-blue-800 mb-2">Ankle X-Ray Series</h4>
+                            <p class="text-blue-900 mb-2">Pain in the <strong>malleolar zone</strong> AND any of these findings:</p>
+                            <ul class="list-disc pl-5 space-y-1 text-blue-900">
+                                <li>Bone tenderness at posterior edge or tip of lateral malleolus (A)</li>
+                                <li>Bone tenderness at posterior edge or tip of medial malleolus (B)</li>
+                                <li>Inability to bear weight both immediately and in the emergency department (4 steps)</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-green-50 p-3 rounded border border-green-200">
+                            <h4 class="font-bold text-green-800 mb-2">Foot X-Ray Series</h4>
+                            <p class="text-green-900 mb-2">Pain in the <strong>midfoot zone</strong> AND any of these findings:</p>
+                            <ul class="list-disc pl-5 space-y-1 text-green-900">
+                                <li>Bone tenderness at base of 5th metatarsal (C)</li>
+                                <li>Bone tenderness at navicular (D)</li>
+                                <li>Inability to bear weight both immediately and in the emergency department (4 steps)</li>
+                            </ul>
                         </div>
                     </div>
                 `
@@ -434,6 +534,128 @@
                     }
                 }
             },
+            ankle: {
+                title: "Traumatic or Acute Ankle Pain",
+                nodes: {
+                    visit_type: {
+                        question: "Visit Type: Select the reason for today's encounter.",
+                        options: [
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "ankle_red_flags", soap: "Visit Type: Initial Consult for traumatic/acute ankle pain." },
+                            { text: "Follow-Up (Reviewing Pending X-Rays/Labs)", onSelect: () => { isFollowUp = false; }, next: "ankle_review_pending_results", soap: "Visit Type: Follow-Up to review pending ankle imaging/labs." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "ankle_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous ankle injury." }
+                        ]
+                    },
+                    ankle_red_flags: {
+                        question: "EVALUATE: Does the patient have any of the following Red Flags?",
+                        tools: ["ankleRedFlags"],
+                        options: [
+                            { text: "Yes, one or more Red Flags are present", next: "ankle_red_flags_action", soap: "Evaluation performed. Positive for Red Flags." },
+                            { text: "No, NO Red Flags present", next: "ottawa_rules", soap: "Evaluation performed. No Red Flags identified." }
+                        ]
+                    },
+                    ankle_red_flags_action: {
+                        question: "Action Required: Immediate Red Flag Management. Patient must be sent for testing TODAY.",
+                        type: "endpoint",
+                        tools: ["weightBearing"],
+                        assessment: "Acute Ankle Pain with Red Flags. Testing pending.",
+                        consults: "Pending Imaging/Lab Results",
+                        plan: "Ordered appropriate Imaging/Labs. Issued Crutches (NWB). Instructed patient to return immediately upon completion of tests or when results are available for further evaluation."
+                    },
+                    ankle_review_pending_results: {
+                        question: "Review the Pending Imaging and Lab Results. Are there positive findings?",
+                        tools: ["weberClassification"],
+                        options: [
+                            { text: "Yes, positive findings on imaging (e.g., fracture) or labs", next: "ankle_call_ortho_results", soap: "Imaging/labs reviewed: Positive findings confirmed." },
+                            { text: "No, imaging/labs are negative", next: "ankle_special_tests", soap: "Imaging/labs reviewed: Negative. Proceeding with physical evaluation." }
+                        ]
+                    },
+                    ankle_call_ortho_results: {
+                        question: "STOP. Call Orthopedics TODAY to discuss positive findings.",
+                        type: "endpoint",
+                        tools: ["weberClassification"],
+                        assessment: "Acute Ankle Pain with Positive Imaging/Labs.",
+                        consults: "Orthopedics (Immediate)",
+                        plan: "Maintained NWB status on crutches. Contacted Orthopedics immediately regarding positive findings. Pending specialist transfer/management."
+                    },
+                    ottawa_rules: {
+                        question: "Evaluate using Ottawa Ankle Rules. Is X-Ray indicated?",
+                        tools: ["ottawaAnkleRules"],
+                        options: [
+                            { text: "Yes, criteria met for X-Ray", next: "ankle_xray_action", soap: "Ottawa Ankle Rules positive. X-Rays indicated." },
+                            { text: "No, criteria NOT met for X-Ray", next: "ankle_special_tests", soap: "Ottawa Ankle Rules negative. No X-Rays indicated." }
+                        ]
+                    },
+                    ankle_xray_action: {
+                        question: "Action Required: Send patient for X-Rays.",
+                        type: "endpoint",
+                        tools: ["weightBearing"],
+                        assessment: "Acute Ankle Pain, Ottawa Ankle Rules positive. X-Rays pending.",
+                        consults: "Pending X-Ray Results",
+                        plan: "Ordered Ankle/Foot X-Rays. Issued Crutches (NWB/TTWB as needed). Instructed patient to return to clinic to review results once completed."
+                    },
+                    ankle_special_tests: {
+                        question: "SPECIAL TESTS EXAM: Perform the Thompson Test.",
+                        tools: ["ankleSpecialTests"],
+                        options: [
+                            { text: "POSITIVE: Absence of plantar flexion", next: "ankle_positive_thompson", soap: "Physical Exam: Positive Thompson test." },
+                            { text: "NEGATIVE: Normal plantar flexion present", next: () => isFollowUp ? "ankle_follow_up_status" : "ankle_gait_edema_rom", soap: "Physical Exam: Negative Thompson test." }
+                        ]
+                    },
+                    ankle_positive_thompson: {
+                        question: "STOP. Call Orthopedics TODAY or order STAT Ultrasound/MRI for suspected Achilles Rupture.",
+                        type: "endpoint",
+                        assessment: "Acute Ankle Pain with Positive Thompson Test (suspected Achilles tendon rupture).",
+                        consults: "Orthopedics",
+                        plan: "Issued Crutches (NWB) and placed in slight plantar flexion splint/boot. Contacted Orthopedics immediately for suspected Achilles rupture."
+                    },
+                    ankle_gait_edema_rom: {
+                        question: "EVALUATE: Is there an antalgic gait AND painful moderate edema or limited range of motion?",
+                        options: [
+                            { text: "Yes", next: "ankle_severe_profile_endpoint", soap: "Physical Exam: Antalgic gait and painful moderate edema or limited ROM present." },
+                            { text: "No", next: "ankle_moderate_mild_profile_endpoint", soap: "Physical Exam: No antalgic gait with moderate edema or limited ROM." }
+                        ]
+                    },
+                    ankle_severe_profile_endpoint: {
+                        question: "Initial Consult Complete. Issue Severe Profile and schedule re-evaluation.",
+                        type: "endpoint",
+                        tools: ["analgesics"],
+                        assessment: "Acute Ankle Pain, severe clinical presentation based on gait, edema, or limited ROM.",
+                        consults: "Primary Care Manager (PCM) in 7-10 days if symptoms persist",
+                        plan: "Issued Severe Profile (7-10 days). Issued Analgesic meds PRN. Directed follow-up with PCM in 7-10 days if symptoms do not improve."
+                    },
+                    ankle_moderate_mild_profile_endpoint: {
+                        question: "Initial Consult Complete. Issue Moderate or Mild Profile and schedule re-evaluation.",
+                        type: "endpoint",
+                        tools: ["analgesics"],
+                        assessment: "Acute Ankle Pain, mild/moderate clinical presentation.",
+                        consults: "Primary Care Manager (PCM) in 7-10 days if symptoms persist",
+                        plan: "Issued Moderate/Mild Profile (7-10 days). Issued Analgesic meds PRN. Directed follow-up with PCM in 7-10 days if symptoms do not improve."
+                    },
+                    ankle_follow_up_status: {
+                        question: "Follow-Up Phase: Re-evaluating after 7-10 days. Do the patient's symptoms persist?",
+                        options: [
+                            { text: "Yes, symptoms persist", next: "ankle_symptoms_persist", soap: "Follow-up evaluation: Symptoms persist despite initial conservative management." },
+                            { text: "Mostly Resolved", next: "ankle_mostly_resolved", soap: "Follow-up evaluation: Symptoms are mostly resolved." }
+                        ]
+                    },
+                    ankle_symptoms_persist: {
+                        question: "Persistent Symptoms Protocol: Further action required.",
+                        type: "endpoint",
+                        tools: ["analgesics"],
+                        assessment: "Acute Ankle Pain, persistent symptoms after 7-10 days of conservative management.",
+                        consults: "PT, Sports Medicine, or Ortho as indicated",
+                        plan: "Considered further imaging (MRI) or repeat X-rays. Issued appropriate profile. Initiated referral for further evaluation (PT/Ortho). Analgesic Meds PRN."
+                    },
+                    ankle_mostly_resolved: {
+                        question: "Resolved Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics"],
+                        assessment: "Acute Ankle Pain, resolving.",
+                        consults: "None immediately required",
+                        plan: "Issued Duty Specific Profile PRN. Issued Analgesic Meds PRN. Return to duty (RTD) at end of profile anticipated."
+                    }
+                }
+            },
             hip: {
                 title: "Traumatic or Acute Hip Pain",
                 nodes: {
@@ -563,9 +785,9 @@
                             <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-child-reaching mr-2"></i> Hip Pain</h3>
                             <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
                         </button>
-                        <button disabled class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 opacity-60 cursor-not-allowed text-left">
-                            <h3 class="text-lg font-bold text-gray-600"><i class="fa-solid fa-shoe-prints mr-2"></i> Ankle Pain (Pending)</h3>
-                            <p class="text-sm text-gray-400 mt-2">Coming Soon</p>
+                        <button onclick="startProtocol('ankle')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
+                            <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-shoe-prints mr-2"></i> Ankle Pain</h3>
+                            <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
                         </button>
                         <!-- Add placeholders for the rest -->
                     </div>
