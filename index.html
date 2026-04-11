@@ -29,6 +29,9 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* Hide the default marker for details/summary */
+        details > summary { list-style: none; outline: none; }
+        details > summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
@@ -53,33 +56,37 @@
     <script>
         // --- CLINICAL REFERENCES & TOOLS ---
         const clinicalTools = {
+            // NECK TOOLS
             ccsr: {
                 title: "Canadian Cervical Spine Rules (CCSR)",
+                collapsible: true,
                 content: `
                     <div class="space-y-4 text-sm">
                         <div class="bg-red-50 p-3 rounded border border-red-200">
                             <h4 class="font-bold text-red-800 mb-2">1. High Risk Factors (Mandates Radiography)</h4>
+                            <p class="mb-2 text-red-900 font-semibold">Does the patient have any high risk factors that mandate radiography?</p>
                             <ul class="list-disc pl-5 space-y-1 text-red-900">
                                 <li>Age &gt; 65</li>
-                                <li>Dangerous mechanism (e.g., fall from elevation &gt;= 3ft/5 stairs, axial load to head, high-speed MVA, rollover, ejection, motorized recreational vehicles, bicycle struck or collision)</li>
+                                <li>Dangerous mechanism</li>
                                 <li>Paresthesia in extremities</li>
                             </ul>
-                            <p class="mt-2 font-bold text-red-800">If YES to any ➔ Obtain Radiographs</p>
+                            <p class="mt-2 font-bold text-red-800">If YES ➔ Obtain Radiographs</p>
                         </div>
                         <div class="bg-blue-50 p-3 rounded border border-blue-200">
-                            <h4 class="font-bold text-blue-800 mb-2">2. Low Risk Factors (Allows safe assessment of ROM)</h4>
+                            <h4 class="font-bold text-blue-800 mb-2">2. Low Risk Factors (Allows safe assessment of Range of Motion)</h4>
+                            <p class="mb-2 text-blue-900 font-semibold">Does the patient have any of the following low risk factors that allow safe assessment of range of motion?</p>
                             <ul class="list-disc pl-5 space-y-1 text-blue-900">
-                                <li>Simple rear-end MVA</li>
+                                <li>Simple rear-end Motor Vehicle Accident</li>
                                 <li>Assumes sitting position in waiting room</li>
                                 <li>Ambulatory at any time</li>
                                 <li>Delayed onset of neck pain</li>
-                                <li>Absence of mid-line C-spine tenderness</li>
+                                <li>Absence of mid-line Cervical-spine tenderness</li>
                             </ul>
-                            <p class="mt-2 font-bold text-blue-800">If NO to all ➔ Obtain Radiographs</p>
+                            <p class="mt-2 font-bold text-blue-800">If NO ➔ Obtain Radiographs</p>
                         </div>
                         <div class="bg-green-50 p-3 rounded border border-green-200">
                             <h4 class="font-bold text-green-800 mb-2">3. Range of Motion</h4>
-                            <p class="text-green-900">Is the patient able to actively rotate the neck 45&deg; to the left AND right?</p>
+                            <p class="text-green-900">Is the patient able to actively rotate the neck 45 degrees to the left and right?</p>
                             <p class="mt-2 font-bold text-green-800">If NO ➔ Obtain Radiographs. If YES ➔ No Radiographs needed.</p>
                         </div>
                     </div>
@@ -87,227 +94,628 @@
             },
             neckRedFlags: {
                 title: "Neck Pain Red Flags",
+                collapsible: false,
                 content: `
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div class="bg-gray-100 p-3 rounded border border-gray-300">
-                            <h4 class="font-bold text-gray-800 mb-2">History</h4>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                                <li>Cancer or Unexplained weight loss</li>
-                                <li>Compromised immune system / Prolonged steroids</li>
-                                <li>Intravenous drug use</li>
-                                <li>Urinary tract infection (vertebral osteomyelitis)</li>
-                                <li>Pain increased or unrelieved by rest</li>
-                                <li>Unexplained fever</li>
-                                <li>Recent fall or trauma to head/neck (especially young pt, or minor fall in osteoporotic pt)</li>
-                                <li>Bladder/bowel incontinence or Urinary retention</li>
-                                <li>Dysphagia, Headache and vomiting</li>
-                                <li>Down Syndrome or Rheumatoid Arthritis</li>
-                            </ul>
-                        </div>
-                        <div class="bg-gray-100 p-3 rounded border border-gray-300">
-                            <h4 class="font-bold text-gray-800 mb-2">Physical Exam</h4>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                                <li>Evidence of spinal cord compression (weakness in upper extremities, hand atrophy, loss of pain/temp sensation, gait disturbance, Babinski's or Hoffman's sign, saddle anesthesia, loss of anal sphincter tone)</li>
-                                <li>Fever</li>
-                                <li>Vertebral tenderness</li>
-                                <li>Severely limited spinal ROM</li>
-                                <li>Neurologic findings persisting &gt; 1 month</li>
-                            </ul>
-                        </div>
+                    <div class="bg-white p-4 rounded-lg border-2 border-red-300 shadow-sm text-sm text-gray-800">
+                        <ul class="list-none space-y-5">
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">History</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Cancer</li>
+                                    <li>Unexplained weight loss</li>
+                                    <li>Compromised immune system</li>
+                                    <li>Prolonged use of steroids</li>
+                                    <li>Intravenous drug use</li>
+                                    <li>Urinary tract infection (vertebral osteomyelitis)</li>
+                                    <li>Pain increased or unrelieved by rest</li>
+                                    <li>Unexplained fever</li>
+                                    <li>Recent fall or trauma to the head or neck (fall from a height or Motor Vehicle Accident in a young patient; minor fall or heavy lifting in a potentially osteoporotic patient; recent penetrating injury)</li>
+                                    <li>Osteoporosis</li>
+                                    <li>Bladder or bowel incontinence</li>
+                                    <li>Urinary retention (with overflow incontinence)</li>
+                                    <li>Dysphagia</li>
+                                    <li>Headache and vomiting</li>
+                                    <li>Down Syndrome</li>
+                                    <li>Rheumatoid Arthritis</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Physical Exam</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Evidence of spinal cord compression (e.g. major weakness in upper extremities; hand atrophy; loss of pain and temperature sensation in upper extremities; gait disturbance; Babinski's or Hoffman's sign; saddle anesthesia; loss of anal sphincter tone; etc)</li>
+                                    <li>Fever</li>
+                                    <li>Vertebral tenderness</li>
+                                    <li>Severely limited spinal range of motion</li>
+                                    <li>Neurologic findings persisting beyond one month</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 `
             },
+
+            // HIP TOOLS
             hipRedFlags: {
                 title: "Hip Pain Red Flags",
+                collapsible: false,
                 content: `
-                    <div class="space-y-3 text-sm">
-                        <div class="bg-red-50 p-3 rounded border border-red-200">
-                            <h4 class="font-bold text-red-800">Fracture</h4>
-                            <ul class="list-disc pl-5 text-red-900">
-                                <li>Trauma</li>
-                            </ul>
-                        </div>
-                        <div class="bg-red-50 p-3 rounded border border-red-200">
-                            <h4 class="font-bold text-red-800">Stress Fracture</h4>
-                            <ul class="list-disc pl-5 text-red-900">
-                                <li>Pain in hip, groin, thigh, or knee with weight bearing</li>
-                                <li>Sudden increase in pre-existing pain</li>
-                                <li>ROM limited or painful, particularly in internal rotation</li>
-                            </ul>
-                        </div>
-                        <div class="bg-red-50 p-3 rounded border border-red-200">
-                            <h4 class="font-bold text-red-800">Avascular Necrosis (AVN)</h4>
-                            <ul class="list-disc pl-5 text-red-900">
-                                <li>Trauma</li>
-                                <li>Corticosteroid use or injections</li>
-                                <li>Excessive alcohol use</li>
-                            </ul>
-                        </div>
-                        <div class="bg-red-50 p-3 rounded border border-red-200">
-                            <h4 class="font-bold text-red-800">Infection or Septic Joint</h4>
-                            <ul class="list-disc pl-5 text-red-900">
-                                <li>Acute pain with fever</li>
-                                <li>History of recent infection including elsewhere in the body</li>
-                                <li>Pain with loading or inability to bear weight</li>
-                                <li>Signs or symptoms of septic arthritis: acute joint swelling, pain, erythema, warmth, joint immobility</li>
-                            </ul>
-                        </div>
-                        <div class="bg-red-50 p-3 rounded border border-red-200">
-                            <h4 class="font-bold text-red-800">Vascular Injury</h4>
-                            <ul class="list-disc pl-5 text-red-900">
-                                <li>Hard/Soft Signs for Vascular Injury</li>
-                            </ul>
-                        </div>
+                    <div class="bg-white p-4 rounded-lg border-2 border-red-300 shadow-sm text-sm text-gray-800">
+                        <ul class="list-none space-y-5">
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Fracture</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Trauma</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Stress Fracture</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Pain in hip, groin, thigh, or knee with weight bearing</li>
+                                    <li>Sudden increase in pre-existing pain</li>
+                                    <li>Range of Motion limited or painful, particularly in internal rotation</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Avascular Necrosis (AVN)</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Trauma</li>
+                                    <li>Corticosteroid use or injections</li>
+                                    <li>Excessive alcohol use</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Infection or Septic Joint</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Acute pain with fever</li>
+                                    <li>History of recent infection including elsewhere in the body</li>
+                                    <li>Pain with loading or inability to bear weight</li>
+                                    <li>Signs or symptoms of septic arthritis: acute joint swelling, pain, erythema, warmth, joint immobility</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-viruses mr-2 text-blue-600"></i> 
+                                            <span>Reference: Septic Arthritis & Crystal-Induced Arthropathies <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Septic Arthritis</h5>
+                                            <p class="mb-2"><strong class="text-gray-900">Presentation:</strong> Acute joint swelling, pain, erythema, warmth, joint immobility. Joint inflammation due to underlying bacterial or fungal infection. Fever.</p>
+                                            <p><strong class="text-gray-900">Risk Factors:</strong> Contiguous spread, Open wound, Hematogenous spread, Diabetes mellitus, HIV, Immune suppression medications, Age > 65.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-orange-800 mb-2">Crystal-Induced Arthropathies</h5>
+                                            <p class="mb-2"><strong class="text-gray-900">Presentation:</strong> Acute pain/swelling manifesting within hours. Difficulty walking or weight bearing. May become febrile.</p>
+                                            <p><strong class="text-gray-900">Risk Factors:</strong> Male gender, Postmenopausal women, Dietary factors, Thiazide/Loop diuretics, Hypertension, Renal insufficiency, Diabetes, Obesity.</p>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Vascular Injury</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Hard/Soft Signs for Vascular Injury</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-heart-pulse mr-2 text-blue-600"></i> 
+                                            <span>Reference: Signs of Vascular Injury <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Hard Signs (Requires immediate operative care)</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>External or pulsatile bleeding</li>
+                                                <li>Rapidly expanding hematoma</li>
+                                                <li>Classical signs of arterial occlusion: Pulselessness, Pallor, Paresthesias, Pain, Paralysis</li>
+                                                <li>A palpable thrill/audible bruit</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-yellow-800 mb-2">Soft Signs</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>A history of arterial bleeding at the scene or in transit</li>
+                                                <li>Proximity of a penetrating wound or blunt injury to an artery</li>
+                                                <li>A small nonpulsatile hematoma over an artery</li>
+                                                <li>A neurologic deficit originating in a nerve adjacent to a named artery</li>
+                                                <li>Peripheral nerve deficit</li>
+                                                <li>Reduced but palpable pulse</li>
+                                                <li>Injury near a major artery</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                        </ul>
                     </div>
                 `
             },
             hipSpecialTests: {
                 title: "Hip Special Tests",
+                collapsible: true,
                 content: `
                     <div class="space-y-4 text-sm text-gray-800">
                         <div class="border-l-4 border-blue-500 pl-3">
                             <h4 class="font-bold text-blue-800">Patellar-Pubic Percussion Test</h4>
-                            <p class="mb-1">Helpful to diagnose a fracture of the hip or femur. The patient assumes a supine position and the examiner places a stethoscope over the pubic symphysis of the patient. The examiner taps the patella of the patient's affected side and qualitatively reports the sound. The process is repeated on the opposite side to assess for a difference in auscultation. A tuning fork can be used in place of tapping.</p>
                             <p class="text-red-700 font-bold">(+) SIGN: Diminished percussion noted on the side of pain.</p>
                         </div>
                         <div class="border-l-4 border-blue-500 pl-3">
                             <h4 class="font-bold text-blue-800">Straight Leg Raise / Hip Flexion Test</h4>
-                            <p class="mb-1">Helps to rule out a pelvic ring fracture. The patient is placed in a supine position. The examiner instructs the patient to raise his or her leg actively (straight leg raise).</p>
                             <p class="text-red-700 font-bold">(+) SIGN: Reproduction of pain during active movement or inability to raise the leg.</p>
                         </div>
                         <div class="border-l-4 border-blue-500 pl-3">
-                            <h4 class="font-bold text-blue-800">Thomas Test</h4>
-                            <p class="mb-1">Helpful to diagnose a labral tear and demonstrates value as a test for hip flexor / quad tightness. The patient sits at the edge of the plinth. The patient is then instructed to lie back, pulling both knees to his or her chest. One knee (the non-tested side) is held to the chest and the other is passively lowered by the examiner into extension with the knee also allowed to extend. Tightness findings are as follows: Tight quad: knee flexion &lt; 80&deg;. Tight hip flexors: thigh (TFL, sartorius) or lumbar spine (iliopsoas) is elevated off of plinth.</p>
-                            <p class="text-red-700 font-bold">(+) SIGN: Reproduction of painful click or concordant groin pain.</p>
-                        </div>
-                        <div class="border-l-4 border-blue-500 pl-3">
-                            <h4 class="font-bold text-blue-800">FADDIR Test</h4>
-                            <p class="mb-1">Helpful to diagnose labral tear. The patient is supine, and the examiner passively brings the hip into 90&deg; hip and knee flexion. The examiner then passively adducts the patient's hip to end range with overpressure, then passively internally rotates the patient's hip with overpressure.</p>
-                            <p class="text-red-700 font-bold">(+) SIGN: Reproduction of deep groin pain, locking, clicking, or catching.</p>
-                        </div>
-                        <div class="border-l-4 border-purple-500 pl-3 mt-4">
-                            <h4 class="font-bold text-purple-800">Antalgic Gait</h4>
-                            <p class="text-red-700 font-bold">(+) SIGN: (+) Antalgic gait</p>
+                            <h4 class="font-bold text-blue-800">Thomas Test & FADDIR Test</h4>
+                            <p class="text-red-700 font-bold">(+) SIGN: Reproduction of deep groin pain, clicking, or catching.</p>
                         </div>
                     </div>
                 `
             },
             hipImagingGuidelines: {
                 title: "Hip Imaging/Lab Guidelines",
+                collapsible: true,
                 content: `
                     <div class="grid md:grid-cols-2 gap-4 text-sm">
                         <div class="bg-gray-100 p-3 rounded border border-gray-300">
                             <h4 class="font-bold text-gray-800 mb-1">Suspected hip fracture</h4>
                             <ul class="list-disc pl-5 text-gray-700">
                                 <li>Plain radiographs will show a suspected fracture in the majority of cases</li>
-                                <li>If clinical suspicion of occult fracture persists, MRI is the imaging modality of choice</li>
-                                <li>CT or nuclear medicine bone scan are alternatives to MRI</li>
+                                <li>If clinical suspicion of occult fracture persists, Magnetic Resonance Imaging (MRI) is the imaging modality of choice</li>
+                                <li>Computed Tomography (CT) or nuclear medicine bone scan are alternatives to MRI</li>
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-3 rounded border border-gray-300">
                             <h4 class="font-bold text-gray-800 mb-1">Suspected stress fracture</h4>
                             <ul class="list-disc pl-5 text-gray-700">
-                                <li>Plain radiographs are the initial imaging modality of choice, but are limited due to their inability to detect bony changes early in the development of astress fracture.</li>
+                                <li>Plain radiographs are the initial imaging modality of choice, but are limited due to their inability to detect bony changes early in the development of a stress fracture.</li>
                                 <li>Early radiographs are often normal. Consider repeat plain radiography at 10-14 days.</li>
-                                <li>MRI is the most sensitive and specific investigation to diagnose a stress fracture when radiographs are normal or equivocal and can best evaluate forother differential diagnoses. Consider using FAST (T2-CORONAL) MRI if clinical suspicion for stress fx.</li>
-                                <li>Bone scan has high sensitivity for stress fracture but poorer specificity, and is associated with ionizing radiation exposure. It is an alternative when MRIis contraindicated or unavailable.</li>
+                                <li>MRI is the most sensitive and specific investigation to diagnose a stress fracture when radiographs are normal or equivocal and can best evaluate for other differential diagnoses. Consider using FAST (T2-CORONAL) MRI if clinical suspicion for stress fracture.</li>
+                                <li>Bone scan has high sensitivity for stress fracture but poorer specificity, and is associated with ionizing radiation exposure. It is an alternative when MRI is contraindicated or unavailable.</li>
                                 <li>CT can be helpful as an alternative to MRI to demonstrate bony changes but is less sensitive.</li>
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-3 rounded border border-gray-300">
-                            <h4 class="font-bold text-gray-800 mb-1">Suspected AVN of the hip</h4>
+                            <h4 class="font-bold text-gray-800 mb-1">Suspected Avascular Necrosis (AVN) of the hip</h4>
                             <ul class="list-disc pl-5 text-gray-700">
                                 <li>Initial imaging with plain films</li>
                                 <li>If there is ongoing suspicion with normal plain film radiography, MRI is the most accurate imaging modality and contact Orthopedics</li>
                                 <li>Bone scan is a reasonable alternative to MRI</li>
-                                <li>Complete MRI for AVN, infection if still symptomatic in 10-14 days and protective WB, earlier if any red flags are present.</li>
+                                <li>Complete MRI for AVN, infection if still symptomatic in 10-14 days and protective Weight Bearing, earlier if any red flags are present.</li>
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-3 rounded border border-gray-300">
                             <h4 class="font-bold text-gray-800 mb-1">Suspected arthropathy or infectious etiology</h4>
                             <ul class="list-disc pl-5 text-gray-700">
-                                <li>Order inflammatory indices (CBC, ESR, CRP). -&gt; If positive contact Orthopaedics.</li>
+                                <li>Order inflammatory indices (Complete Blood Count, Erythrocyte Sedimentation Rate, C-Reactive Protein). -> If positive contact Orthopedics.</li>
                             </ul>
+                        </div>
+                    </div>
+                `
+            },
+
+            // ANKLE TOOLS
+            ankleRedFlags: {
+                title: "Ankle Pain Red Flags",
+                collapsible: false,
+                content: `
+                    <div class="bg-white p-4 rounded-lg border-2 border-red-300 shadow-sm text-sm text-gray-800">
+                        <ul class="list-none space-y-5">
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Fracture</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Ottawa Ankle Rules apply</li>
+                                    <li>Contact orthopedics/podiatry for all fractures</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-shoe-prints mr-2 text-blue-600"></i> 
+                                            <span>Reference: Ottawa Ankle Rules <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg text-gray-700">
+                                        <p class="mb-3 font-bold text-blue-900">Pain in Ankle and EITHER:</p>
+                                        <ul class="list-disc pl-5 space-y-2 text-blue-800">
+                                            <li>Inability to bear weight immediately after injury AND in the Emergency Department (taking 4 steps)</li>
+                                            <li class="font-bold text-center list-none">OR</li>
+                                            <li>Bone tenderness at the posterior edge or tip of either malleolus</li>
+                                            <li class="font-bold text-center list-none">OR</li>
+                                            <li>Bone tenderness at the navicular or proximal base of fifth metatarsal</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-bone mr-2 text-blue-600"></i> 
+                                            <span>Reference: Weber Classification Details <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg text-gray-700">
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li><strong>Type A:</strong> Fracture of the fibula below the syndesmosis.</li>
+                                            <li><strong>Type B:</strong> Fracture of the fibula at the level of the syndesmosis.</li>
+                                            <li><strong>Type C:</strong> Fracture of the fibula above the syndesmosis (typically unstable).</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Achilles Rupture</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Felt/heard a "pop"</li>
+                                    <li>Palpable defect (posterior leg)</li>
+                                    <li>Positive Thompson Test: Absence of passive plantar flexion upon squeeze of calf muscle with patient prone or kneeling</li>
+                                    <li>Inability to rise up on toes during single leg stance (ensure patient does not substitute by weight bearing through upper extremities)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Infection, Septic Joint, Crystal Induced Arthropathies</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Acute pain with fever</li>
+                                    <li>History of recent infection including elsewhere in the body</li>
+                                    <li>Pain with loading or inability to bear weight</li>
+                                    <li>Signs or symptoms of septic or crystal induced arthritis: acute joint swelling, pain, erythema, warmth, joint immobility</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-viruses mr-2 text-blue-600"></i> 
+                                            <span>Reference: Septic Arthritis & Crystal-Induced Arthropathies <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Septic Arthritis</h5>
+                                            <p class="mb-2"><strong class="text-gray-900">Presentation:</strong> Acute joint swelling, pain, erythema, warmth, joint immobility. Joint inflammation due to underlying bacterial or fungal infection. Fever.</p>
+                                            <p><strong class="text-gray-900">Risk Factors:</strong> Contiguous spread, Open wound, Hematogenous spread, Diabetes mellitus, HIV, Immune suppression medications, Age > 65.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-orange-800 mb-2">Crystal-Induced Arthropathies</h5>
+                                            <p class="mb-2"><strong class="text-gray-900">Presentation:</strong> Acute pain/swelling manifesting within hours. Difficulty walking or weight bearing. May become febrile.</p>
+                                            <p><strong class="text-gray-900">Risk Factors:</strong> Male gender, Postmenopausal women, Dietary factors, Thiazide/Loop diuretics, Hypertension, Renal insufficiency, Diabetes, Obesity.</p>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Other Critical Signs</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Deformity</li>
+                                    <li>Fibular Head Tenderness</li>
+                                    <li>Neurovascular Compromise</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-heart-pulse mr-2 text-blue-600"></i> 
+                                            <span>Reference: Signs of Vascular Injury <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Hard Signs (Requires immediate operative care)</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>External or pulsatile bleeding</li>
+                                                <li>Rapidly expanding hematoma</li>
+                                                <li>Classical signs of arterial occlusion: Pulselessness, Pallor, Paresthesias, Pain, Paralysis</li>
+                                                <li>A palpable thrill/audible bruit</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-yellow-800 mb-2">Soft Signs</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>A history of arterial bleeding at the scene or in transit</li>
+                                                <li>Proximity of a penetrating wound or blunt injury to an artery</li>
+                                                <li>A small nonpulsatile hematoma over an artery</li>
+                                                <li>A neurologic deficit originating in a nerve adjacent to a named artery</li>
+                                                <li>Peripheral nerve deficit</li>
+                                                <li>Reduced but palpable pulse</li>
+                                                <li>Injury near a major artery</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            ankleProfiles: {
+                title: "Ankle Profiles (eProfile)",
+                collapsible: true,
+                content: `
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-red-50 p-3 rounded border border-red-200">
+                            <h4 class="font-bold text-red-800 mb-1">Severe ankle injury examples:</h4>
+                            <ul class="list-disc pl-5 text-red-900 space-y-1">
+                                <li>Grade II or greater ankle sprain</li>
+                                <li>Fracture</li>
+                                <li>Acute Achilles tendonitis/partial or full thickness tear</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
+                            <h4 class="font-bold text-yellow-800 mb-1">Moderate ankle injury examples:</h4>
+                            <ul class="list-disc pl-5 text-yellow-900 space-y-1">
+                                <li>Grade I ankle sprain</li>
+                                <li>Acute on chronic Achilles tendinopathy</li>
+                                <li>Pain with some loss of motion or strength</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded border border-green-200">
+                            <h4 class="font-bold text-green-800 mb-1">Minimal ankle injury example:</h4>
+                            <ul class="list-disc pl-5 text-green-900 space-y-1">
+                                <li>Pain only at end range of some movements, minimal functional deficit with prolonged or strenuous effort</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+
+            // LEG TOOLS
+            legRedFlags: {
+                title: "Leg Pain Red Flags",
+                collapsible: false,
+                content: `
+                    <div class="bg-white p-4 rounded-lg border-2 border-red-300 shadow-sm text-sm text-gray-800">
+                        <ul class="list-none space-y-5">
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Compartment Syndrome</h4>
+                                <p class="mb-1 font-semibold">History of:</p>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Blunt trauma</li>
+                                    <li>Crush injury</li>
+                                    <li>Unaccustomed exercise</li>
+                                    <li>Symptoms intensified with muscle stretch</li>
+                                    <li>Pain out of proportion</li>
+                                    <li>Paresthesias</li>
+                                    <li>Tightness or fullness</li>
+                                    <li>Numbness</li>
+                                    <li>Anticoagulation therapy</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Achilles Rupture</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Felt/heard a “pop”</li>
+                                    <li>Palpable defect (posterior leg)</li>
+                                    <li>Positive Thompson test: Absence of passive plantar flexion upon squeeze of calf muscles with patient prone or kneeling</li>
+                                    <li>Inability to rise up on toes during single leg stance (ensure patient does not substitute by weight bearing through upper extremities)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Fracture</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Trauma</li>
+                                    <li>Deformity</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Fibular Head Tenderness</h4>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Neurovascular Compromise</h4>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Deep Vein Thrombosis <span class="text-sm font-normal text-red-600">(Call MED/ER, order Doppler US)</span></h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Pain, swelling, redness/warmth, distended veins in calf</li>
+                                    <li>Wells Criteria for DVT</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-list-check mr-2 text-blue-600"></i> 
+                                            <span>Reference: Wells Criteria for DVT <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg">
+                                        <p class="mb-2 font-bold text-gray-800">Clinical Feature (Score):</p>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-4">
+                                            <li>Active cancer (treatment ongoing, within 6 months, or palliative) (+1)</li>
+                                            <li>Paralysis, paresis, or recent plaster immobilization of the lower extremities (+1)</li>
+                                            <li>Recently bedridden for > 3 days or major surgery within 4 weeks (+1)</li>
+                                            <li>Localized tenderness along the distribution of the deep venous system (+1)</li>
+                                            <li>Entire leg swollen (+1)</li>
+                                            <li>Calf swelling > 3 cm compared to asymptomatic leg (+1)</li>
+                                            <li>Pitting edema (greater on symptomatic leg) (+1)</li>
+                                            <li>Collateral superficial veins (nonvaricose) (+1)</li>
+                                            <li>Alternative diagnosis as likely or greater than that of DVT (-2)</li>
+                                        </ul>
+                                        <div class="bg-gray-50 p-3 rounded border border-gray-200">
+                                            <p class="font-bold text-gray-800 mb-1">Clinical Probability Risk Score:</p>
+                                            <p class="text-gray-700"><strong>High:</strong> > 2 points | <strong>Moderate:</strong> 1 to 2 points | <strong>Low:</strong> < 1 point</p>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Cellulitis or Other Infections <span class="text-sm font-normal text-red-600">(Call MED/ER or ORTHO)</span></h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Redness (red streak), warmth, swelling, fever</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-viruses mr-2 text-blue-600"></i> 
+                                            <span>Reference: Septic Arthritis & Crystal-Induced Arthropathies <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Septic Arthritis</h5>
+                                            <p class="mb-2"><strong class="text-gray-900">Presentation:</strong> Acute joint swelling, pain, erythema, warmth, joint immobility. Joint inflammation due to underlying bacterial or fungal infection. Fever.</p>
+                                            <p><strong class="text-gray-900">Risk Factors:</strong> Contiguous spread, Open wound, Hematogenous spread, Diabetes mellitus, HIV, Immune suppression medications, Age > 65.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-orange-800 mb-2">Crystal-Induced Arthropathies</h5>
+                                            <p class="mb-2"><strong class="text-gray-900">Presentation:</strong> Acute pain/swelling manifesting within hours. Difficulty walking or weight bearing. May become febrile.</p>
+                                            <p><strong class="text-gray-900">Risk Factors:</strong> Male gender, Postmenopausal women, Dietary factors, Thiazide/Loop diuretics, Hypertension, Renal insufficiency, Diabetes, Obesity.</p>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Hard/Soft Signs of Vascular Injury</h4>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-heart-pulse mr-2 text-blue-600"></i> 
+                                            <span>Reference: Signs of Vascular Injury <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-800 mb-2">Hard Signs (Requires immediate operative care)</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>External or pulsatile bleeding</li>
+                                                <li>Rapidly expanding hematoma</li>
+                                                <li>Classical signs of arterial occlusion: Pulselessness, Pallor, Paresthesias, Pain, Paralysis</li>
+                                                <li>A palpable thrill/audible bruit</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-yellow-800 mb-2">Soft Signs</h5>
+                                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                                <li>A history of arterial bleeding at the scene or in transit</li>
+                                                <li>Proximity of a penetrating wound or blunt injury to an artery</li>
+                                                <li>A small nonpulsatile hematoma over an artery</li>
+                                                <li>A neurologic deficit originating in a nerve adjacent to a named artery</li>
+                                                <li>Peripheral nerve deficit</li>
+                                                <li>Reduced but palpable pulse</li>
+                                                <li>Injury near a major artery</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            legSpecialTests: {
+                title: "Leg Special Tests",
+                collapsible: true,
+                content: `
+                    <div class="space-y-4 text-sm text-gray-800">
+                        <div class="border-l-4 border-blue-500 pl-3">
+                            <h4 class="font-bold text-blue-800">Single Leg Hop Test</h4>
+                            <p class="mb-1">Patient attempts to hop on the affected leg.</p>
+                            <p class="text-red-700 font-bold">(+) SIGN: Inability to hop or reproduction of severe focal bone pain (highly suggestive of a bone stress injury / stress fracture).</p>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-3">
+                            <h4 class="font-bold text-blue-800">Palpation Test (Focal vs. Diffuse)</h4>
+                            <p class="mb-1">Palpate along the medial tibial border and anterior musculature.</p>
+                            <p class="text-red-700 font-bold">(+) SIGN (Focal): Pinpoint tenderness directly on the bone (suggests stress fracture).</p>
+                            <p class="text-blue-700 font-bold">(+) SIGN (Diffuse): Tenderness spanning > 5cm along the medial tibial border (suggests Medial Tibial Stress Syndrome / Shin Splints).</p>
+                        </div>
+                    </div>
+                `
+            },
+            legImagingGuidelines: {
+                title: "Leg Imaging/Lab Guidelines",
+                collapsible: true,
+                content: `
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-gray-100 p-3 rounded border border-gray-300">
+                            <h4 class="font-bold text-gray-800 mb-1">Suspected Stress Fracture</h4>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li>Plain radiographs (Anterior/Posterior and Lateral) are the initial imaging modality, but are often normal early in the disease process.</li>
+                                <li>If radiographs are negative but clinical suspicion remains high (e.g., positive hop test, focal bone tenderness), <strong>Magnetic Resonance Imaging (MRI)</strong> is the gold standard.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded border border-gray-300">
+                            <h4 class="font-bold text-gray-800 mb-1">Suspected Deep Vein Thrombosis (DVT)</h4>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li>Order an emergent <strong>Venous Doppler Ultrasound</strong> of the lower extremity.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            legProfiles: {
+                title: "Leg Profiles (eProfile)",
+                collapsible: true,
+                content: `
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-red-50 p-3 rounded border border-red-200">
+                            <h4 class="font-bold text-red-800 mb-1">Severe leg injury examples:</h4>
+                            <ul class="list-disc pl-5 text-red-900 space-y-1">
+                                <li>Suspected or confirmed Tibial/Fibular Stress Fracture</li>
+                                <li>Acute Compartment Syndrome (Pending surgical clearance)</li>
+                                <li>Requires Crutches (Non Weight Bearing / Toe Touch Weight Bearing)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
+                            <h4 class="font-bold text-yellow-800 mb-1">Moderate leg injury examples:</h4>
+                            <ul class="list-disc pl-5 text-yellow-900 space-y-1">
+                                <li>Medial Tibial Stress Syndrome (Shin Splints)</li>
+                                <li>Muscle strains (e.g., calf strain)</li>
+                                <li>No running, jumping, or ruck marching; walk to tolerance</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded border border-green-200">
+                            <h4 class="font-bold text-green-800 mb-1">Minimal leg injury example:</h4>
+                            <ul class="list-disc pl-5 text-green-900 space-y-1">
+                                <li>Mild generalized soreness</li>
+                                <li>Can perform alternate aerobic activities with minimal pain</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+
+            // UNIVERSAL TOOLS
+            peaceProtocol: {
+                title: "PEACE Protocol for Injury Care",
+                collapsible: true,
+                content: `
+                    <div class="grid md:grid-cols-2 gap-4 text-sm bg-indigo-50 p-4 rounded border border-indigo-200">
+                        <div>
+                            <p class="mb-2"><strong class="text-indigo-800 text-lg">P</strong>rotection: Avoid aggravating activities.</p>
+                            <p class="mb-2"><strong class="text-indigo-800 text-lg">E</strong>levation: Elevate the injured part.</p>
+                            <p class="mb-2"><strong class="text-indigo-800 text-lg">A</strong>void Prolonged Non-Steroidal Anti-inflammatory Drugs: Short course for initial pain only.</p>
+                        </div>
+                        <div>
+                            <p class="mb-2"><strong class="text-indigo-800 text-lg">C</strong>ompression: Use elastic compression for swelling.</p>
+                            <p class="mb-2"><strong class="text-indigo-800 text-lg">E</strong>ducation: Understand the injury and avoid unnecessary imaging.</p>
                         </div>
                     </div>
                 `
             },
             weightBearing: {
                 title: "Weight Bearing Status With Crutches",
+                collapsible: true,
                 content: `
                     <div class="space-y-2 text-sm">
-                        <div class="flex items-start"><span class="bg-red-800 text-white font-bold px-2 py-1 rounded mr-2 text-xs">NWB</span> <p><strong>Non Weight Bearing:</strong> 0% Weight bearing. Foot and toes do not touch the ground gait with crutches is swing-through. NWB may result in hip flexor muscles being consistently active.</p></div>
-                        <div class="flex items-start"><span class="bg-orange-600 text-white font-bold px-2 py-1 rounded mr-2 text-xs">TTWB</span> <p><strong>Toe Touch Weight Bearing:</strong> Also known as TDWB or touch down weight bearing. Patient may rest foot on the floor but puts no weight through affected extremity (touches down only for balance assistance). TTWB may result in hip flexor muscles being consistently active. Some referring physicians may consider up to 20% body weight TTWB.</p></div>
-                        <div class="flex items-start"><span class="bg-yellow-600 text-white font-bold px-2 py-1 rounded mr-2 text-xs">PWB</span> <p><strong>Partial Weight Bearing:</strong> Patient puts a percentage of his/her body weight through foot of affected extremity, i.e. 50% PWB. PWB is usually considered 20-50%, though interpretations vary widely.</p></div>
-                        <div class="flex items-start"><span class="bg-green-600 text-white font-bold px-2 py-1 rounded mr-2 text-xs">WBAT</span> <p><strong>Weight Bearing As Tolerated:</strong> Weight bearing is limited by the patient's tolerance. WBAT is usually considered 50-100% weight bearing.</p></div>
-                        <p class="mt-2 text-red-700 font-bold italic"><i class="fa-solid fa-triangle-exclamation"></i> Femoral neck stress fractures on the tension (superior or lateral) side of the femoral neck are at high risk for displacement, even NWB on crutches because of the distraction force from the weight of the leg. Call ortho immediately to discuss management.</p>
-                    </div>
-                `
-            },
-            hipProfiles: {
-                title: "Hip Profiles (eProfile)",
-                content: `
-                    <div class="grid md:grid-cols-3 gap-4 text-sm">
-                        <div class="bg-red-50 p-3 rounded border border-red-200">
-                            <h4 class="font-bold text-red-800 mb-1">Severe hip injury examples:</h4>
-                            <ul class="list-disc pl-5 text-red-900 space-y-1">
-                                <li>Stress fracture/fracture</li>
-                                <li>Instability</li>
-                            </ul>
-                        </div>
-                        <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
-                            <h4 class="font-bold text-yellow-800 mb-1">Moderate hip injury examples:</h4>
-                            <ul class="list-disc pl-5 text-yellow-900 space-y-1">
-                                <li>Motion limited by pain</li>
-                                <li>Mildly antalgic gait</li>
-                            </ul>
-                        </div>
-                        <div class="bg-green-50 p-3 rounded border border-green-200">
-                            <h4 class="font-bold text-green-800 mb-1">Minimal hip injury example:</h4>
-                            <ul class="list-disc pl-5 text-green-900 space-y-1">
-                                <li>Pain at end range of some movements, minimal functional deficit with prolonged or strenuous effort</li>
-                            </ul>
-                        </div>
-                    </div>
-                `
-            },
-            profiles: {
-                title: "Profile Templates (eProfile)",
-                content: `
-                    <div class="grid md:grid-cols-3 gap-4 text-sm">
-                        <div class="bg-red-50 p-3 rounded border border-red-200">
-                            <h4 class="font-bold text-red-800 mb-1">Severe Neck Injury</h4>
-                            <ul class="list-disc pl-5 text-red-900 space-y-1">
-                                <li>Anything requiring hard collar</li>
-                                <li>Fracture or instability</li>
-                                <li>Progressive neuro deficit</li>
-                            </ul>
-                        </div>
-                        <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
-                            <h4 class="font-bold text-yellow-800 mb-1">Moderate Neck Injury</h4>
-                            <ul class="list-disc pl-5 text-yellow-900 space-y-1">
-                                <li>Radiculopathy</li>
-                                <li>Pain, with decreased c-spine motion or upper body strength</li>
-                            </ul>
-                        </div>
-                        <div class="bg-green-50 p-3 rounded border border-green-200">
-                            <h4 class="font-bold text-green-800 mb-1">Mild Neck Injury</h4>
-                            <ul class="list-disc pl-5 text-green-900 space-y-1">
-                                <li>Pain at end range of movement without decreased c-spine motion or upper body strength</li>
-                            </ul>
-                        </div>
+                        <div class="flex items-start"><span class="bg-red-800 text-white font-bold px-2 py-1 rounded mr-2 text-xs">Non Weight Bearing</span> <p><strong>Non Weight Bearing:</strong> 0% Weight bearing. Foot and toes do not touch the ground gait with crutches is swing-through. Non Weight Bearing may result in hip flexor muscles being consistently active.</p></div>
+                        <div class="flex items-start"><span class="bg-orange-600 text-white font-bold px-2 py-1 rounded mr-2 text-xs">Toe Touch Weight Bearing</span> <p><strong>Toe Touch Weight Bearing:</strong> Also known as touch down weight bearing. Patient may rest foot on the floor but puts no weight through affected extremity (touches down only for balance assistance). Toe Touch Weight Bearing may result in hip flexor muscles being consistently active. Some referring physicians may consider up to 20% body weight Toe Touch Weight Bearing.</p></div>
+                        <div class="flex items-start"><span class="bg-yellow-600 text-white font-bold px-2 py-1 rounded mr-2 text-xs">Partial Weight Bearing</span> <p><strong>Partial Weight Bearing:</strong> Patient puts a percentage of his/her body weight through foot of affected extremity, i.e. 50% Partial Weight Bearing. Partial Weight Bearing is usually considered 20-50%, though interpretations vary widely.</p></div>
+                        <div class="flex items-start"><span class="bg-green-600 text-white font-bold px-2 py-1 rounded mr-2 text-xs">Weight Bearing As Tolerated</span> <p><strong>Weight Bearing As Tolerated:</strong> Weight bearing is limited by the patient's tolerance. Weight Bearing As Tolerated is usually considered 50-100% weight bearing.</p></div>
+                        <div class="flex items-start"><span class="bg-blue-600 text-white font-bold px-2 py-1 rounded mr-2 text-xs">Full Weight Bearing</span> <p><strong>Full Weight Bearing:</strong> Patient bears 100% (full) weight through affected extremity. Use of crutches is for balance, fatigue, etc.</p></div>
                     </div>
                 `
             },
             analgesics: {
-                title: "Standard Analgesic Medications (PRN)",
+                title: "Standard Analgesic Medications (As Needed / PRN)",
+                collapsible: true,
                 content: `
                     <div class="bg-yellow-50 p-3 rounded border border-yellow-200 text-sm">
-                        <h4 class="font-bold text-yellow-800 mb-2">Recommended Step-Wise Approach:</h4>
                         <ul class="list-disc pl-5 space-y-2 text-yellow-900">
-                            <li><strong>Acetaminophen:</strong> 650mg - 1000mg PO every 6-8 hours (Max 3000mg/day).</li>
-                            <li><strong>NSAIDs:</strong> Meloxicam 15mg PO daily OR Ibuprofen 600mg-800mg PO every 8 hours with food. <em>(Screen for contraindications: GI bleed, renal issues, hypertension).</em></li>
-                            <li><strong>Muscle Relaxants (If severe spasms):</strong> Cyclobenzaprine 5mg PO TID PRN. <em>(Warn regarding sedation; impacts duty status).</em></li>
+                            <li><strong>Acetaminophen:</strong> 650mg - 1000mg by mouth every 6-8 hours (Maximum 3000mg/day).</li>
+                            <li><strong>Non-Steroidal Anti-inflammatory Drugs (NSAIDs):</strong> Meloxicam 15mg by mouth daily OR Ibuprofen 600mg-800mg by mouth every 8 hours with food.</li>
+                            <li><strong>Muscle Relaxants (If severe):</strong> Cyclobenzaprine 5mg by mouth three times daily as needed. <em>(Warn regarding sedation).</em></li>
                         </ul>
                     </div>
                 `
@@ -320,117 +728,87 @@
                 title: "Traumatic or Acute Neck Pain",
                 nodes: {
                     visit_type: {
-                        question: "Visit Type: Select the reason for today's encounter.",
+                        question: "Patient Reports with Traumatic or Acute Neck Pain: Select the reason for today's encounter.",
                         options: [
-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "ccsr", soap: "Visit Type: Initial Consult for traumatic/acute neck pain." },
-                            { text: "Follow-Up (Reviewing Pending X-Rays)", onSelect: () => { isFollowUp = false; }, next: "xray_results", soap: "Visit Type: Follow-Up to review pending C-Spine X-Rays." },
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "ccsr", soap: "Visit Type: Initial Consult for traumatic or acute neck pain." },
+                            { text: "Follow-Up (Reviewing Pending X-Rays / Imaging)", onSelect: () => { isFollowUp = false; }, next: "xray_results", soap: "Visit Type: Follow-Up to review pending Cervical Spine X-Rays." },
                             { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "ccsr", soap: "Visit Type: 7-10 Day Follow-Up for previous neck injury." }
                         ]
                     },
                     ccsr: {
-                        question: "Do the Canadian Cervical Spine Rules apply to this patient?",
+                        question: "Do Canadian Cervical Spine Rules apply?",
                         tools: ["ccsr"],
                         options: [
-                            { text: "Yes, criteria mandates Radiographs", next: "hard_collar_action", soap: "Evaluated using Canadian Cervical Spine Rules: High risk or criteria met for imaging." },
-                            { text: "No, radiographs not mandated by CCSR", next: "evaluate", soap: "Evaluated using Canadian Cervical Spine Rules: Low risk, no radiographs indicated." }
+                            { text: "Yes", next: "hard_collar_action", soap: "Evaluated using Canadian Cervical Spine Rules: Yes, criteria mandates Radiographs." },
+                            { text: "No", next: "evaluate", soap: "Evaluated using Canadian Cervical Spine Rules: No." }
                         ]
                     },
                     hard_collar_action: {
-                        question: "Action Required: Immediate Imaging Needed. Patient must be sent for testing TODAY.",
+                        question: "Action Required: Hard collar and order appropriate X-Rays.",
                         type: "endpoint",
-                        assessment: "Acute Neck Pain, CCSR criteria met for imaging. X-Rays pending.",
+                        assessment: "Acute Neck Pain, Canadian Cervical Spine Rules criteria met for imaging. X-Rays pending.",
                         consults: "Pending X-Ray Results",
-                        plan: "Hard collar applied. Ordered appropriate X-Rays (A/P, Lateral, Open Mouth). Instructed patient to return immediately upon completion of tests to review results."
+                        plan: "• Hard collar applied.\n• Ordered appropriate X-Rays: Anterior/Posterior, Lateral, Open Mouth."
                     },
                     xray_results: {
-                        question: "Review the Pending X-Rays. Are they positive for fracture or dislocation?",
+                        question: "X-Ray positive for fracture or dislocation?",
                         options: [
-                            { text: "Yes, positive findings", next: "call_specialist_xray", soap: "X-Rays reviewed: Positive for fracture/dislocation." },
-                            { text: "No, negative findings", next: "neuro_signs", soap: "X-Rays reviewed: Negative for fracture/dislocation." }
+                            { text: "Yes", next: "call_specialist_redflags", soap: "X-Rays reviewed: Yes, positive for fracture or dislocation." },
+                            { text: "No", next: "neuro_signs", soap: "X-Rays reviewed: No." }
                         ]
-                    },
-                    call_specialist_xray: {
-                        question: "STOP. Call Ortho, Neurosurgery, Neurology, or other service TODAY to discuss positive findings.",
-                        type: "endpoint",
-                        assessment: "Acute Neck Pain with Positive Radiographic Findings (Fracture/Dislocation).",
-                        consults: "Ortho, Neurosurgery, Neurology, or other appropriate service",
-                        plan: "Hard collar maintained. Immediately consulted specialist due to positive X-Ray findings. Patient to be transferred/managed per specialist guidance."
                     },
                     neuro_signs: {
-                        question: "Are there positive Neurological signs or symptoms?",
+                        question: "Positive Neurological signs / symptoms?",
                         options: [
-                            { text: "Yes", next: "call_specialist_neuro", soap: "Positive neurological signs/symptoms present." },
-                            { text: "No", next: "remove_collar", soap: "No positive neurological signs/symptoms." }
-                        ]
-                    },
-                    call_specialist_neuro: {
-                        question: "STOP. Call Ortho, Neurosurgery, Neurology, or other service TODAY to discuss positive neurological findings.",
-                        type: "endpoint",
-                        assessment: "Acute Neck Pain with Positive Neurological Findings.",
-                        consults: "Ortho, Neurosurgery, Neurology, or other appropriate service",
-                        plan: "Hard collar maintained. Immediately consulted specialist due to positive neurological signs. Patient to be managed per specialist guidance."
-                    },
-                    remove_collar: {
-                        question: "Action Required: Remove Hard Collar.",
-                        type: "action",
-                        options: [
-                            { text: "Collar Removed, Proceed to Evaluation", next: "evaluate", soap: "Hard collar removed safely." }
+                            { text: "Yes", next: "call_specialist_redflags", soap: "Positive neurological signs/symptoms present." },
+                            { text: "No", next: "evaluate", soap: "No positive neurological signs/symptoms. Remove Hard Collar." }
                         ]
                     },
                     evaluate: {
-                        question: "EVALUATE: Assess Range of Motion (ROM), perform Neuro Screen, and assess for Red Flags.",
+                        question: "EVALUATE: Range of Motion, Neuro Screen, Assess for Red Flags.",
                         tools: ["neckRedFlags"],
                         options: [
-                            { text: "Red Flags ARE Present", next: "profile_selection_redflags", soap: "Evaluation performed. Positive for Red Flags." },
-                            { text: "NO Red Flags Present", next: () => isFollowUp ? "follow_up_status" : "initial_treatment_endpoint", soap: "Evaluation performed. Normal ROM/Neuro. No Red Flags identified." }
+                            { text: "Red Flags Present? (Yes)", next: "call_specialist_redflags", soap: "Evaluation performed. Red Flags Present." },
+                            { text: "Red Flags Present? (No)", next: () => isFollowUp ? "follow_up_status" : "initial_treatment_endpoint", soap: "Evaluation performed. No Red Flags present." }
                         ]
                     },
                     initial_treatment_endpoint: {
                         question: "Initial Consult Complete. Implement conservative management.",
                         type: "endpoint",
                         tools: ["analgesics"],
-                        assessment: "Acute Neck Pain, initial presentation without red flags.",
-                        consults: "PT, Sports Medicine, PM&R, or Ortho as indicated",
-                        plan: "Issued Profile (7-10 days). Issued Analgesic meds PRN. Directed follow-up if symptoms persist."
+                        assessment: "Traumatic or Acute Neck Pain.",
+                        consults: "Referral to Physical Therapy, Sports Medicine, Physical Medicine and Rehabilitation, or Orthopedics as indicated",
+                        plan: "• Profile 7-10 days.\n• Analgesic meds as needed.\n• Referral to Physical Therapy, Sports Medicine, Physical Medicine and Rehabilitation, or Orthopedics as indicated."
                     },
                     follow_up_status: {
-                        question: "Follow-Up Phase: Since this is a re-evaluation, did the patient's symptoms persist after the initial management period?",
+                        question: "Symptoms Persist?",
                         options: [
-                            { text: "Yes, symptoms persist", next: "symptoms_persist", soap: "Follow-up evaluation: Symptoms persist despite initial conservative management." },
-                            { text: "Mostly Resolved", next: "mostly_resolved", soap: "Follow-up evaluation: Symptoms are mostly resolved." }
-                        ]
-                    },
-                    profile_selection_redflags: {
-                        question: "Action Required: Select the appropriate Profile Type before proceeding to consult.",
-                        tools: ["profiles"],
-                        options: [
-                            { text: "Severe Profile (e.g., Hard collar, Fracture, Progressive neuro deficit)", next: "call_specialist_redflags", soap: "Assigned Severe Profile based on clinical presentation." },
-                            { text: "Moderate Profile (e.g., Radiculopathy, decreased ROM/strength)", next: "call_specialist_redflags", soap: "Assigned Moderate Profile based on clinical presentation." },
-                            { text: "Mild Profile (e.g., Pain at end range only)", next: "call_specialist_redflags", soap: "Assigned Mild Profile based on clinical presentation." }
+                            { text: "Yes", next: "symptoms_persist", soap: "Follow-up evaluation: Symptoms Persist." },
+                            { text: "Mostly Resolved", next: "mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
                         ]
                     },
                     call_specialist_redflags: {
-                        question: "STOP. Call Ortho, Neurosurgery, Neurology, PM&R TODAY to discuss positive Red Flag findings.",
+                        question: "Today: Consider calling Orthopedics, Neurosurgery, Neurology, or other service as appropriate to discuss positive findings.",
                         type: "endpoint",
-                        assessment: "Acute Neck Pain with Positive Red Flags.",
-                        consults: "Ortho, Neurosurgery, Neurology, or PM&R",
-                        plan: "Consulted specialist today regarding positive red flags. Management pending specialist recommendations."
+                        assessment: "Acute Neck Pain with Positive Findings or Red Flags.",
+                        consults: "Orthopedics, Neurosurgery, Neurology, or Physical Medicine and Rehabilitation",
+                        plan: "• Call Orthopedics, Neurosurgery, Neurology, or Physical Medicine and Rehabilitation to discuss positive Red Flag findings."
                     },
                     symptoms_persist: {
                         question: "Persistent Symptoms Protocol.",
                         type: "endpoint",
                         tools: ["analgesics"],
                         assessment: "Acute Neck Pain, persistent symptoms.",
-                        consults: "PT, Sports Medicine, PM&R, or Ortho",
-                        plan: "Considered X-Rays if not obtained initially (A/P, Lat, Open Mouth). Issued Profile for 7-10 days. Issued Analgesic Meds PRN."
+                        consults: "Physical Therapy, Sports Medicine, Physical Medicine and Rehabilitation, or Orthopedics",
+                        plan: "• Consider X-Rays if not obtained initially (Anterior/Posterior, Lateral, Open Mouth).\n• Profile 7-10 days.\n• Referral to Physical Therapy, Sports Medicine, Physical Medicine and Rehabilitation, or Orthopedics."
                     },
                     mostly_resolved: {
                         question: "Resolved Symptoms Protocol.",
                         type: "endpoint",
                         tools: ["analgesics"],
-                        assessment: "Acute Neck Pain, resolving.",
-                        consults: "None immediately required (Return to duty anticipated)",
-                        plan: "Issued Duty Specific Profile PRN. Issued Analgesic Meds PRN. Return to duty (RTD) at end of profile anticipated."
+                        assessment: "Acute Neck Pain, mostly resolved.",
+                        consults: "None immediately required",
+                        plan: "• Duty Specific Profile as needed.\n• Analgesic Medications as needed.\n• Return to duty at end of profile anticipated."
                     }
                 }
             },
@@ -438,105 +816,286 @@
                 title: "Traumatic or Acute Hip Pain",
                 nodes: {
                     visit_type: {
-                        question: "Visit Type: Select the reason for today's encounter.",
+                        question: "Patient Reports with Traumatic or Acute Hip Pain: Select the reason for today's encounter.",
                         options: [
-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "hip_red_flags", soap: "Visit Type: Initial Consult for traumatic/acute hip pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging/Labs)", onSelect: () => { isFollowUp = false; }, next: "hip_review_pending_results", soap: "Visit Type: Follow-Up to review pending imaging/labs." },
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "hip_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute hip pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging / Labs)", onSelect: () => { isFollowUp = false; }, next: "hip_review_pending_results", soap: "Visit Type: Follow-Up to review pending imaging or labs." },
                             { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "hip_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous hip injury." }
                         ]
                     },
                     hip_red_flags: {
-                        question: "EVALUATE: Does the patient have any of the following Red Flags?",
+                        question: "Does the patient have any RED FLAGS?",
                         tools: ["hipRedFlags"],
                         options: [
-                            { text: "Yes, one or more Red Flags are present", next: "hip_red_flags_action", soap: "Evaluation performed. Positive for Red Flags." },
-                            { text: "No, NO Red Flags present", next: "hip_special_tests", soap: "Evaluation performed. No Red Flags identified." }
+                            { text: "Yes", next: "hip_red_flags_action", soap: "Evaluation performed. Positive for Red Flags." },
+                            { text: "No", next: "hip_special_tests", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     hip_red_flags_action: {
-                        question: "Action Required: Immediate Red Flag Management. Patient must be sent for testing TODAY.",
+                        question: "Action Required: Immediate Red Flag Management.",
                         type: "endpoint",
-                        tools: ["hipImagingGuidelines", "weightBearing", "hipProfiles"],
-                        assessment: "Acute Hip Pain with Red Flags. Testing pending.",
+                        tools: ["hipImagingGuidelines", "weightBearing"],
+                        assessment: "Acute Hip Pain with Red Flags.",
                         consults: "Pending Imaging/Lab Results",
-                        plan: "Ordered appropriate Imaging/Labs based on guidelines. Issued Crutches (TTWB/NWB) and Severe Profile. Instructed patient to return immediately upon completion of tests or when results are available for further evaluation."
+                        plan: "• Imaging.\n• Lab Evaluation if indicated.\n• Crutches (Toe Touch Weight Bearing / Non Weight Bearing).\n• Profile Severe template."
                     },
                     hip_review_pending_results: {
-                        question: "Review the Pending Imaging and Lab Results. Are there positive findings?",
+                        question: "Positive findings on imaging or lab?",
                         options: [
-                            { text: "Yes, positive findings on imaging or labs", next: "hip_call_ortho_redflag", soap: "Imaging/labs reviewed: Positive findings confirmed." },
-                            { text: "No, imaging/labs are negative", next: "hip_special_tests", soap: "Imaging/labs reviewed: Negative. Proceeding with physical evaluation." }
+                            { text: "Yes", next: "hip_call_ortho_redflag", soap: "Imaging/labs reviewed: Yes, positive findings." },
+                            { text: "No", next: "hip_special_tests", soap: "Imaging/labs reviewed: No." }
                         ]
                     },
                     hip_call_ortho_redflag: {
-                        question: "STOP. Call Orthopedics TODAY to discuss positive findings.",
+                        question: "Discuss with Orthopedics.",
                         type: "endpoint",
                         assessment: "Acute Hip Pain with Positive Red Flags and Positive Imaging/Labs.",
-                        consults: "Orthopedics (Immediate)",
-                        plan: "Maintained NWB/TTWB status on crutches. Severe profile active. Contacted Orthopedics immediately regarding positive findings. Pending specialist transfer/management."
+                        consults: "Orthopedics",
+                        plan: "• Discuss with Orthopedics."
                     },
                     hip_special_tests: {
-                        question: "SPECIAL TESTS EXAM: Perform the special hip tests and evaluate the patient's gait.",
+                        question: "SPECIAL TESTS EXAM",
                         tools: ["hipSpecialTests"],
                         options: [
-                            { text: "POSITIVE: One or more tests are positive, OR patient has an Antalgic Gait", next: "hip_positive_tests_path", soap: "Physical Exam: Positive findings on special tests and/or presence of antalgic gait." },
-                            { text: "NEGATIVE: All tests are negative and gait is normal", next: () => isFollowUp ? "hip_follow_up_status" : "hip_negative_tests_path", soap: "Physical Exam: Special tests negative, normal gait." }
+                            { text: "(+) Special tests OR (+) Antalgic gait", next: "hip_positive_tests_path", soap: "Physical Exam: Positive special tests or positive antalgic gait." },
+                            { text: "No (Negative tests and normal gait)", next: () => isFollowUp ? "hip_follow_up_status" : "hip_negative_tests_path", soap: "Physical Exam: No positive special tests or antalgic gait." }
                         ]
                     },
                     hip_positive_tests_path: {
-                        question: "Positive Exam Path: Is imaging clinically indicated today based on the guidelines?",
+                        question: "Is imaging ordered?",
                         tools: ["hipImagingGuidelines"],
                         options: [
-                            { text: "Yes, Imaging Ordered TODAY", next: "hip_positive_tests_imaging_action", soap: "Physical exam findings warrant imaging. Imaging ordered." },
-                            { text: "No, Imaging NOT Ordered", next: "hip_initial_treatment_positive_endpoint", soap: "Imaging not clinically indicated at this time." }
+                            { text: "Imaging Ordered", next: "hip_positive_tests_imaging_action", soap: "Imaging ordered based on guidelines." },
+                            { text: "Imaging NOT Ordered", next: "hip_initial_treatment_positive_endpoint", soap: "Imaging NOT ordered." }
                         ]
                     },
                     hip_positive_tests_imaging_action: {
-                        question: "Action Required: Send patient for Imaging.",
+                        question: "Action Required: Imaging Ordered Path.",
                         type: "endpoint",
-                        tools: ["weightBearing", "hipProfiles"],
-                        assessment: "Acute Hip Pain with Positive Exam Findings. Imaging pending.",
+                        tools: ["weightBearing"],
+                        assessment: "Acute Hip Pain, imaging ordered.",
                         consults: "Pending Imaging Results",
-                        plan: "Ordered imaging. Issued 7-10 day Profile and Crutches (if antalgic gait present). Prescribed Analgesic Meds PRN. Instructed patient to return to clinic to review results once completed."
+                        plan: "• Consider further imaging if clinically indicated.\n• Profile appropriately.\n• Crutches (Toe Touch Weight Bearing / Non Weight Bearing)."
                     },
                     hip_initial_treatment_positive_endpoint: {
-                        question: "Initial Consult Complete. Implement conservative management and schedule re-evaluation.",
+                        question: "Initial Consult Complete.",
                         type: "endpoint",
-                        tools: ["hipProfiles", "analgesics"],
-                        assessment: "Acute Hip Pain, positive exam findings, pending conservative management response.",
-                        consults: "Primary Care Manager (PCM) in 7-10 days",
-                        plan: "Issued Profile (7-10 days). Issued Crutches due to antalgic gait/positive tests. Issued Analgesic meds PRN. Scheduled re-evaluation with PCM in 7-10 days. Further evaluation/referral may be warranted if symptoms persist."
+                        tools: ["analgesics"],
+                        assessment: "Acute Hip Pain, imaging not ordered.",
+                        consults: "Primary Care Manager",
+                        plan: "• Consider imaging per guidelines.\n• Profile 7-10 days.\n• Crutches if antalgic gait.\n• Analgesic Medications as needed.\n• Re-evaluate in 7-10 days by Primary Care Manager.\n• Further evaluation and/or referral may be warranted."
                     },
                     hip_negative_tests_path: {
-                        question: "Initial Consult Complete. Implement basic conservative management.",
+                        question: "Initial Consult Complete.",
                         type: "endpoint",
-                        tools: ["hipProfiles", "analgesics"],
-                        assessment: "Acute Hip Pain, initial presentation without red flags or positive special tests.",
-                        consults: "Primary Care Manager (PCM) in 7-10 days if symptoms persist",
-                        plan: "Issued appropriate Profile. Issued Analgesic meds PRN. Directed follow-up with PCM in 7-10 days if symptoms do not improve."
+                        tools: ["analgesics"],
+                        assessment: "Traumatic or Acute Hip Pain.",
+                        consults: "Primary Care Manager in 7-10 days if symptoms persist",
+                        plan: "• Profile appropriately.\n• Analgesic meds as needed.\n• Re-evaluate in 7-10 days."
                     },
                     hip_follow_up_status: {
-                        question: "Follow-Up Phase: Re-evaluating after 7-10 days. Do the patient's symptoms persist?",
+                        question: "Symptoms persist?",
                         options: [
-                            { text: "Yes, symptoms persist", next: "hip_symptoms_persist", soap: "Follow-up evaluation: Symptoms persist despite initial conservative management." },
-                            { text: "Mostly Resolved", next: "hip_mostly_resolved", soap: "Follow-up evaluation: Symptoms are mostly resolved." }
+                            { text: "Yes", next: "hip_symptoms_persist", soap: "Follow-up evaluation: Symptoms persist." },
+                            { text: "Mostly Resolved", next: "hip_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
                         ]
                     },
                     hip_symptoms_persist: {
-                        question: "Persistent Symptoms Protocol: Further action required.",
+                        question: "Persistent Symptoms Protocol.",
                         type: "endpoint",
-                        tools: ["hipImagingGuidelines", "hipProfiles", "analgesics"],
-                        assessment: "Acute Hip Pain, persistent symptoms after 7-10 days of conservative management.",
-                        consults: "PT, Sports Medicine, or Ortho as indicated",
-                        plan: "Considered further imaging if clinically indicated (MRI/Bone Scan). Issued appropriate profile. Issued crutches (TTWB/NWB) if needed. Analgesic Meds PRN. Initiated referral for further evaluation (PT/Ortho)."
+                        tools: ["hipImagingGuidelines"],
+                        assessment: "Acute Hip Pain, persistent symptoms.",
+                        consults: "Physical Therapy, Sports Medicine, or Orthopedics",
+                        plan: "• Consider imaging per guidelines.\n• Profile 7-10 days.\n• Crutches if antalgic gait.\n• Analgesic Medications as needed.\n• Re-evaluate in 7-10 days by Primary Care Manager.\n• Further evaluation and/or referral may be warranted."
                     },
                     hip_mostly_resolved: {
                         question: "Resolved Symptoms Protocol.",
                         type: "endpoint",
-                        tools: ["hipProfiles", "analgesics"],
-                        assessment: "Acute Hip Pain, resolving.",
+                        tools: ["analgesics"],
+                        assessment: "Acute Hip Pain, mostly resolved.",
                         consults: "None immediately required",
-                        plan: "Issued Hip Mild profile. Issued Analgesic Meds PRN. Return to duty (RTD) at end of profile anticipated."
+                        plan: "• Hip Mild profile.\n• Analgesic medications as needed.\n• Return to duty at end of profile."
+                    }
+                }
+            },
+            ankle: {
+                title: "Traumatic or Acute Ankle Pain",
+                nodes: {
+                    visit_type: {
+                        question: "Patient Reports With Traumatic or Acute Ankle Pain: Select the reason for today's encounter.",
+                        options: [
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "ankle_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute ankle pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "ankle_review_results", soap: "Visit Type: Follow-Up to review pending ankle imaging." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "ankle_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous ankle injury." }
+                        ]
+                    },
+                    ankle_red_flags: {
+                        question: "RED FLAGS: Does the patient have any Red Flags?",
+                        tools: ["ankleRedFlags"],
+                        options: [
+                            { text: "Yes", next: "ankle_red_flags_action", soap: "Evaluation performed. Positive for Ankle Red Flags." },
+                            { text: "No", next: "ankle_exam", soap: "Evaluation performed. No Red Flags." }
+                        ]
+                    },
+                    ankle_red_flags_action: {
+                        question: "Action Required: X-Ray and Call Orthopedics TODAY.",
+                        type: "endpoint",
+                        assessment: "Acute Ankle Pain with Red Flags.",
+                        consults: "Orthopedics (TODAY)",
+                        plan: "• X-Ray: Order Anterior/Posterior, Lateral, and Mortise.\n• If Fibular Head is Tender to Palpation: Order Anterior/Posterior, Lateral Knee and Anterior/Posterior, Lateral of Tibia / Fibula.\n• Call Orthopedics TODAY to discuss management."
+                    },
+                    ankle_review_results: {
+                        question: "Review the Pending X-Rays. Are they positive for fracture?",
+                        options: [
+                            { text: "Yes", next: "call_ortho_ankle", soap: "X-Rays reviewed: Yes." },
+                            { text: "No", next: "ankle_exam", soap: "X-Rays reviewed: No." }
+                        ]
+                    },
+                    call_ortho_ankle: {
+                        question: "Call Orthopedics TODAY.",
+                        type: "endpoint",
+                        assessment: "Acute Ankle Pain with Positive Radiographic Findings.",
+                        consults: "Orthopedics",
+                        plan: "• Call Orthopedics TODAY to discuss management."
+                    },
+                    ankle_exam: {
+                        question: "EXAM Findings:",
+                        instruction: "Assess for: Grade II or > Sprain, Check Ottawa Rules, Antalgic Gait, Moderate Edema, Limited Range of Motion.",
+                        tools: ["ankleProfiles"],
+                        options: [
+                            { text: "Yes (Grade II or > Sprain, Antalgic Gait, Mod Edema, Limited ROM)", next: "ankle_severe_path", soap: "Physical Exam: Grade II or > Sprain, Antalgic Gait, Mod Edema, or Limited Range of Motion." },
+                            { text: "No", next: "ankle_moderate_path", soap: "Physical Exam: No Grade II or > Sprain, no antalgic gait, no mod edema, no limited ROM." }
+                        ]
+                    },
+                    ankle_severe_path: {
+                        question: "Initial Consult Complete.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "ankleProfiles", "analgesics", "weightBearing"],
+                        assessment: "Acute Ankle Sprain (Grade II or greater).",
+                        consults: "Physical Therapy, Sports Medicine, Podiatry, or Orthopedics (24-72 hour consult)",
+                        plan: "• Profile Severe\n• Crutches (Weight Bearing As Tolerated)\n• Analgesic Medications as needed\n• PEACE Protocol\n• Encourage Range of Motion\n• Referral: Call Physical Therapy, Sports Medicine, Podiatry, or Orthopedics, as indicated, for 24-72 hour consult\n• Close Follow-Up by Primary Care Provider and referral to Physical Therapy / Orthopedics Physician Assistant"
+                    },
+                    ankle_moderate_path: {
+                        question: "Initial Consult Complete.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "ankleProfiles", "analgesics"],
+                        assessment: "Traumatic or Acute Ankle Pain.",
+                        consults: "Primary Care Manager in 1 week",
+                        plan: "• Profile Moderate or Mild\n• Analgesic Medications as needed\n• PEACE Protocol\n• Encourage Range of Motion\n• Re-evaluate in 1 week"
+                    },
+                    ankle_follow_up_status: {
+                        question: "Symptoms Persist?",
+                        options: [
+                            { text: "Yes", next: "ankle_symptoms_persist", soap: "Follow-up evaluation: Symptoms Persist." },
+                            { text: "Mostly Resolved", next: "ankle_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
+                        ]
+                    },
+                    ankle_symptoms_persist: {
+                        question: "Persistent Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "ankleProfiles", "analgesics", "weightBearing"],
+                        assessment: "Acute Ankle Pain, persistent symptoms.",
+                        consults: "Physical Therapy, Podiatry, Sports Medicine, or Orthopedics (7-10 days)",
+                        plan: "• Consider X-Rays Anterior/Posterior, Lateral, Mortise\n• Profile Moderate\n• Consider crutches (Weight Bearing As Tolerated) if antalgic gait\n• Analgesic medications as needed\n• Range of Motion/Stretching, Brace if instability complained of\n• Referral: 7-10 days to Physical Therapy, Podiatry, Sports Medicine, or Orthopedics as indicated"
+                    },
+                    ankle_mostly_resolved: {
+                        question: "Resolved Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics"],
+                        assessment: "Acute Ankle Pain, mostly resolved.",
+                        consults: "None immediately required",
+                        plan: "• Duty Specific Profile as needed\n• Analgesic Medications as needed\n• Return to duty at end of profile anticipated"
+                    }
+                }
+            },
+            leg: {
+                title: "Traumatic or Acute Leg Pain",
+                nodes: {
+                    visit_type: {
+                        question: "Patient Reports With Traumatic or Acute Leg Pain: Select the reason for today's encounter.",
+                        options: [
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "leg_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute leg pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "leg_review_results", soap: "Visit Type: Follow-Up to review pending leg imaging." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "leg_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous leg injury." }
+                        ]
+                    },
+                    leg_red_flags: {
+                        question: "RED FLAGS: Does the patient have any Red Flags?",
+                        tools: ["legRedFlags"],
+                        options: [
+                            { text: "Yes", next: "leg_red_flags_action", soap: "Evaluation performed. Positive for Leg Red Flags." },
+                            { text: "No", next: "leg_exam", soap: "Evaluation performed. No Red Flags." }
+                        ]
+                    },
+                    leg_red_flags_action: {
+                        question: "Action Required: Immediate Medical Management.",
+                        type: "endpoint",
+                        tools: ["legImagingGuidelines"],
+                        assessment: "Acute Leg Pain with Red Flags (Suspected Compartment Syndrome, DVT, or Fracture).",
+                        consults: "Emergency Department or Orthopedics (TODAY)",
+                        plan: "• If Acute Compartment Syndrome suspected (6 Ps): Send to Emergency Department immediately.\n• If Deep Vein Thrombosis suspected: Order emergent Venous Doppler Ultrasound and consult Emergency Department/Primary Care Manager.\n• If Fracture suspected: Order Anterior/Posterior and Lateral Tibia/Fibula X-Rays, provide crutches (Non Weight Bearing), and call Orthopedics TODAY."
+                    },
+                    leg_review_results: {
+                        question: "Review the Pending X-Rays, Ultrasound, or MRI. Are there positive findings?",
+                        options: [
+                            { text: "Yes, positive for fracture, stress fracture, or DVT", next: "call_ortho_leg", soap: "Imaging reviewed: Yes, positive findings confirmed." },
+                            { text: "No, imaging is negative", next: "leg_exam", soap: "Imaging reviewed: No acute findings." }
+                        ]
+                    },
+                    call_ortho_leg: {
+                        question: "Consult Specialty Care TODAY.",
+                        type: "endpoint",
+                        assessment: "Acute Leg Pain with Positive Imaging Findings.",
+                        consults: "Orthopedics or Emergency Department",
+                        plan: "• Call Orthopedics (for fractures/stress fractures) or Emergency Department (for Deep Vein Thrombosis) TODAY to discuss management and transfer of care."
+                    },
+                    leg_exam: {
+                        question: "EXAM Findings:",
+                        instruction: "Assess for focal bone tenderness versus diffuse soft tissue tenderness. Perform Single Leg Hop Test.",
+                        tools: ["legSpecialTests", "legProfiles"],
+                        options: [
+                            { text: "Yes (Focal bone tenderness OR positive/failed Single Leg Hop Test)", next: "leg_severe_path", soap: "Physical Exam: Positive for focal bone tenderness and/or failed Single Leg Hop Test (Suspect Bone Stress Injury)." },
+                            { text: "No (Diffuse tenderness only, >5cm along bone, negative hop test)", next: "leg_moderate_path", soap: "Physical Exam: Diffuse medial tibial tenderness only, hop test negative (Suspect Medial Tibial Stress Syndrome / Shin Splints)." }
+                        ]
+                    },
+                    leg_severe_path: {
+                        question: "Initial Consult Complete: Suspected Stress Fracture Protocol.",
+                        type: "endpoint",
+                        tools: ["legImagingGuidelines", "legProfiles", "analgesics", "weightBearing"],
+                        assessment: "Acute Leg Pain, suspected Tibial/Fibular Stress Fracture.",
+                        consults: "Primary Care Manager or Sports Medicine in 7-10 days",
+                        plan: "• Imaging: Order Anterior/Posterior and Lateral X-Rays. If negative, consider Magnetic Resonance Imaging (MRI).\n• Profile: Severe.\n• Crutches: Issued (Toe Touch Weight Bearing or Partial Weight Bearing based on pain).\n• Analgesic Medications as needed.\n• Re-evaluate in 7-10 days to review imaging and adjust weight bearing status."
+                    },
+                    leg_moderate_path: {
+                        question: "Initial Consult Complete: Medial Tibial Stress Syndrome (Shin Splints) / Muscle Strain Protocol.",
+                        type: "endpoint",
+                        tools: ["peaceProtocol", "legProfiles", "analgesics"],
+                        assessment: "Acute Leg Pain, suspected Medial Tibial Stress Syndrome or Muscle Strain.",
+                        consults: "Primary Care Manager or Physical Therapy in 2-3 weeks",
+                        plan: "• Profile: Moderate (Walk to tolerance, no running/jumping/rucking).\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Recommend cross-training (swimming, stationary bike).\n• Re-evaluate in 2-3 weeks if symptoms do not improve."
+                    },
+                    leg_follow_up_status: {
+                        question: "Symptoms Persist?",
+                        options: [
+                            { text: "Yes", next: "leg_symptoms_persist", soap: "Follow-up evaluation: Symptoms Persist." },
+                            { text: "Mostly Resolved", next: "leg_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
+                        ]
+                    },
+                    leg_symptoms_persist: {
+                        question: "Persistent Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["legImagingGuidelines", "legProfiles", "analgesics", "weightBearing"],
+                        assessment: "Acute Leg Pain, persistent symptoms.",
+                        consults: "Physical Therapy, Sports Medicine, or Orthopedics",
+                        plan: "• Imaging: If X-Rays were negative previously, order Magnetic Resonance Imaging (MRI) now.\n• Profile: Maintain Moderate or Severe Profile based on symptom severity.\n• Consider crutches if gait remains antalgic.\n• Analgesic medications as needed.\n• Referral: Physical Therapy, Sports Medicine, or Orthopedics as indicated."
+                    },
+                    leg_mostly_resolved: {
+                        question: "Resolved Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics"],
+                        assessment: "Acute Leg Pain, mostly resolved.",
+                        consults: "None immediately required",
+                        plan: "• Duty Specific Profile as needed (Gradual return to running program recommended).\n• Analgesic Medications as needed.\n• Return to duty at end of profile anticipated."
                     }
                 }
             }
@@ -546,7 +1105,7 @@
         let currentProtocol = null;
         let currentNodeId = null;
         let clinicalHistory = []; // Stores SOAP lines
-        let isFollowUp = false; // Tracks if the visit is a 7-10 day follow up
+        let isFollowUp = false; 
 
         // --- UI RENDERING ---
         function renderHome() {
@@ -563,11 +1122,18 @@
                             <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-child-reaching mr-2"></i> Hip Pain</h3>
                             <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
                         </button>
+                        <button onclick="startProtocol('ankle')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
+                            <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-shoe-prints mr-2"></i> Ankle Pain</h3>
+                            <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
+                        </button>
+                        <button onclick="startProtocol('leg')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
+                            <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-person-walking mr-2"></i> Leg Pain</h3>
+                            <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
+                        </button>
                         <button disabled class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 opacity-60 cursor-not-allowed text-left">
-                            <h3 class="text-lg font-bold text-gray-600"><i class="fa-solid fa-shoe-prints mr-2"></i> Ankle Pain (Pending)</h3>
+                            <h3 class="text-lg font-bold text-gray-600"><i class="fa-solid fa-staff-snake mr-2"></i> Knee Pain</h3>
                             <p class="text-sm text-gray-400 mt-2">Coming Soon</p>
                         </button>
-                        <!-- Add placeholders for the rest -->
                     </div>
                 </div>
             `;
@@ -576,9 +1142,8 @@
         function startProtocol(protocolId) {
             currentProtocol = algorithms[protocolId];
             clinicalHistory = [];
-            isFollowUp = false; // Reset on start
+            isFollowUp = false;
             
-            // Add chief complaint to SOAP
             clinicalHistory.push(`Chief Complaint: Patient presents with ${currentProtocol.title.toLowerCase()}.`);
             
             renderNode('visit_type');
@@ -595,16 +1160,35 @@
                 node.tools.forEach(toolId => {
                     const tool = clinicalTools[toolId];
                     if (tool) {
-                        toolsHtml += `
-                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
-                                <div class="font-bold text-md p-3 bg-gray-100 border-b border-gray-200 text-army flex items-center">
-                                    <i class="fa-solid fa-book-medical mr-2 text-army-gold"></i> Reference: ${tool.title}
+                        if (tool.collapsible === false) {
+                            // Render Main Red Flags fully open
+                            toolsHtml += `
+                                <div class="bg-white border-2 border-red-200 rounded-lg shadow-sm">
+                                    <div class="font-bold text-md p-3 bg-red-50 border-b border-red-200 text-red-800 flex items-center">
+                                        <i class="fa-solid fa-triangle-exclamation mr-2 text-red-600"></i> ${tool.title}
+                                    </div>
+                                    <div class="p-4 bg-gray-50">
+                                        ${tool.content}
+                                    </div>
                                 </div>
-                                <div class="p-4 bg-gray-50">
-                                    ${tool.content}
-                                </div>
-                            </div>
-                        `;
+                            `;
+                        } else {
+                            // Render Expandable Dropdowns for Sub-References
+                            toolsHtml += `
+                                <details class="group bg-white border-2 border-blue-300 rounded-lg shadow-sm mb-2">
+                                    <summary class="font-bold text-md p-3 bg-blue-50 text-blue-900 flex justify-between items-center rounded-lg hover:bg-blue-100 transition-colors cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-book-medical mr-2 text-blue-600"></i> 
+                                            <span>Reference: ${tool.title} <span class="text-xs font-normal ml-2 text-blue-600">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-gray-50 border-t border-blue-200 rounded-b-lg">
+                                        ${tool.content}
+                                    </div>
+                                </details>
+                            `;
+                        }
                     }
                 });
                 toolsHtml += '</div>';
@@ -650,7 +1234,6 @@
             const node = currentProtocol.nodes[nodeId];
             const option = node.options[optionIndex];
             
-            // Execute any state-changing logic attached to this option
             if (option.onSelect) {
                 option.onSelect();
             }
@@ -659,7 +1242,6 @@
                 clinicalHistory.push(option.soap);
             }
             
-            // Handle dynamic routing if next is a function, otherwise use the string
             const nextNodeId = typeof option.next === 'function' ? option.next() : option.next;
             renderNode(nextNodeId);
         }
@@ -667,9 +1249,8 @@
         function renderEndpoint(node, toolsHtml) {
             const root = document.getElementById('app-root');
             
-            // Generate SOAP Note
             const soapDate = new Date().toLocaleDateString();
-            const subjective = clinicalHistory[0]; // Chief complaint
+            const subjective = clinicalHistory[0]; 
             const objective = clinicalHistory.slice(1).join(" ");
             const assessment = node.assessment || "Pending Provider Assessment";
             
@@ -725,7 +1306,6 @@ P: ${plan}
                     btn.classList.add('bg-army');
                 }, 2000);
             }).catch(err => {
-                // Fallback for older browsers / iframe restrictions
                 const textArea = document.createElement("textarea");
                 textArea.value = soapContent;
                 document.body.appendChild(textArea);
@@ -741,7 +1321,6 @@ P: ${plan}
             });
         }
 
-        // Initialize App immediately
         renderHome();
     </script>
 </body>
