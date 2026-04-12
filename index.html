@@ -1609,7 +1609,7 @@
                         tools: ["ccsr"],
                         options: [
                             { text: "Yes", next: () => visitTypeState === 'imaging' ? "xray_results" : "hard_collar_action", soap: "Evaluated using Canadian Cervical Spine Rules: Yes, criteria mandates Radiographs." },
-                            { text: "No", next: () => visitTypeState === 'imaging' ? "xray_results" : "evaluate", soap: "Evaluated using Canadian Cervical Spine Rules: No." }
+                            { text: "No", next: () => visitTypeState === 'imaging' ? "xray_results" : "neuro_signs", soap: "Evaluated using Canadian Cervical Spine Rules: No." }
                         ]
                     },
                     hard_collar_action: {
@@ -1631,7 +1631,14 @@
                         tools: ["neckNeuroSigns"],
                         options: [
                             { text: "Yes", next: "call_specialist_redflags", soap: "Positive neurological signs/symptoms present." },
-                            { text: "No", next: "evaluate", soap: "No positive neurological signs/symptoms. Hard Collar can be removed." }
+                            { text: "No", next: "neck_rom_testing", soap: "No positive neurological signs/symptoms. Hard Collar can be removed." }
+                        ]
+                    },
+                    neck_rom_testing: {
+                        question: "Is the patient UNABLE to actively rotate the neck 45 degrees to the left and right?",
+                        options: [
+                            { text: "Yes (Unable to rotate)", next: "call_specialist_redflags", soap: "Patient is unable to actively rotate the neck 45 degrees to the left and right." },
+                            { text: "No (Able to rotate)", next: "evaluate", soap: "Patient is able to actively rotate the neck 45 degrees to the left and right." }
                         ]
                     },
                     evaluate: {
