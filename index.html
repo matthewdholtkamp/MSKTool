@@ -1617,9 +1617,9 @@
                     visit_type: {
                         question: "Patient Reports With Traumatic or Acute Ankle Pain: Select the reason for today's encounter.",
                         options: [
-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "ankle_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute ankle pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "ankle_review_results", soap: "Visit Type: Follow-Up to review pending ankle imaging." },
-                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "ankle_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous ankle injury." }
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "ankle_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute ankle pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "ankle_red_flags", soap: "Visit Type: Follow-Up to review pending ankle imaging (Full Reassessment)." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "ankle_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous ankle injury." }
                         ]
                     },
                     ankle_red_flags: {
@@ -1627,7 +1627,7 @@
                         tools: ["ankleRedFlags"],
                         options: [
                             { text: "Yes", next: "ankle_red_flags_action", soap: "Evaluation performed. Positive for Ankle Red Flags." },
-                            { text: "No", next: "ankle_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: () => visitTypeState === 'imaging' ? "ankle_review_results" : "ankle_exam", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     ankle_red_flags_action: {
@@ -1656,8 +1656,8 @@
                         instruction: "Assess for: Grade II or > Sprain, Check Ottawa Rules, Antalgic Gait, Moderate Edema, Limited Range of Motion.",
                         tools: ["ankleProfiles"],
                         options: [
-                            { text: "Yes (Grade II or > Sprain, Antalgic Gait, Mod Edema, Limited ROM)", next: "ankle_severe_path", soap: "Physical Exam: Grade II or > Sprain, Antalgic Gait, Mod Edema, or Limited Range of Motion." },
-                            { text: "No", next: "ankle_moderate_path", soap: "Physical Exam: No Grade II or > Sprain, no antalgic gait, no mod edema, no limited ROM." }
+                            { text: "Yes (Grade II or > Sprain, Antalgic Gait, Mod Edema, Limited ROM)", next: () => visitTypeState === '7day' ? "ankle_follow_up_status" : "ankle_severe_path", soap: "Physical Exam: Grade II or > Sprain, Antalgic Gait, Mod Edema, or Limited Range of Motion." },
+                            { text: "No", next: () => visitTypeState === '7day' ? "ankle_follow_up_status" : "ankle_moderate_path", soap: "Physical Exam: No Grade II or > Sprain, no antalgic gait, no mod edema, no limited ROM." }
                         ]
                     },
                     ankle_severe_path: {
@@ -1707,9 +1707,9 @@
                     visit_type: {
                         question: "Patient Reports With Traumatic or Acute Leg Pain: Select the reason for today's encounter.",
                         options: [
-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "leg_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute leg pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "leg_review_results", soap: "Visit Type: Follow-Up to review pending leg imaging." },
-                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "leg_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous leg injury." }
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "leg_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute leg pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "leg_red_flags", soap: "Visit Type: Follow-Up to review pending leg imaging (Full Reassessment)." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "leg_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous leg injury." }
                         ]
                     },
                     leg_red_flags: {
@@ -1717,7 +1717,7 @@
                         tools: ["legRedFlags"],
                         options: [
                             { text: "Yes", next: "leg_red_flags_action", soap: "Evaluation performed. Positive for Leg Red Flags." },
-                            { text: "No", next: "leg_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: () => visitTypeState === 'imaging' ? "leg_review_results" : "leg_exam", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     leg_red_flags_action: {
@@ -1747,8 +1747,8 @@
                         instruction: "Assess for focal bone tenderness versus diffuse soft tissue tenderness. Perform Single Leg Hop Test.",
                         tools: ["legSpecialTests", "legProfiles"],
                         options: [
-                            { text: "Yes (Focal bone tenderness OR positive/failed Single Leg Hop Test)", next: "leg_severe_path", soap: "Physical Exam: Positive for focal bone tenderness and/or failed Single Leg Hop Test (Suspect Bone Stress Injury)." },
-                            { text: "No (Diffuse tenderness only, >5cm along bone, negative hop test)", next: "leg_moderate_path", soap: "Physical Exam: Diffuse medial tibial tenderness only, hop test negative (Suspect Medial Tibial Stress Syndrome / Shin Splints)." }
+                            { text: "Yes (Focal bone tenderness OR positive/failed Single Leg Hop Test)", next: () => visitTypeState === '7day' ? "leg_follow_up_status" : "leg_severe_path", soap: "Physical Exam: Positive for focal bone tenderness and/or failed Single Leg Hop Test (Suspect Bone Stress Injury)." },
+                            { text: "No (Diffuse tenderness only, >5cm along bone, negative hop test)", next: () => visitTypeState === '7day' ? "leg_follow_up_status" : "leg_moderate_path", soap: "Physical Exam: Diffuse medial tibial tenderness only, hop test negative (Suspect Medial Tibial Stress Syndrome / Shin Splints)." }
                         ]
                     },
                     leg_severe_path: {
@@ -1798,9 +1798,9 @@
                     visit_type: {
                         question: "Patient Reports With Traumatic or Acute Knee Pain: Select the reason for today's encounter.",
                         options: [
-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "knee_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute knee pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "knee_review_results", soap: "Visit Type: Follow-Up to review pending knee imaging." },
-                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "knee_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous knee injury." }
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "knee_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute knee pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "knee_red_flags", soap: "Visit Type: Follow-Up to review pending knee imaging (Full Reassessment)." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "knee_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous knee injury." }
                         ]
                     },
                     knee_red_flags: {
@@ -1808,7 +1808,7 @@
                         tools: ["kneeRedFlags"],
                         options: [
                             { text: "Yes", next: "knee_red_flags_action", soap: "Evaluation performed. Positive for Knee Red Flags." },
-                            { text: "No", next: "knee_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: () => visitTypeState === 'imaging' ? "knee_review_results" : "knee_exam", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     knee_red_flags_action: {
@@ -1822,7 +1822,7 @@
                         question: "Review the Pending X-Rays or MRI. Are there positive findings?",
                         options: [
                             { text: "Yes, positive for fracture, loose body, or significant pathology", next: "call_ortho_knee", soap: "Imaging reviewed: Yes, positive findings confirmed." },
-                            { text: "No, imaging is negative", next: "knee_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
+                            { text: "No", next: "knee_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
                         ]
                     },
                     call_ortho_knee: {
@@ -1837,8 +1837,8 @@
                         instruction: "Assess for: Ligament instability, Meniscal pathology, Patellar apprehension, Effusion, Edema, Decreased Range of Motion. Use the special tests drop-downs below.",
                         tools: ["kneeSpecialTests", "kneeProfiles"],
                         options: [
-                            { text: "Yes (Positive Instability, Apprehension, Effusion, Mod/Severe Edema, or Decreased ROM)", next: "knee_severe_path", soap: "Physical Exam: Positive for ligament instability, meniscal pathology, patellar apprehension, effusion, and/or decreased Range of Motion." },
-                            { text: "No (Negative special tests, minimal/no edema, normal ROM)", next: "knee_moderate_path", soap: "Physical Exam: Negative instability, negative meniscal signs, no effusion, normal Range of Motion." }
+                            { text: "Yes (Positive Instability, Apprehension, Effusion, Mod/Severe Edema, or Decreased ROM)", next: () => visitTypeState === '7day' ? "knee_follow_up_status" : "knee_severe_path", soap: "Physical Exam: Positive for ligament instability, meniscal pathology, patellar apprehension, effusion, and/or decreased Range of Motion." },
+                            { text: "No (Negative special tests, minimal/no edema, normal ROM)", next: () => visitTypeState === '7day' ? "knee_follow_up_status" : "knee_moderate_path", soap: "Physical Exam: Negative instability, negative meniscal signs, no effusion, normal Range of Motion." }
                         ]
                     },
                     knee_severe_path: {
@@ -1888,9 +1888,9 @@
                     visit_type: {
                         question: "Patient Reports With Traumatic or Acute Shoulder Pain: Select the reason for today's encounter.",
                         options: [
-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "shoulder_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute shoulder pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "shoulder_review_results", soap: "Visit Type: Follow-Up to review pending shoulder imaging." },
-                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "shoulder_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous shoulder injury." }
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "shoulder_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute shoulder pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "shoulder_red_flags", soap: "Visit Type: Follow-Up to review pending shoulder imaging (Full Reassessment)." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "shoulder_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous shoulder injury." }
                         ]
                     },
                     shoulder_red_flags: {
@@ -1898,7 +1898,7 @@
                         tools: ["shoulderRedFlags"],
                         options: [
                             { text: "Yes", next: "shoulder_red_flags_action", soap: "Evaluation performed. Positive for Shoulder Red Flags." },
-                            { text: "No", next: "shoulder_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: () => visitTypeState === 'imaging' ? "shoulder_review_results" : "shoulder_exam", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     shoulder_red_flags_action: {
@@ -1913,7 +1913,7 @@
                         question: "Review the Pending X-Rays. Are there positive findings?",
                         options: [
                             { text: "Yes, positive for fracture or dislocation", next: "call_ortho_shoulder", soap: "Imaging reviewed: Yes, positive findings confirmed." },
-                            { text: "No, imaging is negative", next: "shoulder_exam", soap: "Imaging reviewed: No acute fracture or dislocation." }
+                            { text: "No", next: "shoulder_exam", soap: "Imaging reviewed: No acute fracture or dislocation." }
                         ]
                     },
                     call_ortho_shoulder: {
@@ -1928,8 +1928,8 @@
                         instruction: "Use the special tests drop-downs below to guide your exam.",
                         tools: ["shoulderSpecialTests", "shoulderProfiles"],
                         options: [
-                            { text: "Yes (Positive Instability, significant Rotator Cuff weakness, or severe impingement signs)", next: "shoulder_severe_path", soap: "Physical Exam: Positive for significant impingement, rotator cuff pathology, or instability." },
-                            { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: "shoulder_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
+                            { text: "Yes (Positive Instability, significant Rotator Cuff weakness, or severe impingement signs)", next: () => visitTypeState === '7day' ? "shoulder_follow_up_status" : "shoulder_severe_path", soap: "Physical Exam: Positive for significant impingement, rotator cuff pathology, or instability." },
+                            { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: () => visitTypeState === '7day' ? "shoulder_follow_up_status" : "shoulder_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
                         ]
                     },
                     shoulder_severe_path: {
@@ -1979,9 +1979,9 @@
                     visit_type: {
                         question: "Patient Reports With Traumatic or Acute Arm and Elbow Pain: Select the reason for today's encounter.",
                         options: [
-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "elbow_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute arm/elbow pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "elbow_review_results", soap: "Visit Type: Follow-Up to review pending arm/elbow imaging." },
-                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "elbow_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous arm/elbow injury." }
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "elbow_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute arm/elbow pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "elbow_red_flags", soap: "Visit Type: Follow-Up to review pending arm/elbow imaging (Full Reassessment)." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "elbow_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous arm/elbow injury." }
                         ]
                     },
                     elbow_red_flags: {
@@ -1989,7 +1989,7 @@
                         tools: ["elbowRedFlags"],
                         options: [
                             { text: "Yes", next: "elbow_red_flags_action", soap: "Evaluation performed. Positive for Arm & Elbow Red Flags." },
-                            { text: "No", next: "elbow_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: () => visitTypeState === 'imaging' ? "elbow_review_results" : "elbow_exam", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     elbow_red_flags_action: {
@@ -2004,7 +2004,7 @@
                         question: "Review the Pending X-Rays or Ultrasound. Are there positive findings?",
                         options: [
                             { text: "Yes, positive for fracture, tendon rupture, or dislocation", next: "call_ortho_elbow", soap: "Imaging reviewed: Yes, positive findings confirmed." },
-                            { text: "No, imaging is negative", next: "elbow_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
+                            { text: "No", next: "elbow_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
                         ]
                     },
                     call_ortho_elbow: {
@@ -2019,8 +2019,8 @@
                         instruction: "Use the special tests drop-downs below to guide your exam.",
                         tools: ["elbowSpecialTests", "elbowProfiles"],
                         options: [
-                            { text: "Yes (Positive Instability, severe Epicondylitis, or positive Tinel's)", next: "elbow_severe_path", soap: "Physical Exam: Positive for significant ligamentous instability, severe tendinopathy, or ulnar nerve pathology." },
-                            { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: "elbow_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
+                            { text: "Yes (Positive Instability, severe Epicondylitis, or positive Tinel's)", next: () => visitTypeState === '7day' ? "elbow_follow_up_status" : "elbow_severe_path", soap: "Physical Exam: Positive for significant ligamentous instability, severe tendinopathy, or ulnar nerve pathology." },
+                            { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: () => visitTypeState === '7day' ? "elbow_follow_up_status" : "elbow_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
                         ]
                     },
                     elbow_severe_path: {
@@ -2070,9 +2070,9 @@
                     visit_type: {
                         question: "Patient Reports With Traumatic or Acute Hand and Wrist Pain: Select the reason for today's encounter.",
                         options: [
-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { isFollowUp = false; }, next: "wrist_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute hand/wrist pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { isFollowUp = false; }, next: "wrist_review_results", soap: "Visit Type: Follow-Up to review pending hand/wrist imaging." },
-                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { isFollowUp = true; }, next: "wrist_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous hand/wrist injury." }
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "wrist_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute hand/wrist pain." },
+                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "wrist_red_flags", soap: "Visit Type: Follow-Up to review pending hand/wrist imaging (Full Reassessment)." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "wrist_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous hand/wrist injury." }
                         ]
                     },
                     wrist_red_flags: {
@@ -2080,7 +2080,7 @@
                         tools: ["wristRedFlags"],
                         options: [
                             { text: "Yes", next: "wrist_red_flags_action", soap: "Evaluation performed. Positive for Hand/Wrist Red Flags." },
-                            { text: "No", next: "wrist_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: () => visitTypeState === 'imaging' ? "wrist_review_results" : "wrist_exam", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     wrist_red_flags_action: {
@@ -2095,7 +2095,7 @@
                         question: "Review the Pending X-Rays. Are there positive findings?",
                         options: [
                             { text: "Yes, positive for fracture, dislocation, or foreign body", next: "call_ortho_wrist", soap: "Imaging reviewed: Yes, positive findings confirmed." },
-                            { text: "No, imaging is negative", next: "wrist_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
+                            { text: "No", next: "wrist_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
                         ]
                     },
                     call_ortho_wrist: {
@@ -2110,8 +2110,8 @@
                         instruction: "Use the special tests drop-downs below to guide your exam.",
                         tools: ["wristSpecialTests", "wristProfiles"],
                         options: [
-                            { text: "Yes (Positive Scaphoid signs, positive Finkelstein's, Phalen's, or Instability)", next: "wrist_severe_path", soap: "Physical Exam: Positive for significant tenosynovitis, nerve compression, scaphoid signs, or ligamentous instability." },
-                            { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: "wrist_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
+                            { text: "Yes (Positive Scaphoid signs, positive Finkelstein's, Phalen's, or Instability)", next: () => visitTypeState === '7day' ? "wrist_follow_up_status" : "wrist_severe_path", soap: "Physical Exam: Positive for significant tenosynovitis, nerve compression, scaphoid signs, or ligamentous instability." },
+                            { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: () => visitTypeState === '7day' ? "wrist_follow_up_status" : "wrist_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
                         ]
                     },
                     wrist_severe_path: {
