@@ -818,23 +818,196 @@
                     </div>
                 `
             },
+
             kneeSpecialTests: {
                 title: "Knee Special Tests",
-                collapsible: true,
+                collapsible: false,
                 content: `
-                    <div class="space-y-4 text-sm text-gray-800">
-                        <div class="border-l-4 border-blue-500 pl-3">
-                            <h4 class="font-bold text-blue-800">Lachman / Anterior Drawer</h4>
-                            <p class="text-red-700 font-bold">(+) SIGN: Increased anterior translation of the tibia or soft end-feel (ACL injury).</p>
-                        </div>
-                        <div class="border-l-4 border-blue-500 pl-3">
-                            <h4 class="font-bold text-blue-800">Varus / Valgus Stress Tests</h4>
-                            <p class="text-red-700 font-bold">(+) SIGN: Increased laxity or pain at 30 degrees of flexion (LCL/MCL injury).</p>
-                        </div>
-                        <div class="border-l-4 border-blue-500 pl-3">
-                            <h4 class="font-bold text-blue-800">McMurray / Thessaly</h4>
-                            <p class="text-red-700 font-bold">(+) SIGN: Pain, clicking, or catching at the joint line (Meniscal tear).</p>
-                        </div>
+                    <div class="space-y-3 text-sm text-gray-800">
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-arrows-left-right mr-2 text-blue-600"></i>
+                                    <span>Ligamentous Instability <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Lachman Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for ACL insufficiency.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient supine.<br>- Tested knee flexed to 0-30 degrees.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Examiner stands on the side of the tested knee.</li>
+                                        <li>Stabilize the femur with one hand.</li>
+                                        <li>Apply a quick anterior translation of the tibia on the femur using the free hand.</li>
+                                        <li>Force should be applied from the posteriomedial aspect of the proximal tibia.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> A soft or "mushy" end feel.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.85 | Specificity: 0.94</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <h5 class="font-bold text-blue-800">Posterior Drawer Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for PCL insufficiency.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient supine.<br>- Tested knee flexed to 90 degrees.<br>- Hip flexed to 45 degrees.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Examiner stabilizes the tested side with his or her body by sitting on the patient's forefoot.</li>
+                                        <li>Use both hands to grasp the proximal leg, with fingers behind the leg and thumbs at the tibial tuberosity.</li>
+                                        <li>Apply a posterior force to assess translation of the tibia on the femur.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Test is positive if the tibia moves posteriorly excessively compared to the other side.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.29 | Specificity: 0.95</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <h5 class="font-bold text-blue-800">Varus Stress Test at 0 degrees and 30 degrees</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for LCL injury.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient supine.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Examiner stabilizes the leg and ankle, holding the patient's leg between the examiner's arm and torso.</li>
+                                        <li>Place both hands at the knee with fingers on the lateral joint line.</li>
+                                        <li>Apply a varus force to the knee.</li>
+                                        <li>Appreciate the amount of gapping at the lateral joint line.</li>
+                                        <li>Perform at 0 degrees and 30 degrees flexion.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong><br>- Excessive gapping at the lateral joint line compared to the other side.<br>- Positive at 0 degrees = PCL and LCL involvement.<br>- Positive at 30 degrees = LCL involvement.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: Data not available | Specificity: Data not available</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <h5 class="font-bold text-blue-800">Valgus Stress Test at 0 degrees and 30 degrees</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for MCL injury.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient supine.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Examiner stabilizes the leg and ankle, holding the patient's leg between the examiner's arm and torso.</li>
+                                        <li>Place both hands at the knee with fingers on the medial joint line.</li>
+                                        <li>Apply a valgus force to the knee.</li>
+                                        <li>Appreciate the amount of gapping at the medial joint line.</li>
+                                        <li>Test first at 0 degrees, then at 30 degrees knee flexion.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong><br>- Excessive gapping at the medial joint line compared to the other side.<br>- Positive at 0 degrees = PCL and MCL involvement.<br>- Positive at 30 degrees = MCL involvement.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: At 0 degrees: 0.78 / At 30 degrees: 0.91 | Specificity: At 0 degrees: 0.67 / At 30 degrees: 0.49</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <h5 class="font-bold text-blue-800">Pivot-Shift Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for ACL insufficiency and anterolateral rotatory instability.</p>
+                                    <p class="text-gray-700 mt-1"><strong>NOTE:</strong><br>- Defer this test to an orthopedist unless time permits.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient supine.<br>- Both knees extended.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Examiner picks up the ankle of the tested knee.</li>
+                                        <li>Apply force with the ipsilateral/distal hand to internally rotate the tibia.</li>
+                                        <li>Flex the knee while the contralateral/proximal hand applies a valgus force on the lateral side of the proximal tibia.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> A sudden reduction of the anteriorly subluxed tibial plateau caused by the IT band as the knee is moved into flexion.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.18-0.48 | Specificity: 0.97-0.99</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <h5 class="font-bold text-blue-800">Dial Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for PCL insufficiency and posterolateral corner (PLC) injury.</p>
+                                    <p class="text-gray-700 mt-1"><strong>NOTE:</strong><br>- Defer this test to an orthopedist unless time permits.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient prone.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Examiner holds the patient's feet to flex the patient's knees to 30 degrees.</li>
+                                        <li>Externally rotate the tibia through the foot on both sides to observe the amount of external rotation.</li>
+                                        <li>Repeat the process by flexing the patient's knees to 90 degrees.</li>
+                                        <li>Externally rotate through the feet again.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong><br>- A side-to-side difference of more than 10-15 degrees, greater on the affected side.<br>- At 30 degrees: indicates an injury to the PLC.<br>- At 90 degrees: indicates an injury to the PCL.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: Data not available | Specificity: Data not available</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-arrows-down-to-people mr-2 text-blue-600"></i>
+                                    <span>Patellar Subluxation <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Moving Patellar Apprehension Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Detects patellar instability or subluxation.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient supine.<br>- Knee fully extended.<br>- Leg off the edge of the table.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Examiner holds the patella in a lateral glide position while moving the knee into 90 degrees of flexion and back to the start position.</li>
+                                        <li>Repeat the test with the patella held in medial glide.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong><br>- Patient shows apprehension with lateral glide but not medial glide.<br>- This may be shown either through concern about the patella dislocating or by contracting the quadriceps to stabilize the patella.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 1.00 | Specificity: 0.88</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-compress mr-2 text-blue-600"></i>
+                                    <span>Meniscal Tear <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Thessaly's Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for meniscal tear.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient standing on the tested leg.<br>- Knee flexed to 20 degrees.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Patient holds the examiner's hands for balance.</li>
+                                        <li>Patient rotates the body and leg medially and laterally.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Pain or click at the joint line.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.63-0.76 | Specificity: 0.96-0.98</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <h5 class="font-bold text-blue-800">Joint Line Tenderness</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for meniscal tear.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient's knee flexed to 90 degrees.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Examiner palpates the medial and lateral joint lines.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Joint line tenderness.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.63-0.76 | Specificity: 0.77</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <h5 class="font-bold text-blue-800">McMurray's Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for a meniscal tear.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient supine.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Examiner grasps the heel with one hand.</li>
+                                        <li>Place the other hand with the fingers on the joint line.</li>
+                                        <li>Fully flex the knee.</li>
+                                        <li>Then internally rotate the tibia while fully extending the knee.</li>
+                                        <li>Repeat with the tibia externally rotated.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Click or joint line pain.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.55-0.71 | Specificity: 0.71-0.74</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <h5 class="font-bold text-blue-800">Apley's Compression Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for a meniscal tear.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong><br>- Patient prone.<br>- Tested knee flexed to 90 degrees.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Examiner stabilizes the patient's thigh with his or her knee.</li>
+                                        <li>Compress the joint by applying force through the foot.</li>
+                                        <li>Rotate the tibia medially and laterally.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Pain at the joint line.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.22-0.61 | Specificity: 0.70-0.88</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 `
             },
