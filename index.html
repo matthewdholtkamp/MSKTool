@@ -691,6 +691,114 @@
                 `
             },
 
+            // KNEE TOOLS
+            kneeRedFlags: {
+                title: "Knee Pain Red Flags",
+                collapsible: false,
+                content: `
+                    <div class="bg-white p-4 rounded-lg border-2 border-red-300 shadow-sm text-sm text-gray-800">
+                        <ul class="list-none space-y-5">
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Fracture</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Ottawa Knee Rules apply</li>
+                                    <li>Contact orthopedics/emergency department for all fractures</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-bone mr-2 text-blue-600"></i>
+                                            <span>Reference: Ottawa Knee Rules <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg text-gray-700">
+                                        <p class="mb-3 font-bold text-blue-900">A knee X-ray is required for patients with knee injury AND any of the following:</p>
+                                        <ul class="list-disc pl-5 space-y-2 text-blue-800">
+                                            <li>Age &ge; 55</li>
+                                            <li>Isolated tenderness of the patella</li>
+                                            <li>Tenderness at the head of the fibula</li>
+                                            <li>Inability to flex to 90 degrees</li>
+                                            <li>Inability to bear weight both immediately and in the emergency department (4 steps)</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Extensor Mechanism Rupture</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Inability to actively extend the knee or perform a straight leg raise</li>
+                                    <li>Palpable defect in the patellar or quadriceps tendon</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Infection or Septic Joint</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Acute joint swelling, pain, erythema, warmth, joint immobility</li>
+                                    <li>Fever or history of recent infection</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Neurovascular Compromise</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Knee dislocation (high risk for popliteal artery injury)</li>
+                                    <li>Hard/Soft signs of vascular injury</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            kneeSpecialTests: {
+                title: "Knee Special Tests",
+                collapsible: true,
+                content: `
+                    <div class="space-y-4 text-sm text-gray-800">
+                        <div class="border-l-4 border-blue-500 pl-3">
+                            <h4 class="font-bold text-blue-800">Lachman / Anterior Drawer</h4>
+                            <p class="text-red-700 font-bold">(+) SIGN: Increased anterior translation of the tibia or soft end-feel (ACL injury).</p>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-3">
+                            <h4 class="font-bold text-blue-800">Varus / Valgus Stress Tests</h4>
+                            <p class="text-red-700 font-bold">(+) SIGN: Increased laxity or pain at 30 degrees of flexion (LCL/MCL injury).</p>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-3">
+                            <h4 class="font-bold text-blue-800">McMurray / Thessaly</h4>
+                            <p class="text-red-700 font-bold">(+) SIGN: Pain, clicking, or catching at the joint line (Meniscal tear).</p>
+                        </div>
+                    </div>
+                `
+            },
+            kneeProfiles: {
+                title: "Knee Profiles (eProfile)",
+                collapsible: true,
+                content: `
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-red-50 p-3 rounded border border-red-200">
+                            <h4 class="font-bold text-red-800 mb-1">Severe injury:</h4>
+                            <ul class="list-disc pl-5 text-red-900 space-y-1">
+                                <li>Suspected ACL/PCL tear, fracture, or locked knee</li>
+                                <li>Requires crutches (Non/Toe Touch Weight Bearing)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
+                            <h4 class="font-bold text-yellow-800 mb-1">Moderate injury:</h4>
+                            <ul class="list-disc pl-5 text-yellow-900 space-y-1">
+                                <li>Meniscal tear, mild ligament sprain, or Patellofemoral Pain</li>
+                                <li>No running, jumping, squatting, or rucking</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded border border-green-200">
+                            <h4 class="font-bold text-green-800 mb-1">Minimal injury:</h4>
+                            <ul class="list-disc pl-5 text-green-900 space-y-1">
+                                <li>Mild generalized soreness</li>
+                                <li>Activity as tolerated</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+
             // SHOULDER TOOLS
             shoulderRedFlags: {
                 title: "Shoulder Pain Red Flags",
