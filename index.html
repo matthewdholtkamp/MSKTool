@@ -1735,33 +1735,17 @@
                         question: "SPECIAL TESTS EXAM",
                         tools: ["hipSpecialTests"],
                         options: [
-                            { text: "(+) Special tests OR (+) Antalgic gait", next: () => visitTypeState === '7day' ? "hip_follow_up_status" : "hip_positive_tests_path", soap: "Physical Exam: Positive special tests or positive antalgic gait." },
+                            { text: "(+) Special tests OR (+) Antalgic gait", next: "hip_positive_special_tests_endpoint", soap: "Physical Exam: Positive special tests or positive antalgic gait." },
                             { text: "No (Negative tests and normal gait)", next: () => visitTypeState === '7day' ? "hip_follow_up_status" : "hip_negative_tests_path", soap: "Physical Exam: No positive special tests or antalgic gait." }
                         ]
                     },
-                    hip_positive_tests_path: {
-                        question: "Is imaging ordered?",
-                        tools: ["hipImagingGuidelines"],
-                        options: [
-                            { text: "Imaging Ordered", next: "hip_positive_tests_imaging_action", soap: "Imaging ordered based on guidelines." },
-                            { text: "Imaging NOT Ordered", next: "hip_initial_treatment_positive_endpoint", soap: "Imaging NOT ordered." }
-                        ]
-                    },
-                    hip_positive_tests_imaging_action: {
-                        question: "Action Required: Imaging Ordered Path.",
+                    hip_positive_special_tests_endpoint: {
+                        question: "Consult Complete.",
                         type: "endpoint",
-                        tools: ["weightBearing"],
-                        assessment: "Acute Hip Pain, imaging ordered.",
-                        consults: "Pending Imaging Results",
-                        plan: "• Consider further imaging if clinically indicated.\n• Profile appropriately.\n• Crutches (Toe Touch Weight Bearing / Non Weight Bearing)."
-                    },
-                    hip_initial_treatment_positive_endpoint: {
-                        question: "Initial Consult Complete.",
-                        type: "endpoint",
-                        tools: ["analgesics", "hipImagingGuidelines"],
-                        assessment: "Acute Hip Pain, imaging not ordered.",
+                        tools: ["weightBearing", "hipImagingGuidelines"],
+                        assessment: "Acute Hip Pain with positive special tests/antalgic gait.",
                         consults: "Primary Care Manager",
-                        plan: "• Consider imaging per guidelines.\n• Profile 7-10 days.\n• Crutches if antalgic gait.\n• Analgesic Medications as needed.\n• Re-evaluate in 7-10 days by Primary Care Manager.\n• Further evaluation and/or referral may be warranted."
+                        plan: "• Consider imaging per guidelines\n• Profile 7-10 days\n• Crutches (Toe Touch Weight-Bearing or Non Weight-Bearing) if antalgic gait\n• Analgesic Meds PRN\n• Re-evaluate in 7-10 days by PCM\n• Further evaluation and/or referral may be warranted"
                     },
                     hip_negative_tests_path: {
                         question: "Initial Consult Complete.",
@@ -1774,17 +1758,9 @@
                     hip_follow_up_status: {
                         question: "Symptoms persist?",
                         options: [
-                            { text: "Yes", next: "hip_symptoms_persist", soap: "Follow-up evaluation: Symptoms persist." },
+                            { text: "Yes", next: "hip_positive_special_tests_endpoint", soap: "Follow-up evaluation: Symptoms persist." },
                             { text: "Mostly Resolved", next: "hip_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
                         ]
-                    },
-                    hip_symptoms_persist: {
-                        question: "Persistent Symptoms Protocol.",
-                        type: "endpoint",
-                        tools: ["hipImagingGuidelines"],
-                        assessment: "Acute Hip Pain, persistent symptoms.",
-                        consults: "Physical Therapy, Sports Medicine, or Orthopedics",
-                        plan: "• Consider imaging per guidelines.\n• Profile 7-10 days.\n• Crutches if antalgic gait.\n• Analgesic Medications as needed.\n• Re-evaluate in 7-10 days by Primary Care Manager.\n• Further evaluation and/or referral may be warranted."
                     },
                     hip_mostly_resolved: {
                         question: "Resolved Symptoms Protocol.",
