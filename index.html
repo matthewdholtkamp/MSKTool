@@ -249,27 +249,97 @@
                     </div>
                 `
             },
-            hipSpecialTests: {
+                        hipSpecialTests: {
                 title: "Hip Special Tests",
-                collapsible: true,
+                collapsible: false,
                 content: `
-                    <div class="space-y-4 text-sm text-gray-800">
-                        <div class="border-l-4 border-blue-500 pl-3">
-                            <h4 class="font-bold text-blue-800">Patellar-Pubic Percussion Test</h4>
-                            <p class="text-red-700 font-bold">(+) SIGN: Diminished percussion noted on the side of pain.</p>
-                        </div>
-                        <div class="border-l-4 border-blue-500 pl-3">
-                            <h4 class="font-bold text-blue-800">Straight Leg Raise / Hip Flexion Test</h4>
-                            <p class="text-red-700 font-bold">(+) SIGN: Reproduction of pain during active movement or inability to raise the leg.</p>
-                        </div>
-                        <div class="border-l-4 border-blue-500 pl-3">
-                            <h4 class="font-bold text-blue-800">Thomas Test & FADDIR Test</h4>
-                            <p class="text-red-700 font-bold">(+) SIGN: Reproduction of deep groin pain, clicking, or catching.</p>
-                        </div>
+                    <div class="space-y-3 text-sm text-gray-800">
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-bone mr-2 text-blue-600"></i>
+                                    <span>Fracture Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Patellar-Pubic Percussion Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Helpful to diagnose a fracture of the hip or femur.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong> Supine.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Place a stethoscope over the pubic symphysis of the patient.</li>
+                                        <li>Tap the patella of the patient's affected side.</li>
+                                        <li>Note the sound qualitatively.</li>
+                                        <li>Repeat the process on the opposite side to assess for a difference in auscultation.</li>
+                                        <li>A tuning fork can be used in place of tapping.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Diminished percussion noted on the side of pain.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.89-0.96 | Specificity: 0.82-0.95</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <h5 class="font-bold text-blue-800">Hip Flexion Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Helps to rule out a pelvic ring fracture.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong> Supine.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Instruct the patient to raise his or her leg actively.</li>
+                                        <li>This is performed as a straight leg raise.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Reproduction of pain during active movement or inability to raise the leg.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.29 | Specificity: 0.95</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-link mr-2 text-blue-600"></i>
+                                    <span>Labral Tear Tests <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Thomas Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Helpful to diagnose a labral tear and demonstrates value as a test for hip flexor / quad tightness.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong> Patient sits at the edge of the plinth, then lies back.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Instruct the patient to lie back while pulling both knees to the chest.</li>
+                                        <li>Hold one knee, the non-tested side, to the chest.</li>
+                                        <li>Passively lower the other leg into extension while allowing the knee to extend.</li>
+                                        <li>Assess for tightness findings.</li>
+                                    </ul>
+                                    <p class="text-gray-700 mt-1"><strong>Interpretation / Tightness Findings:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Tight quad: knee flexion less than 80 degrees.</li>
+                                        <li>Tight hip flexors: thigh (TFL, sartorius) or lumbar spine (iliopsoas) is elevated off of the plinth.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Reproduction of painful click or concordant groin pain.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.89 | Specificity: 0.97</p>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3">
+                                    <h5 class="font-bold text-blue-800">FADDIR Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Helpful to diagnose labral tear.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Patient Position:</strong> Supine.</p>
+                                    <p class="text-gray-700 mt-1"><strong>Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 text-gray-700">
+                                        <li>Passively bring the hip into 90 degrees of hip flexion and knee flexion.</li>
+                                        <li>Passively adduct the patient's hip to end range with overpressure.</li>
+                                        <li>Then passively internally rotate the patient's hip with overpressure.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Reproduction of deep groin pain, locking, clicking, or catching.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 0.94-0.99 | Specificity: 0.07-0.08</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 `
             },
-            hipImagingGuidelines: {
+                        hipImagingGuidelines: {
                 title: "Hip Imaging/Lab Guidelines",
                 collapsible: true,
                 content: `
@@ -278,8 +348,17 @@
                             <h4 class="font-bold text-gray-800 mb-1">Suspected hip fracture</h4>
                             <ul class="list-disc pl-5 text-gray-700">
                                 <li>Plain radiographs will show a suspected fracture in the majority of cases</li>
-                                <li>If clinical suspicion of occult fracture persists, Magnetic Resonance Imaging (MRI) is the imaging modality of choice</li>
-                                <li>Computed Tomography (CT) or nuclear medicine bone scan are alternatives to MRI</li>
+                                <li>If clinical suspicion of occult fracture persists, MRI is the imaging modality of choice</li>
+                                <li>CT or nuclear medicine bone scan are alternatives to MRI</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded border border-gray-300">
+                            <h4 class="font-bold text-gray-800 mb-1">Suspected AVN of the hip</h4>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li>Initial imaging with plain films</li>
+                                <li>If there is ongoing suspicion with normal plain film radiography, MRI is the most accurate imaging modality and contact Orthopedics</li>
+                                <li>Bone scan is a reasonable alternative to MRI</li>
+                                <li>Complete MRI for AVN, infection if still symptomatic in 10-14 days and protective WB, earlier if any red flags are present.</li>
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-3 rounded border border-gray-300">
@@ -287,24 +366,15 @@
                             <ul class="list-disc pl-5 text-gray-700">
                                 <li>Plain radiographs are the initial imaging modality of choice, but are limited due to their inability to detect bony changes early in the development of a stress fracture.</li>
                                 <li>Early radiographs are often normal. Consider repeat plain radiography at 10-14 days.</li>
-                                <li>MRI is the most sensitive and specific investigation to diagnose a stress fracture when radiographs are normal or equivocal and can best evaluate for other differential diagnoses. Consider using FAST (T2-CORONAL) MRI if clinical suspicion for stress fracture.</li>
+                                <li>MRI is the most sensitive and specific investigation to diagnose a stress fracture when radiographs are normal or equivocal and can best evaluate for other differential diagnoses. Consider using FAST (T2-CORONAL) MRI if clinical suspicion for stress fx.</li>
                                 <li>Bone scan has high sensitivity for stress fracture but poorer specificity, and is associated with ionizing radiation exposure. It is an alternative when MRI is contraindicated or unavailable.</li>
                                 <li>CT can be helpful as an alternative to MRI to demonstrate bony changes but is less sensitive.</li>
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-3 rounded border border-gray-300">
-                            <h4 class="font-bold text-gray-800 mb-1">Suspected Avascular Necrosis (AVN) of the hip</h4>
-                            <ul class="list-disc pl-5 text-gray-700">
-                                <li>Initial imaging with plain films</li>
-                                <li>If there is ongoing suspicion with normal plain film radiography, MRI is the most accurate imaging modality and contact Orthopedics</li>
-                                <li>Bone scan is a reasonable alternative to MRI</li>
-                                <li>Complete MRI for AVN, infection if still symptomatic in 10-14 days and protective Weight Bearing, earlier if any red flags are present.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-gray-100 p-3 rounded border border-gray-300">
                             <h4 class="font-bold text-gray-800 mb-1">Suspected arthropathy or infectious etiology</h4>
                             <ul class="list-disc pl-5 text-gray-700">
-                                <li>Order inflammatory indices (Complete Blood Count, Erythrocyte Sedimentation Rate, C-Reactive Protein). -> If positive contact Orthopedics.</li>
+                                <li>Order inflammatory indices (CBC, ESR, CRP). &gt; If positive contact Orthopaedics.</li>
                             </ul>
                         </div>
                     </div>
