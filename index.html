@@ -1619,7 +1619,7 @@
                         question: "Patient Reports with Traumatic or Acute Hip Pain: Select the reason for today's encounter.",
                         options: [
                             { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "hip_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute hip pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging / Labs)", onSelect: () => { visitTypeState = 'imaging'; }, next: "hip_red_flags", soap: "Visit Type: Follow-Up to review pending imaging or labs (Full Reassessment)." },
+                            { text: "Follow-Up (Reviewing Pending Imaging / Labs)", onSelect: () => { visitTypeState = 'imaging'; }, next: "hip_red_flags_review", soap: "Visit Type: Follow-Up to review pending imaging or labs (Full Reassessment)." },
                             { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "hip_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous hip injury." }
                         ]
                     },
@@ -1628,7 +1628,14 @@
                         tools: ["hipRedFlags"],
                         options: [
                             { text: "Yes", next: "hip_red_flags_action", soap: "Evaluation performed. Positive for Red Flags." },
-                            { text: "No", next: () => visitTypeState === 'imaging' ? "hip_review_pending_results" : "hip_special_tests", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: "hip_special_tests", soap: "Evaluation performed. No Red Flags." }
+                        ]
+                    },
+                    hip_red_flags_review: {
+                        question: "Review RED FLAGS (Previously Positive)",
+                        tools: ["hipRedFlags"],
+                        options: [
+                            { text: "Acknowledged and Reviewed", next: "hip_review_pending_results", soap: "Red Flags reviewed and acknowledged." }
                         ]
                     },
                     hip_red_flags_action: {
@@ -1647,11 +1654,12 @@
                         ]
                     },
                     hip_call_ortho_redflag: {
-                        question: "Discuss with Orthopedics.",
+                        question: "Discuss with Specialists.",
                         type: "endpoint",
+                        tools: ["hipImagingGuidelines", "weightBearing"],
                         assessment: "Acute Hip Pain with Positive Red Flags and Positive Imaging/Labs.",
-                        consults: "Orthopedics",
-                        plan: "• Discuss with Orthopedics."
+                        consults: "Orthopedics, Neurosurgery, or Radiology",
+                        plan: "• Discuss with Orthopedics, Neurosurgery, or Radiology TODAY.\n• Inform Provider.\n• Crutches (Toe Touch Weight Bearing / Non Weight Bearing) to remain until cleared by follow up ortho, radiology, or further imaging."
                     },
                     hip_special_tests: {
                         question: "SPECIAL TESTS EXAM",
