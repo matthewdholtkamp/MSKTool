@@ -2385,7 +2385,6 @@
                         question: "Patient Reports With Traumatic or Acute Leg Pain: Select the reason for today's encounter.",
                         options: [
                             { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "leg_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute leg pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "leg_red_flags", soap: "Visit Type: Follow-Up to review pending leg imaging (Full Reassessment)." },
                             { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "leg_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous leg injury." }
                         ]
                     },
@@ -2394,7 +2393,7 @@
                         tools: ["legRedFlags"],
                         options: [
                             { text: "Yes", next: "leg_red_flags_action", soap: "Evaluation performed. Positive for Leg Red Flags." },
-                            { text: "No", next: () => visitTypeState === 'imaging' ? "leg_review_results" : "leg_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: "leg_exam", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     leg_red_flags_action: {
@@ -2404,20 +2403,6 @@
                         assessment: "Acute Leg Pain with Red Flags (Suspected Compartment Syndrome, DVT, or Fracture).",
                         consults: "Emergency Department or Orthopedics (TODAY)",
                         plan: "• If Acute Compartment Syndrome suspected (6 Ps): Send to Emergency Department immediately.\n• If Deep Vein Thrombosis suspected: Order emergent Venous Doppler Ultrasound and consult Emergency Department/Primary Care Manager.\n• If Fracture suspected: Order Anterior/Posterior and Lateral Tibia/Fibula X-Rays, provide crutches (Non Weight Bearing), and call Orthopedics TODAY."
-                    },
-                    leg_review_results: {
-                        question: "Review the Pending X-Rays, Ultrasound, or MRI. Are there positive findings?",
-                        options: [
-                            { text: "Yes, positive for fracture, stress fracture, or DVT", next: "call_ortho_leg", soap: "Imaging reviewed: Yes, positive findings confirmed." },
-                            { text: "No, imaging is negative", next: "leg_exam", soap: "Imaging reviewed: No acute findings." }
-                        ]
-                    },
-                    call_ortho_leg: {
-                        question: "Consult Specialty Care TODAY.",
-                        type: "endpoint",
-                        assessment: "Acute Leg Pain with Positive Imaging Findings.",
-                        consults: "Orthopedics or Emergency Department",
-                        plan: "• Call Orthopedics (for fractures/stress fractures) or Emergency Department (for Deep Vein Thrombosis) TODAY to discuss management and transfer of care."
                     },
                     leg_exam: {
                         question: "EXAM Findings:",
