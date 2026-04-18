@@ -2310,7 +2310,6 @@
                         question: "Patient Reports With Traumatic or Acute Ankle Pain: Select the reason for today's encounter.",
                         options: [
                             { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "ankle_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute ankle pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "ankle_red_flags", soap: "Visit Type: Follow-Up to review pending ankle imaging (Full Reassessment)." },
                             { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "ankle_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous ankle injury." }
                         ]
                     },
@@ -2319,7 +2318,7 @@
                         tools: ["ankleRedFlags"],
                         options: [
                             { text: "Yes", next: "ankle_red_flags_action", soap: "Evaluation performed. Positive for Ankle Red Flags." },
-                            { text: "No", next: () => visitTypeState === 'imaging' ? "ankle_review_results" : "ankle_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: "ankle_exam", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     ankle_red_flags_action: {
@@ -2328,20 +2327,6 @@
                         assessment: "Acute Ankle Pain with Red Flags.",
                         consults: "Orthopedics (TODAY)",
                         plan: "• X-Ray: Order Anterior/Posterior, Lateral, and Mortise.\n• If Fibular Head is Tender to Palpation: Order Anterior/Posterior, Lateral Knee and Anterior/Posterior, Lateral of Tibia / Fibula.\n• Call Orthopedics TODAY to discuss management."
-                    },
-                    ankle_review_results: {
-                        question: "Review the Pending X-Rays. Are they positive for fracture?",
-                        options: [
-                            { text: "Yes", next: "call_ortho_ankle", soap: "X-Rays reviewed: Yes." },
-                            { text: "No", next: "ankle_exam", soap: "X-Rays reviewed: No." }
-                        ]
-                    },
-                    call_ortho_ankle: {
-                        question: "Call Orthopedics TODAY.",
-                        type: "endpoint",
-                        assessment: "Acute Ankle Pain with Positive Radiographic Findings.",
-                        consults: "Orthopedics",
-                        plan: "• Call Orthopedics TODAY to discuss management."
                     },
                     ankle_exam: {
                         question: "EXAM Findings:",
