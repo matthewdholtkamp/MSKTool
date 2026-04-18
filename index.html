@@ -749,24 +749,21 @@
                         <div class="bg-red-50 p-3 rounded border border-red-200">
                             <h4 class="font-bold text-red-800 mb-1">Severe leg injury examples:</h4>
                             <ul class="list-disc pl-5 text-red-900 space-y-1">
-                                <li>Suspected or confirmed Tibial/Fibular Stress Fracture</li>
-                                <li>Acute Compartment Syndrome (Pending surgical clearance)</li>
-                                <li>Requires Crutches (Non Weight Bearing / Toe Touch Weight Bearing)</li>
+                                <li>Suspected stress fracture/fracture</li>
+                                <li>Acute Achilles tendonitis/partial or full rupture</li>
                             </ul>
                         </div>
                         <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
                             <h4 class="font-bold text-yellow-800 mb-1">Moderate leg injury examples:</h4>
                             <ul class="list-disc pl-5 text-yellow-900 space-y-1">
-                                <li>Medial Tibial Stress Syndrome (Shin Splints)</li>
-                                <li>Muscle strains (e.g., calf strain)</li>
-                                <li>No running, jumping, or ruck marching; walk to tolerance</li>
+                                <li>Moderate to severe shin splints</li>
+                                <li>Acute on chronic Achilles tendinopathy</li>
                             </ul>
                         </div>
                         <div class="bg-green-50 p-3 rounded border border-green-200">
                             <h4 class="font-bold text-green-800 mb-1">Minimal leg injury example:</h4>
                             <ul class="list-disc pl-5 text-green-900 space-y-1">
-                                <li>Mild generalized soreness</li>
-                                <li>Can perform alternate aerobic activities with minimal pain</li>
+                                <li>Mild to moderate shin splints</li>
                             </ul>
                         </div>
                     </div>
@@ -2440,7 +2437,7 @@
                     leg_exam: {
                         question: "EXAM Findings:",
                         instruction: "Assess for focal bone tenderness versus diffuse soft tissue tenderness. Perform Single Leg Hop Test.",
-                        tools: ["legSpecialTests", "legProfiles"],
+                        tools: ["legSpecialTests"],
                         options: [
                             { text: "Yes (Focal bone tenderness OR positive/failed Single Leg Hop Test)", next: () => visitTypeState === '7day' ? "leg_follow_up_status" : "leg_severe_path", soap: "Physical Exam: Positive for focal bone tenderness and/or failed Single Leg Hop Test (Suspect Bone Stress Injury)." },
                             { text: "No (Diffuse tenderness only, >5cm along bone, negative hop test)", next: () => visitTypeState === '7day' ? "leg_follow_up_status" : "leg_moderate_path", soap: "Physical Exam: Diffuse medial tibial tenderness only, hop test negative (Suspect Medial Tibial Stress Syndrome / Shin Splints)." }
@@ -2449,10 +2446,10 @@
                     leg_severe_path: {
                         question: "Initial Consult Complete: Suspected Stress Fracture Protocol.",
                         type: "endpoint",
-                        tools: ["legImagingGuidelines", "legProfiles", "analgesics", "weightBearing"],
+                        tools: ["legImagingGuidelines", "legProfiles", "analgesics", "weightBearing", "peaceProtocol"],
                         assessment: "Acute Leg Pain, suspected Tibial/Fibular Stress Fracture.",
-                        consults: "Primary Care Manager or Sports Medicine in 7-10 days",
-                        plan: "• Imaging: Order Anterior/Posterior and Lateral X-Rays. If negative, consider Magnetic Resonance Imaging (MRI).\n• Profile: Severe.\n• Crutches: Issued (Toe Touch Weight Bearing or Partial Weight Bearing based on pain).\n• Analgesic Medications as needed.\n• Re-evaluate in 7-10 days to review imaging and adjust weight bearing status."
+                        consults: "Physical Therapy, Podiatry, Sports Medicine or Orthopedics, as indicated, for 24-72 hour consult",
+                        plan: "For a suspected stress fracture:\n• Consider X-Ray (Anterior/Posterior & Lateral)(typically need 2 weeks symptoms for plain films)\n• Consider bone scan\n• Profile Severe x 7-10 days\n• Crutches (Weight Bearing As Tolerated)\n• Analgesic meds as needed\n• PEACE Protocol\n• Referral: Call Physical Therapy, Podiatry, Sports Medicine or Orthopedics, as indicated, for 24-72 hour consult"
                     },
                     leg_moderate_path: {
                         question: "Initial Consult Complete: Medial Tibial Stress Syndrome (Shin Splints) / Muscle Strain Protocol.",
