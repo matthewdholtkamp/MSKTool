@@ -513,6 +513,19 @@
                     </div>
                 `
             },
+            ankleLigamentGrading: {
+                title: "Ligament Injuries Grading",
+                collapsible: true,
+                content: `
+                    <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-300 shadow-sm text-sm text-gray-800">
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Grade I:</strong> No fiber tearing, no instability</li>
+                            <li><strong>Grade II:</strong> Partial fiber tear, partial instability</li>
+                            <li><strong>Grade III:</strong> Complete tear, instability</li>
+                        </ul>
+                    </div>
+                `
+            },
             ankleProfiles: {
                 title: "Ankle Profiles (eProfile)",
                 collapsible: true,
@@ -2335,8 +2348,8 @@
                     },
                     ankle_exam: {
                         question: "EXAM Findings:",
-                        instruction: "Assess for: Grade II or > Sprain, Check Ottawa Rules, Antalgic Gait, Moderate Edema, Limited Range of Motion.",
-                        tools: ["ankleProfiles"],
+                        instruction: "Assess for: Grade II or > Sprain, Antalgic Gait, Moderate Edema, Limited Range of Motion.",
+                        tools: ["ankleLigamentGrading", "ankleProfiles"],
                         options: [
                             { text: "Yes (Grade II or > Sprain, Antalgic Gait, Mod Edema, Limited ROM)", next: () => visitTypeState === '7day' ? "ankle_follow_up_status" : "ankle_severe_path", soap: "Physical Exam: Grade II or > Sprain, Antalgic Gait, Mod Edema, or Limited Range of Motion." },
                             { text: "No", next: () => visitTypeState === '7day' ? "ankle_follow_up_status" : "ankle_moderate_path", soap: "Physical Exam: No Grade II or > Sprain, no antalgic gait, no mod edema, no limited ROM." }
