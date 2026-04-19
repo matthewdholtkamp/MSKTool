@@ -2639,7 +2639,7 @@
                         instruction: "Use the special tests drop-downs below to guide your exam.",
                         tools: ["shoulderSpecialTests", "shoulderProfiles"],
                         options: [
-                            { text: "Yes (Positive Instability, significant Rotator Cuff weakness, or severe impingement signs)", next: () => visitTypeState === '7day' ? "shoulder_follow_up_status" : "shoulder_severe_path", soap: "Physical Exam: Positive for significant impingement, rotator cuff pathology, or instability." },
+                            { text: "Yes (Positive Instability, significant Rotator Cuff weakness, or severe impingement signs)", next: "shoulder_severe_path", soap: "Physical Exam: Positive for significant impingement, rotator cuff pathology, or instability." },
                             { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: () => visitTypeState === '7day' ? "shoulder_follow_up_status" : "shoulder_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
                         ]
                     },
@@ -2669,18 +2669,18 @@
                     shoulder_symptoms_persist: {
                         question: "Persistent Symptoms Protocol.",
                         type: "endpoint",
-                        tools: ["shoulderProfiles", "analgesics"],
+                        tools: ["shoulderImagingGuidelines", "shoulderProfiles", "analgesics", "peaceProtocol"],
                         assessment: "Acute Shoulder Pain, persistent symptoms.",
-                        consults: "Physical Therapy, Sports Medicine, or Orthopedics",
-                        plan: "• Imaging: Consider AP/Y/Axillary X-Rays if not previously done.\n• Consider MRI if rotator cuff tear strongly suspected and patient is over 40.\n• Profile: Maintain appropriate Profile.\n• Analgesic medications as needed.\n• Referral: Physical Therapy, Sports Medicine, or Orthopedics as indicated."
+                        consults: "PT, OT, Sports Medicine, or Ortho as indicated in 7 days",
+                        plan: "• Consider X-Rays AP, Lat, Axillary\n• Profile Moderate x 2-3 weeks total\n• Analgesic Meds PRN (see p.16)\n• PEACE (See above)\n• Referral: PT, OT, Sports Medicine\n• Ortho as indicated in 7 days"
                     },
                     shoulder_mostly_resolved: {
                         question: "Resolved Symptoms Protocol.",
                         type: "endpoint",
-                        tools: ["analgesics"],
+                        tools: ["shoulderProfiles", "analgesics"],
                         assessment: "Acute Shoulder Pain, mostly resolved.",
                         consults: "None immediately required",
-                        plan: "• Duty Specific Profile as needed (Gradual return to overhead activities/pushups recommended).\n• Analgesic Medications as needed.\n• Return to duty at end of profile anticipated."
+                        plan: "• Progressive RTD Profile PRN\n• Analgesic meds PRN (See above)\n• RTD end of profile anticipated"
                     }
                 }
             },
