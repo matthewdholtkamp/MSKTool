@@ -2534,7 +2534,6 @@
                         question: "Patient Reports With Traumatic or Acute Knee Pain: Select the reason for today's encounter.",
                         options: [
                             { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "knee_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute knee pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "knee_red_flags", soap: "Visit Type: Follow-Up to review pending knee imaging (Full Reassessment)." },
                             { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "knee_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous knee injury." }
                         ]
                     },
@@ -2543,7 +2542,7 @@
                         tools: ["kneeRedFlags"],
                         options: [
                             { text: "Yes", next: "knee_red_flags_action", soap: "Evaluation performed. Positive for Knee Red Flags." },
-                            { text: "No", next: () => visitTypeState === 'imaging' ? "knee_review_results" : "knee_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: "knee_exam", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     knee_red_flags_action: {
@@ -2552,20 +2551,6 @@
                         assessment: "Acute Knee Pain with Red Flags.",
                         consults: "Orthopedics or Emergency Department (TODAY)",
                         plan: "• X-Ray:\n• A/P & Lateral\n• Call Ortho TODAY\n• to discuss management\n• Strict Non Weight Bearing on crutches if fracture or extensor rupture suspected.\n• Transfer care as directed by specialty consultation."
-                    },
-                    knee_review_results: {
-                        question: "Review the Pending X-Rays or MRI. Are there positive findings?",
-                        options: [
-                            { text: "Yes, positive for fracture, loose body, or significant pathology", next: "call_ortho_knee", soap: "Imaging reviewed: Yes, positive findings confirmed." },
-                            { text: "No", next: "knee_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
-                        ]
-                    },
-                    call_ortho_knee: {
-                        question: "Consult Specialty Care TODAY.",
-                        type: "endpoint",
-                        assessment: "Acute Knee Pain with Positive Imaging Findings.",
-                        consults: "Orthopedics",
-                        plan: "• Call Orthopedics TODAY to discuss management and transfer of care."
                     },
                     knee_exam: {
                         question: "EXAM Findings:",
