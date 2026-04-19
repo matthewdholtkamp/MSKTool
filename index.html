@@ -2624,7 +2624,6 @@
                         question: "Patient Reports With Traumatic or Acute Shoulder Pain: Select the reason for today's encounter.",
                         options: [
                             { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "shoulder_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute shoulder pain." },
-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "shoulder_red_flags", soap: "Visit Type: Follow-Up to review pending shoulder imaging (Full Reassessment)." },
                             { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "shoulder_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous shoulder injury." }
                         ]
                     },
@@ -2633,7 +2632,7 @@
                         tools: ["shoulderRedFlags"],
                         options: [
                             { text: "Yes", next: "shoulder_red_flags_action", soap: "Evaluation performed. Positive for Shoulder Red Flags." },
-                            { text: "No", next: () => visitTypeState === 'imaging' ? "shoulder_review_results" : "shoulder_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: "shoulder_exam", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
                     shoulder_red_flags_action: {
@@ -2643,20 +2642,6 @@
                         assessment: "Acute Shoulder Pain with Red Flags (Suspected Fracture, Dislocation, Acute Tear, or Infection).",
                         consults: "Orthopedics or Emergency Department (TODAY)",
                         plan: "• Order X-Rays: True AP, Scapular Y, and Axillary Lateral.\n• Call Orthopedics or send to Emergency Department TODAY depending on severity/findings.\n• Issue Sling for comfort/immobilization.\n• Profile: Severe (No lifting/pushing/pulling)."
-                    },
-                    shoulder_review_results: {
-                        question: "Review the Pending X-Rays. Are there positive findings?",
-                        options: [
-                            { text: "Yes, positive for fracture or dislocation", next: "call_ortho_shoulder", soap: "Imaging reviewed: Yes, positive findings confirmed." },
-                            { text: "No", next: "shoulder_exam", soap: "Imaging reviewed: No acute fracture or dislocation." }
-                        ]
-                    },
-                    call_ortho_shoulder: {
-                        question: "Consult Specialty Care TODAY.",
-                        type: "endpoint",
-                        assessment: "Acute Shoulder Pain with Positive Imaging Findings.",
-                        consults: "Orthopedics",
-                        plan: "• Call Orthopedics TODAY to discuss management and transfer of care. Maintain immobilization in sling."
                     },
                     shoulder_exam: {
                         question: "SHOULDER EXAM: Evaluate for Impingement, Rotator Cuff Tears, Instability, SLAP, and AC Joint pathology.",
