@@ -55,6 +55,230 @@
     <script>
         // --- CLINICAL REFERENCES & TOOLS ---
         const clinicalTools = {
+            // ARM / ELBOW TOOLS
+            armElbowRedFlags: {
+                title: "Arm / Elbow Pain Red Flags",
+                collapsible: false,
+                content: `
+                    <div class="bg-white p-4 rounded-lg border-2 border-red-300 shadow-sm text-sm text-gray-800">
+                        <ul class="list-none space-y-5">
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Fracture/Dislocation or Major Soft Tissue Injury</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Positive Elbow Extension Test</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-arrows-left-right-to-line mr-2 text-blue-600"></i>
+                                            <span>Elbow Extension Test <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg">
+                                        <ul class="list-disc pl-6 space-y-1">
+                                            <li>Seated patient flexes both shoulders 90&deg;</li>
+                                            <li>Patient asked to extend both elbows fully</li>
+                                            <li>If there is a visible difference side to side, order X-rays: A/P, lateral, oblique views of elbow</li>
+                                            <li>If there is no visible difference but symptoms are worse or not improving in 7-10 days, order X-rays: A/P, lateral, oblique views of elbow</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                                <ul class="list-disc pl-6 space-y-1 mt-2">
+                                    <li>History of fall on outstretched hand (FOOSH) with painful elbow</li>
+                                    <li>History of lifting/stretching and feeling a "pop" at biceps insertion</li>
+                                    <li>Deformities of forearm/elbow (possible fx)</li>
+                                    <li>Any acute or traumatic event w/ swelling and limited ROM</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Neurovascular Injury</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>NV compromise on exam</li>
+                                    <li>Diminished or absent distal pulse</li>
+                                    <li>Hard/Soft Signs for Vascular Injury</li>
+                                </ul>
+                                <details class="group bg-blue-50 border border-blue-200 rounded-lg mt-2">
+                                    <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-heart-pulse mr-2 text-blue-600"></i>
+                                            <span>Reference: Signs of Vascular Injury <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                        </div>
+                                        <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                                    </summary>
+                                    <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h5 class="font-bold text-red-700 mb-1">Hard Signs</h5>
+                                            <ul class="list-disc pl-4 text-xs space-y-1">
+                                                <li>Pulsatile bleeding</li>
+                                                <li>Expanding hematoma</li>
+                                                <li>Absent distal pulses</li>
+                                                <li>Cold, pale limb</li>
+                                                <li>Palpable thrill/audible bruit</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-yellow-600 mb-1">Soft Signs</h5>
+                                            <ul class="list-disc pl-4 text-xs space-y-1">
+                                                <li>History of severe hemorrhage</li>
+                                                <li>Small, non-expanding hematoma</li>
+                                                <li>Unexplained neurologic deficit</li>
+                                                <li>Proximity to major vessels</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Compartment Syndrome</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Pain out of proportion</li>
+                                    <li>Blunt trauma</li>
+                                    <li>Crush injury/ Entrapment</li>
+                                    <li>Unaccustomed exercise</li>
+                                    <li>Symptoms intensified with muscle stretch</li>
+                                    <li>Numbness/ Paresthesias (may be a late sign)</li>
+                                    <li>Tightness or fullness (may be difficult to assess)</li>
+                                    <li>Anticoagulation therapy</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="font-bold text-red-800 text-base mb-1">Infection / Septic Joint</h4>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Acute pain with fever</li>
+                                    <li>History of recent infection including elsewhere in the body</li>
+                                    <li>Signs or symptoms of septic arthritis: acute joint swelling, pain, erythema, warmth, joint immobility</li>
+                                    <li>Exudate or signs/ symptoms of infection with /without constitutional symptoms</li>
+                                    <li>Bites &ndash; human or animal</li>
+                                    <li>Unwillingness to move due to pain</li>
+                                    <li>Inability to move wrist</li>
+                                    <li>Elbow/forearm edema</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+
+            armElbowSpecialTests: {
+                title: "Arm / Elbow Special Tests",
+                collapsible: false,
+                content: `
+                    <div class="space-y-3 text-sm text-gray-800">
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-x-ray mr-2 text-blue-600"></i>
+                                    <span>X-Rays <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Elbow Extension Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Helpful to heighten the examiner's suspicion of fracture.</p>
+                                    <p class="text-gray-700 mt-2"><strong>Patient Position & Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 mt-1 text-gray-700">
+                                        <li>With the patient seated and shoulders flexed to 90&deg;, the examiner asks the patient to extend both elbows fully.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Visible difference in extension side to side.*</p>
+                                    <p class="text-gray-600 text-xs mt-2"><strong>*Notes:</strong> If there is a visible difference side to side, order X-rays: A/P, lateral, oblique views of elbow. If there is no visible difference but symptoms are worse or not improving in 7-10 days, order X-rays: A/P, lateral, oblique views of elbow. A negative test does not rule out the need for X-rays, and the examiner must take into account the entire examination and history when deciding if X-rays are needed.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: .88-.97 | Specificity: .48-.70</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-link-slash mr-2 text-blue-600"></i>
+                                    <span>Ligamentous Instability <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Moving Valgus Stress Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> A test for ulnar collateral ligament instability.</p>
+                                    <p class="text-gray-700 mt-2"><strong>Patient Position & Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 mt-1 text-gray-700">
+                                        <li>Patient may sit or stand for this test.</li>
+                                        <li>Examiner grasps patient's forearm with one hand and stabilizes the elbow with the other hand.</li>
+                                        <li>With the patient's shoulder abducted to 90&deg; and the arm placed in full external rotation, the examiner fully flexes the elbow, applies a valgus force, and quickly extends the elbow to 30&deg;.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Pain at the medial elbow between 120 and 70&deg; of flexion.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: 1.00 | Specificity: .75</p>
+                                </div>
+                                <hr class="border-gray-200">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Posterolateral Rotary Instability Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Defer to an orthopedist unless time permits this test. Test for posterolateral instability.</p>
+                                    <p class="text-gray-700 mt-2"><strong>Patient Position & Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 mt-1 text-gray-700">
+                                        <li>The test is performed with the patient supine and the tested arm overhead with the elbow extended.</li>
+                                        <li>The examiner supinates the patient's forearm, applies valgus and axial compression forces to the elbow, and flexes the elbow.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Apprehension occurs at 20-30&deg; followed by a reduction in apprehension at 40-70&deg;.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Data not available</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-bolt mr-2 text-blue-600"></i>
+                                    <span>Ulnar N. Injury <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Tinel's at the Ulnar Groove or Cubital Tunnel</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for ulnar nerve injury.</p>
+                                    <p class="text-gray-700 mt-2"><strong>Patient Position & Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 mt-1 text-gray-700">
+                                        <li>The examiner taps the nerve in the groove.</li>
+                                        <li>NOTE: This test may also elicit pain, tingling, or a shock sensation in asymptomatic individuals. Examiner can also perform Tinel's testing over the carpal tunnel at the palmar wrist to assess for median nerve symptoms.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Symptoms in the distribution of the ulnar nerve.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: .70 | Specificity: .98</p>
+                                </div>
+                                <hr class="border-gray-200">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Combined Pressure and Flexion Provocation Test</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> Tests for ulnar nerve injury.</p>
+                                    <p class="text-gray-700 mt-2"><strong>Patient Position & Procedure:</strong></p>
+                                    <ul class="list-disc pl-5 mt-1 text-gray-700">
+                                        <li>With the patient's forearm fully supinated and the elbow fully flexed, the examiner applies pressure to the ulnar nerve just proximal to the cubital tunnel for 60 seconds.</li>
+                                    </ul>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> Symptoms in the distribution of the ulnar nerve.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Sensitivity: .98 | Specificity: .95</p>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-hand-dots mr-2 text-blue-600"></i>
+                                    <span>Other <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
+                            </summary>
+                            <div class="p-4 bg-white border-t border-blue-200 rounded-b-lg space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-blue-800">Tenderness to Palpation Over the Radial Head or Neck</h5>
+                                    <p class="text-gray-700 mt-1"><strong>Purpose:</strong> TTP over the radial head or neck can indicate a variety of injuries including synovitis, osteoarthritis, ligamentous injury, or fracture.</p>
+                                    <p class="text-red-700 text-sm mt-2"><strong>(+) SIGN:</strong> TTP over the radial head or neck.</p>
+                                    <p class="text-gray-600 text-xs mt-1">Data not available</p>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                `
+            },
+
             // NECK TOOLS
             ccsr: {
                 title: "Canadian Cervical Spine Rules (CCSR)",
@@ -2196,6 +2420,82 @@
 
         // --- ALGORITHMS ---
         const algorithms = {
+            arm_elbow: {
+                title: "Acute Arm / Elbow Pain",
+                nodes: {
+                    visit_type: {
+                        question: "Patient Reports with Acute Arm / Elbow Pain: Select the reason for today's encounter.",
+                        options: [
+                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "arm_elbow_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute arm/elbow pain." },
+                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "arm_elbow_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous arm/elbow injury." }
+                        ]
+                    },
+                    arm_elbow_red_flags: {
+                        question: "Are any of the following Arm / Elbow Red Flags present?",
+                        tools: ["armElbowRedFlags"],
+                        options: [
+                            { text: "Yes", next: "arm_elbow_red_flags_action", soap: "Evaluation performed. Positive for Red Flags." },
+                            { text: "No", next: "arm_elbow_exam", soap: "Evaluation performed. No Red Flags." }
+                        ]
+                    },
+                    arm_elbow_red_flags_action: {
+                        question: "Action Required: Immediate Medical Management.",
+                        type: "endpoint",
+                        tools: ["armElbowRedFlags"],
+                        assessment: "Acute Arm / Elbow Pain with Red Flags.",
+                        consults: "Orthopedics (TODAY)",
+                        plan: "• X-ray elbow A/P, Lateral, Oblique of forearm/elbow\n• Call Ortho TODAY to discuss management"
+                    },
+                    arm_elbow_exam: {
+                        question: "EXAM Findings:",
+                        instruction: "Perform Arm / Elbow physical exam and special tests.",
+                        tools: ["armElbowSpecialTests"],
+                        options: [
+                            { text: "Yes (Positive special tests or findings)", next: () => visitTypeState === '7day' ? "arm_elbow_follow_up_status" : "arm_elbow_severe_path", soap: "Physical Exam: Positive special tests or significant exam findings." },
+                            { text: "No (Negative special tests and normal exam)", next: () => visitTypeState === '7day' ? "arm_elbow_follow_up_status" : "arm_elbow_moderate_path", soap: "Physical Exam: Negative special tests and normal exam findings." }
+                        ]
+                    },
+                    arm_elbow_severe_path: {
+                        question: "Initial Consult Complete: Severe Arm / Elbow Injury Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics", "peaceProtocol"],
+                        assessment: "Acute Arm / Elbow Pain, Severe Injury / Positive Special Tests.",
+                        consults: "OT or Ortho, as indicated, within 72 hours",
+                        plan: "• Profile Severe x 14-21 days\n• Sling for ligamentous instability or radial head injury, as needed (remove hourly for ROM, especially into extension, no sleeping in sling)\n• Analgesic Meds PRN (see p.16)\n• PEACE\n• Referral: OT or Ortho, as indicated, within 72 hours."
+                    },
+                    arm_elbow_moderate_path: {
+                        question: "Initial Consult Complete: Moderate Arm / Elbow Injury Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics", "peaceProtocol"],
+                        assessment: "Acute Arm / Elbow Pain, Moderate Injury / Negative Special Tests.",
+                        consults: "None immediately required",
+                        plan: "• Profile moderate x 10 to 14 days\n• Analgesic Meds PRN (see p.16)\n• PEACE\n• Re-evaluate at end of profile."
+                    },
+                    arm_elbow_follow_up_status: {
+                        question: "Follow-Up Re-evaluation: Are symptoms persisting or mostly resolved?",
+                        options: [
+                            { text: "Yes (Symptoms Persist)", next: "arm_elbow_symptoms_persist", soap: "Follow-up evaluation: Symptoms persist." },
+                            { text: "Mostly Resolved", next: "arm_elbow_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
+                        ]
+                    },
+                    arm_elbow_symptoms_persist: {
+                        question: "Persistent Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics", "peaceProtocol"],
+                        assessment: "Acute Arm / Elbow Pain, persistent symptoms.",
+                        consults: "OT or Ortho in 7-10 days",
+                        plan: "• Profile Moderate x 2-3 weeks\n• Analgesic Meds PRN (see p.16)\n• PEACE\n• Referral: 7-10 days to OT or Ortho, as indicated"
+                    },
+                    arm_elbow_mostly_resolved: {
+                        question: "Resolved Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["analgesics", "peaceProtocol"],
+                        assessment: "Acute Arm / Elbow Pain, mostly resolved.",
+                        consults: "None immediately required",
+                        plan: "• Duty Specific Profile PRN\n• Analgesic Meds PRN (see p.16)\n• PEACE\n• RTD end of profile anticipated"
+                    }
+                }
+            },
             neck: {
                 title: "Traumatic or Acute Neck Pain",
                 nodes: {
@@ -2951,6 +3251,10 @@
                         </button>
                         <button onclick="startProtocol('hip')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
                             <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-child-reaching mr-2"></i> Hip Pain</h3>
+                            <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
+                        </button>
+                        <button onclick="startProtocol('arm_elbow')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
+                            <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-hand-fist mr-2"></i> Arm / Elbow</h3>
                             <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
                         </button>
                         <button onclick="startProtocol('ankle')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
