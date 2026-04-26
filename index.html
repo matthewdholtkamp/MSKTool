@@ -2762,7 +2762,7 @@
                         tools: ["wristSpecialTests"],
                         options: [
                             { text: "Yes (Positive special tests)", next: "wrist_positive_endpoint", soap: "Physical Exam: Positive special tests." },
-                            { text: "No (Negative special tests)", next: () => visitTypeState === '7day' ? "wrist_symptoms_persist" : "wrist_initial_negative", soap: "Physical Exam: Negative special tests." }
+                            { text: "No (Negative special tests)", next: () => visitTypeState === '7day' ? "wrist_follow_up_status" : "wrist_initial_negative", soap: "Physical Exam: Negative special tests." }
                         ]
                     },
                     wrist_positive_endpoint: {
@@ -2781,13 +2781,28 @@
                         consults: "Primary Care Manager in 10-14 days",
                         plan: "• Profile: 10-14 day profile.\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Re-evaluate at end of profile in 10-14 days."
                     },
+                    wrist_follow_up_status: {
+                        question: "Symptoms Persist?",
+                        options: [
+                            { text: "Yes", next: "wrist_symptoms_persist", soap: "Follow-up evaluation: Symptoms Persist." },
+                            { text: "Mostly Resolved", next: "wrist_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
+                        ]
+                    },
                     wrist_symptoms_persist: {
                         question: "Persistent Symptoms Protocol.",
                         type: "endpoint",
-                        tools: ["wristImagingGuidelines", "wristProfiles", "analgesics"],
+                        tools: ["wristProfiles", "analgesics", "peaceProtocol"],
                         assessment: "Acute Hand/Wrist Pain, persistent symptoms despite negative exams.",
-                        consults: "Occupational Therapy, Physical Therapy, or Orthopedics",
-                        plan: "• Symptoms Persist.\n• Imaging: Repeat X-Rays if indicated. Consider MRI referral.\n• Profile: Maintain appropriate Profile/Splinting.\n• Analgesic medications as needed.\n• Referral: Occupational Therapy, Physical Therapy, or Orthopedics as indicated."
+                        consults: "Occupational Therapy or Orthopedics in 7-10 days",
+                        plan: "• Profile Moderate x 2-3 weeks\n• Analgesic Meds PRN (see above)\n• PEACE (see above)\n• Referral: OT or Ortho, as indicated, in 7-10 days"
+                    },
+                    wrist_mostly_resolved: {
+                        question: "Resolved Symptoms Protocol.",
+                        type: "endpoint",
+                        tools: ["wristProfiles", "analgesics", "peaceProtocol"],
+                        assessment: "Acute Hand/Wrist Pain, mostly resolved.",
+                        consults: "None immediately required",
+                        plan: "• Duty Specific Min Profile PRN\n• Analgesic Meds PRN (See above)\n• PEACE (See Above)\n• RTD end of profile anticipated"
                     }
                 }
             }
