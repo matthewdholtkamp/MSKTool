@@ -169,7 +169,7 @@
                             <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
                                 <div class="flex items-center">
                                     <i class="fa-solid fa-x-ray mr-2 text-blue-600"></i>
-                                    <span>X-Rays <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
+                                    <span>Elbow Extension Test <span class="text-xs font-normal ml-2 text-blue-500">(Click to Expand)</span></span>
                                 </div>
                                 <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-blue-600"></i>
                             </summary>
@@ -2162,7 +2162,6 @@
                     arm_elbow_red_flags_action: {
                         question: "Action Required: Immediate Medical Management.",
                         type: "endpoint",
-                        tools: ["armElbowRedFlags"],
                         assessment: "Acute Arm / Elbow Pain with Red Flags.",
                         consults: "Orthopedics (TODAY)",
                         plan: "• X-ray elbow A/P, Lateral, Oblique of forearm/elbow\n• Call Ortho TODAY to discuss management"
@@ -2182,7 +2181,7 @@
                         tools: ["analgesics", "peaceProtocol"],
                         assessment: "Acute Arm / Elbow Pain, Severe Injury / Positive Special Tests.",
                         consults: "OT or Ortho, as indicated, within 72 hours",
-                        plan: "• Profile Severe x 14-21 days\n• Sling for ligamentous instability or radial head injury, as needed (remove hourly for ROM, especially into extension, no sleeping in sling)\n• Analgesic Meds PRN (see p.16)\n• PEACE\n• Referral: OT or Ortho, as indicated, within 72 hours."
+                        plan: "• Profile Severe x 14-21 days\n• Sling for ligamentous instability or radial head injury, as needed (remove hourly for ROM, especially into extension, no sleeping in sling)\n• Analgesic Meds PRN (see above)\n• PEACE Protocol (see above)\n• Referral: OT or Ortho, as indicated, within 72 hours."
                     },
                     arm_elbow_moderate_path: {
                         question: "Initial Consult Complete: Moderate Arm / Elbow Injury Protocol.",
@@ -2190,7 +2189,7 @@
                         tools: ["analgesics", "peaceProtocol"],
                         assessment: "Acute Arm / Elbow Pain, Moderate Injury / Negative Special Tests.",
                         consults: "None immediately required",
-                        plan: "• Profile moderate x 10 to 14 days\n• Analgesic Meds PRN (see p.16)\n• PEACE\n• Re-evaluate at end of profile."
+                        plan: "• Profile moderate x 10 to 14 days\n• Analgesic Meds PRN (see above)\n• PEACE Protocol (see above)\n• Re-evaluate at end of profile."
                     },
                     arm_elbow_follow_up_status: {
                         question: "Follow-Up Re-evaluation: Are symptoms persisting or mostly resolved?",
