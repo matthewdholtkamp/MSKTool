@@ -1,0 +1,18 @@
+--- index.html
++++ index.html
+@@ -3273,18 +3273,6 @@
+                             <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
+                         </button>
+-                        <button onclick="startProtocol('elbow')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
+-                            <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-hand-sparkles mr-2"></i> Arm & Elbow Pain</h3>
+-                            <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
+-                        </button>
+                         <button onclick="startProtocol('wrist')" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-army hover:shadow-md transition text-left group">
+                             <h3 class="text-lg font-bold text-army group-hover:text-army-dark"><i class="fa-solid fa-hand mr-2"></i> Wrist & Hand Pain</h3>
+                             <p class="text-sm text-gray-500 mt-2">Traumatic or Acute</p>
+                         </button>
+-                        <button disabled class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 opacity-60 cursor-not-allowed text-left">
+-                            <h3 class="text-lg font-bold text-gray-600"><i class="fa-solid fa-person-walking-with-cane mr-2"></i> Back Pain</h3>
+-                            <p class="text-sm text-gray-400 mt-2">Coming Soon</p>
+-                        </button>
+                     </div>

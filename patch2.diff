@@ -1,0 +1,98 @@
+--- index.html
++++ index.html
+@@ -2985,93 +2985,6 @@
+                 }
+             },
+-            elbow: {
+-                title: "Traumatic or Acute Arm and Elbow Pain",
+-                nodes: {
+-                    visit_type: {
+-                        question: "Patient Reports With Traumatic or Acute Arm and Elbow Pain: Select the reason for today's encounter.",
+-                        options: [
+-                            { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "elbow_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute arm/elbow pain." },
+-                            { text: "Follow-Up (Reviewing Pending Imaging)", onSelect: () => { visitTypeState = 'imaging'; }, next: "elbow_red_flags", soap: "Visit Type: Follow-Up to review pending arm/elbow imaging (Full Reassessment)." },
+-                            { text: "Follow-Up (7-10 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "elbow_red_flags", soap: "Visit Type: 7-10 Day Follow-Up for previous arm/elbow injury." }
+-                        ]
+-                    },
+-                    elbow_red_flags: {
+-                        question: "RED FLAGS: Does the patient have any Red Flags?",
+-                        tools: ["elbowRedFlags"],
+-                        options: [
+-                            { text: "Yes", next: "elbow_red_flags_action", soap: "Evaluation performed. Positive for Arm & Elbow Red Flags." },
+-                            { text: "No", next: () => visitTypeState === 'imaging' ? "elbow_review_results" : "elbow_exam", soap: "Evaluation performed. No Red Flags." }
+-                        ]
+-                    },
+-                    elbow_red_flags_action: {
+-                        question: "Action Required: Immediate Medical Management & Imaging.",
+-                        type: "endpoint",
+-                        tools: ["elbowImagingGuidelines", "elbowProfiles"],
+-                        assessment: "Acute Arm/Elbow Pain with Red Flags (Suspected Fracture, Rupture, Infection, or Neurovascular issue).",
+-                        consults: "Orthopedics or Emergency Department (TODAY)",
+-                        plan: "• Order X-Rays: AP, Lateral, and Oblique.\n• Call Orthopedics or send to Emergency Department TODAY depending on severity.\n• Splint/Sling: Immobilize as appropriate.\n• Profile: Severe (No lifting/pushing/pulling/weight bearing on arm)."
+-                    },
+-                    elbow_review_results: {
+-                        question: "Review the Pending X-Rays or Ultrasound. Are there positive findings?",
+-                        options: [
+-                            { text: "Yes, positive for fracture, tendon rupture, or dislocation", next: "call_ortho_elbow", soap: "Imaging reviewed: Yes, positive findings confirmed." },
+-                            { text: "No", next: "elbow_exam", soap: "Imaging reviewed: No acute fracture or surgical pathology." }
+-                        ]
+-                    },
+-                    call_ortho_elbow: {
+-                        question: "Consult Specialty Care TODAY.",
+-                        type: "endpoint",
+-                        assessment: "Acute Arm/Elbow Pain with Positive Imaging Findings.",
+-                        consults: "Orthopedics",
+-                        plan: "• Call Orthopedics TODAY to discuss management and transfer of care. Maintain immobilization."
+-                    },
+-                    elbow_exam: {
+-                        question: "ELBOW EXAM: Evaluate for Epicondylalgia, Ligamentous Instability, and Neurological signs.",
+-                        instruction: "Use the special tests drop-downs below to guide your exam.",
+-                        tools: ["elbowSpecialTests", "elbowProfiles"],
+-                        options: [
+-                            { text: "Yes (Positive Instability, severe Epicondylitis, or positive Tinel's)", next: () => visitTypeState === '7day' ? "elbow_follow_up_status" : "elbow_severe_path", soap: "Physical Exam: Positive for significant ligamentous instability, severe tendinopathy, or ulnar nerve pathology." },
+-                            { text: "No (Negative/Mild special tests, intact strength, full ROM)", next: () => visitTypeState === '7day' ? "elbow_follow_up_status" : "elbow_moderate_path", soap: "Physical Exam: Negative or mildly positive special tests. Full strength and ROM generally preserved." }
+-                        ]
+-                    },
+-                    elbow_severe_path: {
+-                        question: "Initial Consult Complete: Severe/Moderate Elbow Injury Protocol.",
+-                        type: "endpoint",
+-                        tools: ["peaceProtocol", "elbowProfiles", "analgesics"],
+-                        assessment: "Acute Arm/Elbow Pain, Severe to Moderate Injury (Suspected ligamentous/nerve involvement).",
+-                        consults: "Physical Therapy or Orthopedics (within 7-10 days)",
+-                        plan: "• Profile: Severe (No lifting > 5 lbs, no repetitive gripping/pushing/pulling).\n• Immobilization: Consider Sling or brace for comfort.\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Follow-up: Refer to Physical Therapy or Orthopedics in 7-10 days."
+-                    },
+-                    elbow_moderate_path: {
+-                        question: "Initial Consult Complete: Mild Elbow Injury / Epicondylitis Protocol.",
+-                        type: "endpoint",
+-                        tools: ["peaceProtocol", "elbowProfiles", "analgesics"],
+-                        assessment: "Acute Arm/Elbow Pain, Mild Sprain/Strain or Tendinopathy.",
+-                        consults: "Primary Care Manager in 7-10 days",
+-                        plan: "• Profile: Moderate or Mild (Modify upper body PRT, consider counterforce brace for Epicondylitis).\n• Analgesic Medications as needed.\n• PEACE Protocol.\n• Re-evaluate in 7-10 days by Primary Care Manager if symptoms persist."
+-                    },
+-                    elbow_follow_up_status: {
+-                        question: "Symptoms Persist?",
+-                        options: [
+-                            { text: "Yes", next: "elbow_symptoms_persist", soap: "Follow-up evaluation: Symptoms Persist." },
+-                            { text: "Mostly Resolved", next: "elbow_mostly_resolved", soap: "Follow-up evaluation: Mostly Resolved." }
+-                        ]
+-                    },
+-                    elbow_symptoms_persist: {
+-                        question: "Persistent Symptoms Protocol.",
+-                        type: "endpoint",
+-                        tools: ["elbowProfiles", "analgesics"],
+-                        assessment: "Acute Arm/Elbow Pain, persistent symptoms.",
+-                        consults: "Physical Therapy, Sports Medicine, or Orthopedics",
+-                        plan: "• Imaging: Consider AP/Lateral/Oblique X-Rays if not previously done. Consider Ultrasound/MRI for refractory tendinopathy or suspected tears.\n• Profile: Maintain appropriate Profile.\n• Analgesic medications as needed.\n• Referral: Physical Therapy, Sports Medicine, or Orthopedics as indicated."
+-                    },
+-                    elbow_mostly_resolved: {
+-                        question: "Resolved Symptoms Protocol.",
+-                        type: "endpoint",
+-                        tools: ["analgesics"],
+-                        assessment: "Acute Arm/Elbow Pain, mostly resolved.",
+-                        consults: "None immediately required",
+-                        plan: "• Duty Specific Profile as needed (Gradual return to lifting/gripping recommended).\n• Analgesic Medications as needed.\n• Return to duty at end of profile anticipated."
+-                    }
+-                }
+-            },
+             wrist: {
+                 title: "Traumatic or Acute Hand and Wrist Pain",
