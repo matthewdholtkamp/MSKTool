@@ -1888,11 +1888,12 @@
                     </div>
                 `
             },
-            wristArmElbowExam: {
-                title: "Hand & Wrist Arm/Elbow Exam",
+
+            wristSpecialTests: {
+                title: "Hand & Wrist Special Tests",
                 collapsible: false,
                 content: `
-                    <div class="space-y-4 text-sm text-gray-800 bg-white p-4 rounded-lg border-2 border-blue-300 shadow-sm">
+                    <div class="space-y-4 text-sm text-gray-800 mb-6">
                         <div>
                             <h5 class="font-bold text-blue-800 mb-1">1) Observe:</h5>
                             <ul class="list-disc pl-5 space-y-1 text-gray-700">
@@ -1916,12 +1917,6 @@
                             <h5 class="font-bold text-blue-800 mb-1">4) Bones and Joint Assessment</h5>
                         </div>
                     </div>
-                `
-            },
-            wristSpecialTests: {
-                title: "Hand & Wrist Special Tests",
-                collapsible: false,
-                content: `
                     <div class="space-y-3 text-sm text-gray-800">
                         <details class="group bg-blue-50 border border-blue-200 rounded-lg">
                             <summary class="font-bold text-sm p-3 text-blue-900 flex justify-between items-center cursor-pointer select-none">
@@ -2740,7 +2735,7 @@
                         question: "Patient Reports With Traumatic or Acute Hand and Wrist Pain: Select the reason for today's encounter.",
                         options: [
                             { text: "Initial Consult (New Injury / Acute)", onSelect: () => { visitTypeState = 'initial'; }, next: "wrist_red_flags", soap: "Visit Type: Initial Consult for traumatic or acute hand/wrist pain." },
-                            { text: "Follow-Up (10-14 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "wrist_red_flags_review", soap: "Visit Type: 10-14 Day Follow-Up for previous hand/wrist injury." }
+                            { text: "Follow-Up (10-14 Day Re-evaluation)", onSelect: () => { visitTypeState = '7day'; }, next: "wrist_red_flags", soap: "Visit Type: 10-14 Day Follow-Up for previous hand/wrist injury." }
                         ]
                     },
                     wrist_red_flags: {
@@ -2748,16 +2743,10 @@
                         tools: ["wristRedFlags"],
                         options: [
                             { text: "Yes", next: "wrist_red_flags_action", soap: "Evaluation performed. Positive for Hand/Wrist Red Flags." },
-                            { text: "No", next: "wrist_arm_elbow_exam", soap: "Evaluation performed. No Red Flags." }
+                            { text: "No", next: "wrist_special_tests", soap: "Evaluation performed. No Red Flags." }
                         ]
                     },
-                    wrist_red_flags_review: {
-                        question: "Review RED FLAGS",
-                        tools: ["wristRedFlags"],
-                        options: [
-                            { text: "Acknowledged and Reviewed", next: "wrist_arm_elbow_exam", soap: "Red Flags reviewed and acknowledged." }
-                        ]
-                    },
+
                     wrist_red_flags_action: {
                         question: "Action Required: Immediate Medical Management & Imaging.",
                         type: "endpoint",
@@ -2766,15 +2755,7 @@
                         consults: "Orthopedics or Emergency Department (TODAY)",
                         plan: "• Order appropriate X-Rays: Hand/Wrist/Scaphoid series.\n• Call Orthopedics or send to Emergency Department TODAY depending on severity (e.g., Kanavel's signs, Fight Bite, Dislocation).\n• Splint: Immobilize as appropriate (Thumb Spica for Snuffbox tenderness).\n• Profile: Severe (No use of affected hand/wrist)."
                     },
-                    wrist_arm_elbow_exam: {
-                        question: "ARM/ELBOW EXAM:",
-                        instruction: "Assess using the arm and elbow exam criteria below.",
-                        tools: ["wristArmElbowExam"],
-                        options: [
-                            { text: "Yes (Positive findings on observe, sensory, motor/tendon, or bone/joint)", next: "wrist_positive_endpoint", soap: "Physical Exam: Positive findings on arm/elbow exam." },
-                            { text: "No (Normal exam)", next: "wrist_special_tests", soap: "Physical Exam: Normal arm/elbow exam." }
-                        ]
-                    },
+
                     wrist_special_tests: {
                         question: "HAND/WRIST SPECIAL TESTS:",
                         instruction: "Use the special tests drop-downs below to guide your exam.",
