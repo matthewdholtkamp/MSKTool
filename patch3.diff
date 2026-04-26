@@ -1,0 +1,8 @@
+--- index.html
++++ index.html
+@@ -2828,5 +2828,2 @@
+             ],
+-            elbow: [
+-                "Cleland JA, Koppenhaver S. The Reliability and Diagnostic Utility of the Orthopaedic Clinical Examination. 2nd ed. Netter's Orthopaedic Clinical Examination; 2011."
+-            ],
+             wrist: [
